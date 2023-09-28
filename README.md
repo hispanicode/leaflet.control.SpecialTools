@@ -34,6 +34,8 @@ La carpeta leaflet.control.SpecialTools la he incluido en la raíz de la carpeta
 
 <img src='https://raw.githubusercontent.com/hispanicode/leaflet.control.SpecialTools/main/ruta.png'>
 
+<p>leaflet.control.SpecialToolsLegend: de momento se encuentra detenido. Por si véis que no hace nada :)</p>
+
 
 
 
