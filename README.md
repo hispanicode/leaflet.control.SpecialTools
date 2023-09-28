@@ -1,8 +1,6 @@
 # leaflet.control.SpecialTools
 
-Leaflet Control for Dédalo
-
-<h4>Requisitos para su correcto funcionamiento:</h4>
+<h3>Requisitos para su correcto funcionamiento:</h3>
 
 <p><strong>Instalar Python3 y GDAL.</strong></p>
 
@@ -30,8 +28,9 @@ El archivo <strong>component_geolocation.js</strong> se adjunta entre los archiv
 </p>
 
 <p>
-La carpeta leaflet.control.SpecialTools la he incluido en la raíz de la carpeta "component_geolocation", aunque se podría incluir en otro lugar, siempre y cuando se modifique la propiedad "route" hacia la raíz "leaflet.control.SpecialTools".
+La carpeta leaflet.control.SpecialTools la he incluido en la raíz de la carpeta "component_geolocation", aunque se podría incluir en otro lugar, siempre y cuando se indique en la opción "route" la raíz de "leaflet.control.SpecialTools".
 </p>
+
 
 <img src='https://raw.githubusercontent.com/hispanicode/leaflet.control.SpecialTools/main/ruta.png'>
 
