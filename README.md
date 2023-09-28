@@ -15,11 +15,9 @@ Leaflet Control for Dédalo
 
 <h5>Instalación de Imagick</h5>
 
-<ul>
-<li>Ubuntu: Run “apt-get install php-imagick” and restart your webserver.</li>
-<li>Debian: Run “apt-get install php-imagick and restart your webserver.</li>
-<li>Centos: Run “yum install php-imagick” and restart your webserver.</li>
-</ul>
+Ubuntu: Run “apt-get install php-imagick” and restart your webserver.
+Debian: Run “apt-get install php-imagick and restart your webserver.
+Centos: Run “yum install php-imagick” and restart your webserver.
 
 El archivo <strong>component_geolocation.js</strong> se adjunta entre los archivos para que se pueda ver las partes modificadas. Se puede buscar a través del archivo con el siguiente texto <i>/* SPECIALTOOLS</i>
 
