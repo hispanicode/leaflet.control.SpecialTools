@@ -15,13 +15,19 @@ Leaflet Control for Dédalo
 
 <h5>Instalación de Imagick</h5>
 
+<code>
 Ubuntu: Run “apt-get install php-imagick” and restart your webserver.
+
 Debian: Run “apt-get install php-imagick and restart your webserver.
+
 Centos: Run “yum install php-imagick” and restart your webserver.
+</code>
 
 El archivo <strong>component_geolocation.js</strong> se adjunta entre los archivos para que se pueda ver las partes modificadas. Se puede buscar a través del archivo con el siguiente texto <i>/* SPECIALTOOLS</i>
 
 La carpeta leaflet.control.SpecialTools yo la he incluido en la raíz de la carpeta "component_geolocation".
+
+<img src='https://raw.githubusercontent.com/hispanicode/leaflet.control.SpecialTools/main/ruta.png'>
 
 
 
