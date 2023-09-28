@@ -1,0 +1,120 @@
+
+/*
+ * Author: Manuel Jesús Dávila González
+ * e-mail: manudavgonz@gmail.com
+ */
+
+.special-tools {
+  border: 0 !important;
+}
+
+.special-tools-btns {
+    width: 40px;
+    float: left;
+}
+
+.special-tools-enable {
+    background-color: #14fbcd !important;
+}
+
+.special-tools-disable {
+    background-color: #fff !important;
+}
+
+.special-tools-panel-show-hide  {
+    width: 35px;
+    height: 35px;
+    background-image: url('img/arrows.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 2px;
+    text-align: center;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    border-radius: 2px;
+    line-height: 28px !important;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.special-tools-visibility-hide {
+    visibility: hidden;
+}
+
+.special-tools-visibility-visible {
+    visibility: visible;
+}
+
+.special-tools-console {
+    width: 240px;
+    height: 300px;
+    float: left;
+    background-color: #000;
+    color: #fff;
+    opacity: 0.9;
+    z-index: 1001;
+    overflow: scroll;
+    padding: 12px;
+    border: 1px solid aquamarine;
+    border-radius: 2px;
+}
+
+.special-tools-msg-error {
+    color: #f30c36;
+}
+
+.special-tools-msg-ok {
+    color: #11eabf;
+}
+
+.special-tools-display-block {
+    display: block;
+}
+
+.special-tools-display-none {
+    display: none;
+}
+
+.special-tools-btn-default {
+    background-color: #33c4ff; border-radius: 2px; color: #fff;
+}
+
+.special-tools-btn-success {
+    background-color: #38cb77; border-radius: 2px; color: #fff;
+}
+
+.special-tools-btn-info {
+    background-color: #147dfb; border-radius: 2px; color: #fff;
+}
+
+.special-tools-btn-danger {
+    background-color: #E71B1B; border-radius: 2px; color: #fff;
+}
+
+.special-tools-text-info {
+    color: #353437;
+    background-color: #c8cf39;
+    padding: 10px;
+    font-size: 1.1em;
+}
+
+/* For desktop: */
+.w-col-1 {width: 8.33%; float: left;}
+.w-col-2 {width: 16.66%; float: left;}
+.w-col-3 {width: 25%; float: left;}
+.w-col-4 {width: 33.33%; float: left;}
+.w-col-5 {width: 41.66%; float: left;}
+.w-col-6 {width: 50%; float: left;}
+.w-col-7 {width: 58.33%; float: left;}
+.w-col-8 {width: 66.66%; float: left;}
+.w-col-9 {width: 75%; float: left;}
+.w-col-10 {width: 83.33%; float: left;}
+.w-col-11 {width: 91.66%; float: left;}
+.w-col-12 {width: 100%;}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  [class*="w-col-"] {
+    width: 100%;
+  }
+}

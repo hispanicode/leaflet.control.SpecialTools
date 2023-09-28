@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="EPSG_32619" id="EPSG_32619">
+	<SimpleField name="id" type="float"></SimpleField>
+</Schema>
+<Folder><name>EPSG_32619</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#EPSG_32619">
+		<SimpleData name="id">1</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>-68.2437690956887,48.4946044292909 -72.6725682700402,52.142710846906 -70.69973954692,54.9637696595189 -64.6202061348557,54.94064893322 -56.4873203783193,50.76292648216 -68.2437690956887,48.4946044292909</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+</Folder>
+</Document></kml>
