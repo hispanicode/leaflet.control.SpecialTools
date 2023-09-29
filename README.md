@@ -36,6 +36,8 @@ La carpeta leaflet.control.SpecialTools la he incluido en la raíz de la carpeta
 
 <p>leaflet.control.SpecialToolsLegend: de momento se encuentra detenido. Por si véis que no hace nada :)</p>
 
+<p style='color: red'>* Punto importante. Las urls de los mapas base deben incluir https o es posible que al realizar la petición a determinados servidores para imprimir el mapa, caso de Arcgis, por ejemplo, devuelva un error CORS. http es inseguro.</p>
+
 
 
 
