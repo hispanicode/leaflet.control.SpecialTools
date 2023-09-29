@@ -38,7 +38,11 @@ La carpeta leaflet.control.SpecialTools la he incluido en la raíz de la carpeta
 
 <p style='color: red'>* Punto importante. Las urls de los mapas base deben incluir https o es posible que al realizar la petición a determinados servidores para imprimir el mapa, caso de Arcgis, por ejemplo, devuelva un error CORS. http es inseguro.</p>
 
-<p>Si en la subida o descarga de archivos tenéis algún error, hay que habilitar los permisos de la carpeta leaflet.control.SpecialTools:<p>
+<p>Si en la subida o descarga de archivos tenéis algún error, hay que habilitar los permisos de escritura en la carpeta leaflet.control.SpecialTools:<p>
+
+<pre>
+chmod -R 777 leaflet.control.SpecialTools
+</pre>
 
 <img src='https://raw.githubusercontent.com/hispanicode/leaflet.control.SpecialTools/main/permisos.png'>
 
