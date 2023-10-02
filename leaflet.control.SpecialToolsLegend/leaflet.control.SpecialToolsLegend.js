@@ -19,6 +19,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
         const controlDiv = L.DomUtil.create('div', 'special-tools-legend special-tools-controls special-tools-disable');
 
         this.legend_div = L.DomUtil.create('div');
+        this.legend_div.style.display = 'none';
         
         this.legend_div.setAttribute('class', 'special-tools-legend-div');
         
