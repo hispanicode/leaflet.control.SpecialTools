@@ -1,6 +1,5 @@
 # leaflet.control.SpecialTools
 
-<<<<<<< HEAD
 <h3>CONTRIBUTORS</h3>
 
 <p>TED2021-131704A-I00, financiado por MCIN/AEI/10.13039/501100011033 y por la Unión Europea “NextGenerationEU”/PRTR</p>
@@ -18,7 +17,6 @@
 
 <p><strong>Instalar Python3 y GDAL.</strong></p>
 
->>>>>>> 3cd4498d27f88217ccaf499eafbb400e852c0cf6
 <pre>
     sudo apt install python3
     sudo apt install pip
