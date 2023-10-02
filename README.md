@@ -4,15 +4,10 @@
 
 <p>TED2021-131704A-I00, financiado por MCIN/AEI/10.13039/501100011033 y por la Unión Europea “NextGenerationEU”/PRTR</p>
 
-<img src='https://raw.githubusercontent.com/hispanicode/leaflet.control.SpecialTools/main/image.png'>
+<img src='https://raw.githubusercontent.com/hispanicode/leaflet.control.SpecialTools/main/image.png' style='width: auto'>
 
-<img src='https://raw.githubusercontent.com/hispanicode/leaflet.control.SpecialTools/main/WONDERLOGO_2023 copia.gif'>
+<img src='https://raw.githubusercontent.com/hispanicode/leaflet.control.SpecialTools/main/WONDERLOGO_2023 copia.gif' style='width: auto'>
 
-<h3>Requisitos para su correcto funcionamiento:</h3>
-
-<p><strong>Instalar Python3 y GDAL.</strong></p>
-
-=======
 <h3>Requisitos para su correcto funcionamiento:</h3>
 
 <p><strong>Instalar Python3 y GDAL.</strong></p>
