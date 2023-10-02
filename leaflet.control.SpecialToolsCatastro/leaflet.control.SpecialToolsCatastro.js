@@ -158,7 +158,7 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
 
                         let size = map.getSize();
 
-                        let url = route + '/ajax/catastro/catastro_wms_refcat.php?';
+                        let url = route + '/leaflet.control.SpecialToolsCatastro/ajax/catastro_wms_refcat.php?';
 
                         fetch(url + new URLSearchParams({
 
@@ -196,7 +196,7 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
 
                             if (typeof refcat_url !== 'undefined') {
 
-                                url = route + '/ajax/catastro/catastro_wfs_getfeature.php?';
+                                url = route + '/leaflet.control.SpecialToolsCatastro/ajax/catastro_wfs_getfeature.php?';
 
                                 fetch(url + new URLSearchParams({
 
@@ -267,7 +267,7 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
 
                                     } else {
 
-                                        url = route+'/ajax/catastro/catastro_wfs_getfeature.php?';
+                                        url = route+'/leaflet.control.SpecialToolsCatastro/ajax/catastro_wfs_getfeature.php?';
 
                                         fetch(url + new URLSearchParams({
 
@@ -429,7 +429,7 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
 
                             let size = map.getSize();
 
-                            let url = route+'/ajax/catastro/catastro_wms_refcat.php?';
+                            let url = route+'/leaflet.control.SpecialToolsCatastro/ajax/catastro_wms_refcat.php?';
 
                             fetch(url + new URLSearchParams({
 
@@ -467,7 +467,7 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
 
                                 if (typeof refcat_url !== 'undefined') {
 
-                                    url = route+'/ajax/catastro/catastro_wfs_getfeature.php?';
+                                    url = route+'/leaflet.control.SpecialToolsCatastro/ajax/catastro_wfs_getfeature.php?';
 
                                     fetch(url + new URLSearchParams({
 
@@ -545,7 +545,7 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
 
                                         } else {
 
-                                            url = route+'/ajax/catastro/catastro_wfs_getfeature.php?';
+                                            url = route+'/leaflet.control.SpecialToolsCatastro/ajax/catastro_wfs_getfeature.php?';
 
                                             fetch(url + new URLSearchParams({
 

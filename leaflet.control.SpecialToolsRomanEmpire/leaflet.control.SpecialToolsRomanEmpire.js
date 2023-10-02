@@ -240,7 +240,7 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                     
                     if (input_value === '') return;
                     
-                    let url = route+'/ajax/pleiades/pleiades.php?';
+                    let url = route + '/leaflet.control.SpecialToolsRomanEmpire/ajax/pleiades/pleiades.php?';
              
                     fetch(url + new URLSearchParams({
                         type: radio_option_checked,
@@ -274,7 +274,7 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                 
                                 id = this.getAttribute('pleiades-id');
                                 
-                                let url = route+'/ajax/pleiades/pleiades-service.php?';
+                                let url = route + '/leaflet.control.SpecialToolsRomanEmpire/ajax/pleiades/pleiades-service.php?';
 
                                 fetch(url + new URLSearchParams({
                                     id: id
@@ -641,7 +641,7 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                     
                     if (query === '') return;
                     
-                    let url = route+'/ajax/roman-empire/roman-empire.php?';
+                    let url = route + '/leaflet.control.SpecialToolsRomanEmpire/ajax/pelagios/pelagios.php?';
              
                     fetch(url + new URLSearchParams({
                         query: query,
@@ -837,7 +837,7 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                     
                     if (query === '') return;
                     
-                    let url = route+'/ajax/imperium.ahlfeldt/imperium.ahlfeldt.php?';
+                    let url = route + '/leaflet.control.SpecialToolsRomanEmpire/ajax/imperium.ahlfeldt/imperium.ahlfeldt.php?';
              
                     fetch(url + new URLSearchParams({
                         query: query,

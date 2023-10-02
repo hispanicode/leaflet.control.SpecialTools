@@ -178,7 +178,7 @@ L.Control.SpecialToolsUA = L.Control.extend({
                                 
                                 let size = this.getSize();
 
-                                let url = route+'/ajax/unidades-administrativas/unidades-administrativas.php?';                             
+                                let url = route + '/leaflet.control.SpecialToolsUA/ajax/unidades-administrativas.php?';                             
                                 
                                 fetch(url + new URLSearchParams({
                                     
@@ -376,7 +376,9 @@ L.Control.SpecialToolsUA = L.Control.extend({
 });
 
 L.control.specialToolsUA = function (options) {
+    
     return new L.Control.SpecialToolsUA(options);
+    
 };
 
 

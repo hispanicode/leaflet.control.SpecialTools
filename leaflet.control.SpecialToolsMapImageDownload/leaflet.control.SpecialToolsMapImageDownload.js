@@ -141,7 +141,7 @@ L.Control.SpecialToolsMapImageDownload = L.Control.extend({
                                 formData.append('file_type', file_type);
                                 formData.append('tif_bounds', tif_bounds);
                                 formData.append('dataUrl', dataUrl);
-                                url = route + '/ajax/download-map/download-map.php';
+                                url = route + '/leaflet.control.SpecialToolsMapImageDownload/ajax/map-image-download.php';
 
                                 fetch(url, {
                                   method: "POST", 
@@ -157,7 +157,7 @@ L.Control.SpecialToolsMapImageDownload = L.Control.extend({
 
                                     if (data.success) {
 
-                                        window.open(route + '/ajax/download-map/'+data.zip, '_blank');
+                                        window.open(route + '/leaflet.control.SpecialToolsMapImageDownload/ajax/'+data.zip, '_blank');
 
                                         map._controlCorners.topright.style.display = 'block';
                                         map._controlCorners.topleft.style.display = 'block';

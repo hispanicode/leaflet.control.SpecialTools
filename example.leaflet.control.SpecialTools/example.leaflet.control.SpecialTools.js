@@ -12,6 +12,8 @@ L.Control.SpecialToolsDemo = L.Control.extend({
         
         const route = special_tools.options.route;
         
+        const lang = special_tools.options.lang;
+        
         const server = special_tools.options.server;
         
         const component_geolocation = special_tools.options.component_geolocation;
@@ -19,6 +21,19 @@ L.Control.SpecialToolsDemo = L.Control.extend({
         const controlDiv = L.DomUtil.create('div', 'special-tools-demo special-tools-controls special-tools-disable');
 
         special_tools.special_tools_btns.appendChild(controlDiv);
+        
+        var json_lang = {};
+        
+        fetch(route + '/example.leaflet.control.SpecialTools/lang/lang.json')
+        .then(function(response){
+            
+            return response.json();
+            
+        }).then(function(data){
+            
+            json_lang = data;
+            
+        });
 
         L.DomEvent.addListener(controlDiv, 'click', function(){
             
@@ -31,11 +46,11 @@ L.Control.SpecialToolsDemo = L.Control.extend({
                 special_tools.only_one_control_active(elements_controls, controlDiv);
             } catch (e) {};
             
-            content = 'DEMO CONTENT';
+            content = special_tools._T("Demostración", json_lang, lang);
             
             map.fire('modal', {
                 
-              title: 'DEMO',
+              title: special_tools._T("Demostración", json_lang, lang),
               content: content,
               template: ['<div class="modal-header"><h2>{title}</h2></div>',
                 '<hr>',
@@ -75,11 +90,14 @@ L.Control.SpecialToolsDemo = L.Control.extend({
         });
                
         false_div = L.DomUtil.create('div');
+        
         return false_div;
         
     }
 });
 
 L.control.specialToolsDemo = function (options) {
+    
     return new L.Control.SpecialToolsDemo(options);
+    
 };

@@ -23,7 +23,7 @@ if (isset($_POST["url"]) && isset($_POST["route"])) {
 
     $image->destroy();
     
-    echo $route . "/ajax/uploads/$new_png";
+    echo $route . "/leaflet.control.SpecialToolsUpload/ajax/$new_png";
     
     exit();
 

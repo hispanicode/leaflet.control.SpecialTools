@@ -56,6 +56,14 @@ L.Control.SpecialTools = L.Control.extend({
             self.special_tools_info_console.innerHTML = self._T("Haga clic sobre algún objeto del mapa.", self.json_lang, self.lang);
             
         });
+        
+        L.DomEvent.on(self.special_tools_console, 'mouseover', function(e) {
+            
+            map.stop('dblclick');
+            map.stop('click');
+            
+        });
+        
 
         map.on('pm:remove', function(e){
 
@@ -1260,8 +1268,8 @@ L.Control.SpecialTools = L.Control.extend({
                         content = "<p>Imagen</p>";
                         content = content + "<p>url: <a href='?t="+stored_image_data_item.section_tipo+"&section_id=" +stored_image_data_item.section_id  + "&component_tipo="+stored_image_data_item.component_tipo+"' target='_blank'>" + self._T("Ver imagen", self.json_lang, self.lang) + "</a></p>";
                         content = content + "<p><input type='checkbox' id='special_tools_image_edition' image-id='"+image_id+"' "+is_interactive+"> Activar edición</p>";
-                        content = content + "<p>" + self._T("Opacidad: ", self.json_lang, self.lang) + "<input id='special_tools_image_opacity' image-id='"+image_id+"' type='number' min='0' max='1' step='0.1' value='"+layer.feature.special_tools.imageOpacity+"'></p>";
-                        content = content + "<p>zIndex: <input id='special_tools_image_zIndex' image-id='"+image_id+"' type='number' min='0' max='1000' step='1' value='"+layer.feature.special_tools.image_zIndex+"'></p>";
+                        content = content + "<p>" + self._T("Opacidad: ", self.json_lang, self.lang) + "<input id='special_tools_image_opacity' image-id='"+image_id+"' type='range' min='0' max='1' step='0.1' value='"+layer.feature.special_tools.imageOpacity+"'></p>";
+                        content = content + "<p>zIndex: <input id='special_tools_image_zIndex' image-id='"+image_id+"' type='range' min='0' max='1000' step='1' value='"+layer.feature.special_tools.image_zIndex+"'></p>";
                         content = content + "<br><p><button id='btn_show_modal_raster_download' class='special-tools-btn-default' style='font-size: 9px;'>" + self._T("Descargar", self.json_lang, self.lang) + "</button></p>";
 
                         self.special_tools_info_console.innerHTML = content;

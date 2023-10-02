@@ -294,7 +294,7 @@ L.Control.SpecialToolsUpload = L.Control.extend({
                             
                         }
                         
-                        url = route+'/ajax/uploads/vector-upload.php';
+                        url = route + '/leaflet.control.SpecialToolsUpload/ajax/vector-upload.php';
                         
                         fetch(url, {
                           method: "POST", 
@@ -322,9 +322,9 @@ L.Control.SpecialToolsUpload = L.Control.extend({
                                 try {
                                 
                                 shpfile = new L.Shapefile(
-                                    route+'/ajax/uploads/'+data.path, 
+                                    route + '/leaflet.control.SpecialToolsUpload/ajax/' + data.path, 
                                     {
-                                        importUrl: route+'/external-js/leaflet.shapefile/shp.js'
+                                        importUrl: route + '/external-js/leaflet.shapefile/shp.js'
                                     }
                                 );
                             
@@ -923,7 +923,7 @@ L.Control.SpecialToolsUpload = L.Control.extend({
                                     formData.append("url", url);
                                     formData.append("route", route);
                                     
-                                    _url = route+'/ajax/uploads/geotiff-to-png.php';
+                                    _url = route + '/leaflet.control.SpecialToolsUpload/ajax/geotiff-to-png.php';
                                     
                                     fetch(_url, {
                                         
