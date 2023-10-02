@@ -36,13 +36,13 @@ El archivo <strong>component_geolocation.js</strong> se adjunta entre los archiv
 </p>
 
 <p>
-La carpeta leaflet.control.SpecialTools la he incluido en la raíz de la carpeta "component_geolocation", aunque se podría incluir en otro lugar, siempre y cuando se indique en la opción "route" la raíz de "leaflet.control.SpecialTools".
+La carpeta leaflet.control.SpecialTools está incluida en la raíz de la carpeta "component_geolocation", aunque se podría incluir en otro lugar, siempre y cuando se indique en la opción "route" la raíz de "leaflet.control.SpecialTools".
 </p>
 
 
-<img src='https://raw.githubusercontent.com/hispanicode/leaflet.control.SpecialTools/main/ruta.png'>
+<img src='https://raw.githubusercontent.com/hispanicode/leaflet.control.SpecialTools/main/img/ruta.png'>
 
-<p>leaflet.control.SpecialToolsLegend: de momento se encuentra detenido. Por si véis que no hace nada :)</p>
+<p>leaflet.control.SpecialToolsLegend: de momento se encuentra en desarrollo.</p>
 
 <p style='color: red'>* Punto importante. Las urls de los mapas base deben incluir https o es posible que al realizar la petición a determinados servidores para imprimir el mapa, caso de Arcgis, por ejemplo, devuelva un error CORS. http es inseguro.</p>
 
@@ -52,7 +52,7 @@ La carpeta leaflet.control.SpecialTools la he incluido en la raíz de la carpeta
 chmod -R 777 leaflet.control.SpecialTools
 </pre>
 
-<img src='https://raw.githubusercontent.com/hispanicode/leaflet.control.SpecialTools/main/permisos.png'>
+<img src='https://raw.githubusercontent.com/hispanicode/leaflet.control.SpecialTools/main/img/permisos.png'>
 
 
 
