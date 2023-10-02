@@ -1,0 +1,318 @@
+{
+    
+    "Haga clic sobre algún objeto del mapa.": {
+        
+        "lg-eng": "Click on an object on the map.",
+        "lg-cat": "Feu clic sobre algun objecte del mapa.",
+        "lg-eus": "Egin klik mapako objektu batean.",
+        "lg-fra": "Cliquez sur un objet sur la carte."
+        
+    },
+    
+    "Punto de referencia de polígono de 1 m²": {
+        
+        "lg-eng": "1 m² polygon reference point",
+        "lg-cat": "Punt de referència de polígon de 1 m²",
+        "lg-eus": "1 m² poligonoko erreferentzia-puntua",
+        "lg-fra": "Point de référence polygone de 1 m²"
+        
+    },
+    
+    "Coordenadas:": {
+        
+        "lg-eng": "Coordinates:",
+        "lg-cat": "Coordenades:",
+        "lg-eus": "Koordenatuak:",
+        "lg-fra": "Coordonnées:"
+        
+    },
+    
+    "Más información": {
+        
+        "lg-eng": "More information",
+        "lg-cat": "Més informació",
+        "lg-eus": "Informazio gehiago",
+        "lg-fra": "Plus d'informations"
+        
+    },
+    
+    "  Edición Geoman activa": {
+        
+        "lg-eng": " Geoman Edition active",
+        "lg-cat": " Edició Geoman activa",
+        "lg-eus": " Geoman Edition aktiboa",
+        "lg-fra": " Édition Geoman active"
+        
+    },
+    
+    "Editar estilos": {
+        
+        "lg-eng": "Edit styles",
+        "lg-cat": "Editar estils",
+        "lg-eus": "Editatu estiloak",
+        "lg-fra": "Modifier les styles"
+        
+    },
+    
+    "Descargar": {
+        
+        "lg-eng": "Download",
+        "lg-cat": "Descarregar",
+        "lg-eus": "Deskargatu",
+        "lg-fra": "Télécharger"
+        
+    },
+    
+    "Coordenadas del centro:": {
+        
+        "lg-eng": "Center coordinates:",
+        "lg-cat": "Coordenades del centre:",
+        "lg-eus": "Zentroko koordenatuak:",
+        "lg-fra": "Coordonnées du centre:"
+        
+    },
+    
+    "Radio: ": {
+        
+        "lg-eng": "Radius: ",
+        "lg-cat": "Ràdio: ",
+        "lg-eus": "Erradioa: ",
+        "lg-fra": "Rayon: "
+        
+    },
+    
+    "Área: ": {
+        
+        "lg-eng": "Area: ",
+        "lg-cat": "Àrea: ",
+        "lg-eus": "Eremua: ",
+        "lg-fra": "Zone: "
+        
+    },
+    
+    " Centroide": {
+        
+        "lg-eng": " Centroid",
+        "lg-cat": " Centroide",
+        "lg-eus": " Zentroidea",
+        "lg-fra": " Centre de gravité"
+        
+    },
+    
+    "Jerarquía del objeto:": {
+        
+        "lg-eng": "Object hierarchy:",
+        "lg-cat": "Jerarquia de l'objecte:",
+        "lg-eus": "Objektuen hierarkia:",
+        "lg-fra": "Hiérarchie des objets:"
+        
+    },
+    
+    " Delante": {
+        
+        "lg-eng": " In front of",
+        "lg-cat": " Davant",
+        "lg-eus": " Aurrean",
+        "lg-fra": " Devant"
+        
+    },
+    
+    " Detrás": {
+        
+        "lg-eng": " Behind",
+        "lg-cat": " Darrere",
+        "lg-eus": " Atzean",
+        "lg-fra": " Derrière"
+        
+    },
+    
+    "Distancia: ": {
+        
+        "lg-eng": "Distance: ",
+        "lg-cat": "Distància: ",
+        "lg-eus": "Distantzia: ",
+        "lg-fra": "Distance: "
+        
+    },
+    
+    "Ver imagen": {
+        
+        "lg-eng": "View image",
+        "lg-cat": "Veure imatge",
+        "lg-eus": "Ikusi irudia",
+        "lg-fra": "Voir l'image"
+        
+    },
+    
+    "Opacidad: ": {
+        
+        "lg-eng": "Opacity: ",
+        "lg-cat": "Opacitat: ",
+        "lg-eus": "Opakotasuna: ",
+        "lg-fra": "Opacité: "
+        
+    },
+    
+    "Área: 1 m²": {
+        
+        "lg-eng": "Area: 1 m²",
+        "lg-cat": "Àrea: 1 m²",
+        "lg-eus": "Azalera: 1 m²",
+        "lg-fra": "Superficie: 1 m²"
+        
+    },
+    
+    " Incertidumbre": {
+        
+        "lg-eng": " Uncertainty",
+        "lg-cat": " Incertesa",
+        "lg-eus": " Ziurgabetasuna",
+        "lg-fra": " Incertitude"
+        
+    },
+    
+    "Exportar como: ": {
+        
+        "lg-eng": "Export as: ",
+        "lg-cat": "Exportar com: ",
+        "lg-eus": "Esportatu honela: ",
+        "lg-fra": "Exporter sous: "
+        
+    },
+    
+    "archivo": {
+        
+        "lg-eng": "file",
+        "lg-cat": "dossier",
+        "lg-eus": "fitxategia",
+        "lg-fra": "déposer"
+        
+    },
+    
+    "Descargar objeto vectorial": {
+        
+        "lg-eng": "Download vector object",
+        "lg-cat": "Descarregar objecte vectorial",
+        "lg-eus": "Deskargatu objektu bektoriala",
+        "lg-fra": "Télécharger l'objet vectoriel"
+        
+    },
+    
+    "Por favor, indique el nombre del archivo": {
+        
+        "lg-eng": "Please indicate the file name",
+        "lg-cat": "Si us plau, indiqueu el nom del fitxer",
+        "lg-eus": "Mesedez, adierazi fitxategiaren izena",
+        "lg-fra": "Veuillez indiquer le nom du fichier"
+        
+    },
+    
+    "Descargando ... ": {
+        
+        "lg-eng": "Downloading ... ",
+        "lg-cat": "Descarregant ... ",
+        "lg-eus": "Deskargatzen ... ",
+        "lg-fra": "Téléchargement ... "
+        
+    },
+    
+    "Archivo descargado correctamente": {
+        
+        "lg-eng": "File downloaded successfully",
+        "lg-cat": "Fitxer descarregat correctament",
+        "lg-eus": "Fitxategia ongi deskargatu da",
+        "lg-fra": "Fichier téléchargé avec succès"
+        
+    },
+    
+    "Ha ocurrido un error al descargar el archivo": {
+        
+        "lg-eng": "An error occurred while downloading the file",
+        "lg-cat": "S'ha produït un error en descarregar l'arxiu",
+        "lg-eus": "Errore bat gertatu da fitxategia deskargatzean",
+        "lg-fra": "Une erreur s'est produite lors du téléchargement du fichier"
+        
+    },
+    
+    " Nombre: ": {
+        
+        "lg-eng": " Name: ",
+        "lg-cat": " Nom: ",
+        "lg-eus": " Izena: ",
+        "lg-fra": " Nom: "
+        
+    },
+    
+    "Descargar imagen": {
+        
+        "lg-eng": "Download image",
+        "lg-cat": "Descarregar imatge",
+        "lg-eus": "Deskargatu irudia",
+        "lg-fra": "Télécharger l'image"
+        
+    },
+    
+    "Ha ocurrido un error al crear el archivo GeoTiff": {
+        
+        "lg-eng": "An error occurred while creating the GeoTiff file",
+        "lg-cat": "S'ha produït un error en crear el fitxer GeoTiff",
+        "lg-eus": "Errore bat gertatu da GeoTiff fitxategia sortzean",
+        "lg-fra": "Une erreur s'est produite lors de la création du fichier GeoTiff"
+        
+    },
+    
+    "Ha ocurrido un error al descargar la imagen": {
+        
+        "lg-eng": "An error occurred while downloading the image",
+        "lg-cat": "S'ha produït un error en descarregar la imatge",
+        "lg-eus": "Errore bat gertatu da irudia deskargatzean",
+        "lg-fra": "Une erreur s'est produite lors du téléchargement de l'image"
+        
+    },
+    
+    "Color: ": {
+        
+        "lg-eng": "Color: ",
+        "lg-cat": "Color: ",
+        "lg-eus": "Kolore: ",
+        "lg-fra": "Couleur: "
+        
+    },
+    
+    "Ancho del borde: ": {
+        
+        "lg-eng": "Border Width: ",
+        "lg-cat": "Ample de la vora: ",
+        "lg-eus": "Ertzaren zabalera: ",
+        "lg-fra": "Largeur de la bordure: "
+        
+    },
+    
+    "Borde discontinuo: ": {
+        
+        "lg-eng": "Broken border: ",
+        "lg-cat": "Vora discontinu: ",
+        "lg-eus": "Hautsitako ertza: ",
+        "lg-fra": "Bordure brisée: "
+        
+    },
+    
+    "Opacidad de relleno: ": {
+        
+        "lg-eng": "Fill Opacity: ",
+        "lg-cat": "Opacitat de farciment: ",
+        "lg-eus": "Bete opakutasuna: ",
+        "lg-fra": "Opacité de remplissage: "
+        
+    },
+    
+    "Opacidad del borde: ": {
+        
+        "lg-eng": "Border Opacity: ",
+        "lg-cat": "Opacitat de la vora: ",
+        "lg-eus": "Ertzaren opakutasuna: ",
+        "lg-fra": "Opacité de la bordure: "
+        
+    } 
+
+}

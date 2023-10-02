@@ -12,6 +12,8 @@ L.Control.SpecialToolsObjects = L.Control.extend({
         
         const route = special_tools.options.route;
         
+        const lang = special_tools.options.lang;
+        
         const server = special_tools.options.server;
         
         const component_geolocation = special_tools.options.component_geolocation;
@@ -19,6 +21,19 @@ L.Control.SpecialToolsObjects = L.Control.extend({
         const controlDiv = L.DomUtil.create('div', 'special-tools-objects special-tools-controls special-tools-disable');
  
         special_tools.special_tools_btns.appendChild(controlDiv);
+        
+        var json_lang = {};
+        
+        fetch(route + '/leaflet.control.SpecialToolsObjects/lang/lang.json')
+        .then(function(response){
+            
+            return response.json();
+            
+        }).then(function(data){
+            
+            json_lang = data;
+            
+        });
         
         L.DomEvent.addListener(controlDiv, 'click', function(){
             
@@ -33,7 +48,7 @@ L.Control.SpecialToolsObjects = L.Control.extend({
             
             content = "<div>";
             
-            content = content + "<h3>Objetos vectoriales</h3>";
+            content = content + "<h3>" + special_tools._T("Objetos Vectoriales", json_lang, lang) + "</h3>";
             
             var collection = component_geolocation.FeatureGroup[component_geolocation.active_layer_id];
             let layer;
@@ -106,7 +121,7 @@ L.Control.SpecialToolsObjects = L.Control.extend({
                     }
             }
             
-            content = content + "<h3>Objetos rasterizados</h3>";
+            content = content + "<h3>" + special_tools._T("Objetos Rasterizados", json_lang, lang) + "</h3>";
             
             for (let obj in collection._layers) {
                 
@@ -136,7 +151,7 @@ L.Control.SpecialToolsObjects = L.Control.extend({
             
             map.fire('modal', {
 
-                title: 'Objetos',
+                title: special_tools._T("Objetos", json_lang, lang),
                 content: content,
                 template: ['<div class="modal-header"><h2>{title}</h2></div>',
                   '<hr>',
@@ -144,9 +159,6 @@ L.Control.SpecialToolsObjects = L.Control.extend({
                   '<div class="modal-footer">',
                   '</div>'
                 ].join(''),
-
-                cancelText: 'Cerrar',
-                CANCEL_CLS: 'modal-cancel',
 
                 width: 'auto',
 

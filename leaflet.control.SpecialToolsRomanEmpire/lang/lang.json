@@ -1,0 +1,48 @@
+{
+    
+    "Consulta a servicios relacionados con el Imperio Romano": {
+        
+        "lg-eng": "Consultation with services related to the Roman Empire",
+        "lg-cat": "Consulta serveis relacionats amb l'Imperi Romà",
+        "lg-eus": "Erromatar Inperioarekin lotutako zerbitzuei buruzko kontsulta",
+        "lg-fra": "Consultation avec les services liés à l'Empire romain"
+        
+    },
+    
+    "Buscar": {
+        
+        "lg-eng": "Search",
+        "lg-cat": "Cerca",
+        "lg-eus": "Bilatu",
+        "lg-fra": "Chercher"
+        
+    },
+    
+    "Filtrar por:": {
+        
+        "lg-eng": "Filter by:",
+        "lg-cat": "Filtrar per:",
+        "lg-eus": "Iragazi arabera:",
+        "lg-fra": "Filtrer par:"
+        
+    },
+    
+    "Nombre: ": {
+        
+        "lg-eng": "Name: ",
+        "lg-cat": "Nom: ",
+        "lg-eus": "Izena: ",
+        "lg-fra": "Nom: "
+        
+    },
+    
+    " Marcar/Desmarcar todo": {
+        
+        "lg-eng": " Check/Uncheck all",
+        "lg-cat": "Marcar/Desmarcar-ho tot",
+        "lg-eus": "Egiaztatu/Desmarkatu guztiak",
+        "lg-fra": "Cocher/Décocher tout"
+        
+    }
+    
+}

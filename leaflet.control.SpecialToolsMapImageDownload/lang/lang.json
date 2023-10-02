@@ -1,0 +1,83 @@
+{
+    
+    "Exportar como: ": {
+        
+        "lg-eng": "Export as: ",
+        "lg-cat": "Exportar com: ",
+        "lg-eus": "Esportatu honela: ",
+        "lg-fra": "Exporter sous: "
+        
+    },
+    
+    " Nombre: ": {
+        
+        "lg-eng": " Name: ",
+        "lg-cat": " Nom: ",
+        "lg-eus": " Izena: ",
+        "lg-fra": " Nom: "
+        
+    },
+    
+    "archivo": {
+        
+        "lg-eng": "file",
+        "lg-cat": "arxiu",
+        "lg-eus": "artxiboa",
+        "lg-fra": "archive"
+        
+    },
+    
+    "Descargar Mapa": {
+        
+        "lg-eng": "Map Download",
+        "lg-cat": "Descarregar mapa",
+        "lg-eus": "Maparen deskarga",
+        "lg-fra": "Télécharger la carte"
+        
+    },
+    
+    "Por favor, indique un nombre para el archivo": {
+        
+        "lg-eng": "Please provide a name for the file",
+        "lg-cat": "Si us plau, indiqueu un nom per al fitxer",
+        "lg-eus": "Mesedez, eman izen bat fitxategiari",
+        "lg-fra": "Veuillez fournir un nom pour le fichier"
+        
+    },
+    
+    "Descargando ... ": {
+    
+        "lg-eng": "Downloading ... ",
+        "lg-cat": "Descàrrega ... ",
+        "lg-eus": "Deskargatzen ... ",
+        "lg-fra": "Téléchargement ... "
+    
+    },
+    
+    "Archivo descargado correctamente": {
+        
+        "lg-eng": "File downloaded successfully",
+        "lg-cat": "",
+        "lg-eus": "",
+        "lg-fra": ""
+        
+    },
+    
+    "Ha ocurrido un error al crear el archivo": {
+        
+        "lg-eng": "An error occurred while creating the file",
+        "lg-cat": "Fitxer descarregat correctament",
+        "lg-eus": "Fitxategia ongi deskargatu da",
+        "lg-fra": "Fichier téléchargé avec succès"
+        
+    },
+    
+    "Ha ocurrido un error al crear la imagen. Error CORS. El mapa base no tiene el protocolo https.": {
+        
+        "lg-eng": "An error occurred while creating the image. CORS error. The basemap does not have the https protocol.",
+        "lg-cat": "S'ha produït un error en crear la imatge. Error CORS. El mapa base no té el protocol https.",
+        "lg-eus": "Errore bat gertatu da irudia sortzean. CORS errorea. Oinarrizko mapak ez du https protokoloa.",
+        "lg-fra": "Une erreur s'est produite lors de la création de l'image. Erreur CORS. Le fond de carte n'a pas le protocole https."
+        
+    }
+}

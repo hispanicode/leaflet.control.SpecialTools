@@ -12,30 +12,67 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
         
         const route = special_tools.options.route;
         
+        const lang = special_tools.options.lang;
+        
         const server = special_tools.options.server;
         
         const component_geolocation = special_tools.options.component_geolocation;
+        
+        this.special_tools_msg = null;
 
         const controlDiv = L.DomUtil.create('div', 'special-tools-catastro special-tools-controls special-tools-disable');
-         controlDiv.innerText = 'Catast';
+        
+        controlDiv.innerText = 'Catast';
 
         special_tools.special_tools_btns.appendChild(controlDiv);
+        
+        var json_lang = {};
+        
+        fetch(route + '/leaflet.control.SpecialToolsCatastro/lang/lang.json')
+        .then(function(response){
+            
+            return response.json();
+            
+        }).then(function(data){
+            
+            json_lang = data;
+            
+        });
         
         var enable_catastro = false;
         
         var wms = null;
-
+        
         L.DomEvent.addListener(controlDiv, 'click', function(e){
             
             if (L.DomUtil.hasClass(controlDiv, 'special-tools-disable')) {
+                          
+                    window.setTimeout(function(){
+
+                        map.on('click', map_click);
+
+                        map.eachLayer(function(layer){
+
+                            if (!(layer instanceof L.TileLayer)) {
+
+                                layer.on('click', layer_click);
+
+                            }
+
+                        });
+
+                    }, 1500);
                 
                     L.DomUtil.addClass(controlDiv, 'special-tools-enable');
+                    
                     L.DomUtil.removeClass(controlDiv, 'special-tools-disable');
 
                     let elements_controls = special_tools.controlDiv.querySelectorAll('.special-tools-controls');
 
                     try {
+                        
                         special_tools.only_one_control_active(elements_controls, controlDiv);
+                    
                     } catch (e) {};
 
                     enable_catastro = true;
@@ -53,122 +90,304 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
                     catastro_html.click();
 
                 }  else {
+                    
+                    map.off('click', map_click);
+
+                    map.eachLayer(function(layer){
+
+                        if (!(layer instanceof L.TileLayer)) {
+
+                            layer.off('click', layer_click);
+
+                        }
+
+                    });
 
                     L.DomUtil.addClass(controlDiv, 'special-tools-disable');
+                    
                     L.DomUtil.removeClass(controlDiv, 'special-tools-enable');
 
                     component_geolocation.layer_control.removeLayer(wms);
+                    
                     wms.removeFrom(map);
+                    
                     document.querySelectorAll('.leaflet-control-layers-selector')[0].click();
+                    
                     enable_catastro = false;
+                    
                 }
 
                 L.DomEvent.stop(e);
                 
             });
             
-            map_click = function(event){
+        map_click = function(event) {
 
-                if (
-                    !special_tools.geoman_edition_mode(map)
-                    && enable_catastro) {
+            if (
+                !special_tools.geoman_edition_mode(map)
+                && enable_catastro) {
 
-                    let bbox = map.getBounds().toBBoxString();
+                content = "<div class='special-tools-container'>";
+                content = content + "<div id='special_tools_msg'></div>";
+                content = content + "</div>";
 
-                    let point = map.latLngToContainerPoint(event.latlng, map.getZoom());
+                map.fire('modal', {
 
-                    let size = map.getSize();
+                    title: special_tools._T("Catastro", json_lang, lang),
+                    content: content,
+                    template: ['<div class="modal-header"><h2>{title}</h2></div>',
+                      '<hr>',
+                      '<div class="modal-body">{content}</div>',
+                      '<div class="modal-footer">',
+                      '</div>'
+                    ].join(''),
 
-                    let url = route+'/ajax/catastro/catastro_wms_refcat.php?';
+                    width: 'auto',
 
-                    fetch(url + new URLSearchParams({
-                        url: 'http://ovc.catastro.meh.es/Cartografia/WMS/ServidorWMS.aspx?request=getFeatureInfo&layers=Catastro&query_layers=Catastro&srs=EPSG:4326&bbox='+bbox+'&height='+size.y+'&width='+size.x+'&x='+point.x+'&y='+point.y
-                    }))
-                    .then(function(response) {
-                        return response.text();
-                    })
-                    .then(function(data){
-                        let content = L.DomUtil.create('div');
-                        content.innerHTML = data;
-                        let refcat = content.innerText.trim();
-                        let refcat_url = content.querySelectorAll('a')[0].href;
-                        if (typeof refcat_url !== 'undefined') {
+                    onShow: function(evt) {
 
-                            url = route+'/ajax/catastro/catastro_wfs_getfeature.php?';
+                        modal = evt.modal;
 
-                            fetch(url + new URLSearchParams({
-                                url: 'http://ovc.catastro.meh.es/INSPIRE/wfsCP.aspx?service=WFS&version=2.0&srs=EPSG:3857&request=getfeature&STOREDQUERIE_ID=getneighbourparcel&refcat='+refcat,
-                                getneighbourparcel: 1
-                            }))
-                            .then(function(response) {
-                                return response.text();
-                            })
-                            .then(function(polygon_coord){
-                                if (polygon_coord !== '') {
+                        self.special_tools_msg = modal._container.querySelector('#special_tools_msg');
 
-                                    let latlngs = JSON.parse(polygon_coord);
+                        self.special_tools_msg.innerHTML = special_tools._T("Obteniendo parcela ...", json_lang, lang);
 
-                                    let polygon = L.polygon(latlngs);
+                        let bbox = map.getBounds().toBBoxString();
 
-                                    polygon.feature = polygon.toGeoJSON();
-                                    polygon.feature.special_tools = {};
-                                    polygon.feature.special_tools.is_catastro = true;
-                                    polygon.feature.special_tools.geoman_edition = false;
-                                    polygon.feature.special_tools.tools_id = special_tools.make_id(20);
+                        let point = map.latLngToContainerPoint(event.latlng, map.getZoom());
 
-                                    //URL de la parcela catastral
-                                    polygon.feature.properties.url = refcat_url;
+                        let size = map.getSize();
 
-                                    map.fire('pm:create', {layer: polygon});
-                                    L.DomEvent.stop(event);
+                        let url = route + '/ajax/catastro/catastro_wms_refcat.php?';
 
-                                } else {
+                        fetch(url + new URLSearchParams({
 
-                                    url = route+'/ajax/catastro/catastro_wfs_getfeature.php?';
-                                    fetch(url + new URLSearchParams({
-                                        url: 'http://ovc.catastro.meh.es/INSPIRE/wfsCP.aspx?service=WFS&version=2.0&srs=EPSG:3857&request=getfeature&STOREDQUERIE_ID=getparcel&refcat='+refcat,
-                                        getparcel: 1
-                                    }))
-                                    .then(function(response){
-                                        return response.text();
-                                    })
-                                    .then(function(polygon_coord){
+                            url: 'http://ovc.catastro.meh.es/Cartografia/WMS/ServidorWMS.aspx?request=getFeatureInfo&layers=Catastro&query_layers=Catastro&srs=EPSG:4326&bbox='+bbox+'&height='+size.y+'&width='+size.x+'&x='+point.x+'&y='+point.y
 
-                                        if (polygon_coord !== '') {
+                        }))
+                        .then(function(response) {
 
-                                            let latlngs = JSON.parse(polygon_coord);
-                                            let polygon = L.polygon(latlngs);
+                            return response.text();
 
-                                            polygon.feature = polygon.toGeoJSON();
-                                            polygon.feature.special_tools = {};
-                                            polygon.feature.special_tools.is_catastro = true;
-                                            polygon.feature.special_tools.geoman_edition = false;
-                                            polygon.feature.special_tools.tools_id = special_tools.make_id(20);
+                        })
+                        .then(function(data){
 
-                                            //URL de la parcela catastral
-                                            polygon.feature.properties.url = refcat_url;
+                            let content = L.DomUtil.create('div');
 
-                                            map.fire('pm:create', {layer: polygon});
-                                            L.DomEvent.stop(event);
+                            content.innerHTML = data;
+
+                            if (typeof content.querySelectorAll('a')[0] === 'undefined') {
+
+                                self.special_tools_msg.innerHTML = special_tools._T("No ha sido posible obtener la parcela. Es posible que el servidor del Catastro esté saturado o la zona seleccionada no tenga una parcela asociada.", json_lang, lang);
+
+                                window.setTimeout(function(){
+
+                                    modal._container.querySelector('.close').click();
+
+                                }, 3500);
+
+                                return;
+
+                            }
+
+                            let refcat = content.innerText.trim();
+
+                            let refcat_url = content.querySelectorAll('a')[0].href;
+
+                            if (typeof refcat_url !== 'undefined') {
+
+                                url = route + '/ajax/catastro/catastro_wfs_getfeature.php?';
+
+                                fetch(url + new URLSearchParams({
+
+                                    url: 'http://ovc.catastro.meh.es/INSPIRE/wfsCP.aspx?service=WFS&version=2.0&srs=EPSG:3857&request=getfeature&STOREDQUERIE_ID=getneighbourparcel&refcat='+refcat,
+                                    getneighbourparcel: 1
+
+                                }))
+                                .then(function(response) {
+
+                                    return response.text();
+
+                                })
+                                .then(function(polygon_coord) {
+
+                                    if (polygon_coord !== '') {
+
+                                        latlngs = JSON.parse(polygon_coord);
+
+                                        if (typeof latlngs !== 'object') {
+
+                                            self.special_tools_msg.innerHTML = special_tools._T("No ha sido posible obtener la parcela. Inténtelo de nuevo.", json_lang, lang);
+
+                                            window.setTimeout(function(){
+
+                                                modal._container.querySelector('.close').click();
+
+                                            }, 3500);
+
+                                            return;
 
                                         }
-                                    })
-                                    .catch((error) => console.log(error));
-                                }
-                            })
-                            .catch((error) => console.log(error));
-                        }
-                    })
-                    .catch((error) => console.log(error));
 
-                    map.off('click', map_click);
+                                        let polygon = L.polygon(latlngs);
 
-                    window.setTimeout(function(){
-                        map.on('click', map_click);
-                    }, 3000);
+                                        polygon.feature = polygon.toGeoJSON();
 
-                }
-            };
+                                        polygon.feature.special_tools = {};
+
+                                        polygon.feature.special_tools.is_catastro = true;
+
+                                        polygon.feature.special_tools.geoman_edition = false;
+
+                                        polygon.feature.special_tools.tools_id = special_tools.make_id(20);
+
+                                        polygon.feature.properties.url = refcat_url;
+
+                                        try {
+
+                                            self.special_tools_msg.innerHTML = special_tools._T("Creando la parcela ...", json_lang, lang);
+
+                                            map.fire('pm:create', {layer: polygon});
+
+                                            modal._container.querySelector('.close').click();
+
+                                        } catch(error) {
+
+                                            self.special_tools_msg.innerHTML = special_tools._T("Ha ocurrido un error al intentar crear la parcela", json_lang, lang);
+
+                                            window.setTimeout(function(){
+
+                                                modal._container.querySelector('.close').click();
+
+                                            }, 3500);
+
+                                        }
+
+                                        L.DomEvent.stop(event);
+
+                                    } else {
+
+                                        url = route+'/ajax/catastro/catastro_wfs_getfeature.php?';
+
+                                        fetch(url + new URLSearchParams({
+
+                                            url: 'http://ovc.catastro.meh.es/INSPIRE/wfsCP.aspx?service=WFS&version=2.0&srs=EPSG:3857&request=getfeature&STOREDQUERIE_ID=getparcel&refcat='+refcat,
+                                            getparcel: 1
+
+                                        }))
+                                        .then(function(response){
+
+                                            return response.text();
+
+                                        })
+                                        .then(function(polygon_coord) {
+
+                                            if (polygon_coord !== '') {
+
+                                                latlngs = JSON.parse(polygon_coord);
+
+                                                if (typeof latlngs !== 'object') {
+
+                                                    self.special_tools_msg.innerHTML = special_tools._T("No ha sido posible obtener la parcela. Inténtelo de nuevo.", json_lang, lang);
+
+                                                    window.setTimeout(function(){
+
+                                                        modal._container.querySelector('.close').click();
+
+                                                    }, 3500);
+
+                                                    return;
+
+                                                }
+
+                                                let polygon = L.polygon(latlngs);
+
+                                                polygon.feature = polygon.toGeoJSON();
+
+                                                polygon.feature.special_tools = {};
+
+                                                polygon.feature.special_tools.is_catastro = true;
+
+                                                polygon.feature.special_tools.geoman_edition = false;
+
+                                                polygon.feature.special_tools.tools_id = special_tools.make_id(20);
+
+                                                polygon.feature.properties.url = refcat_url;
+
+                                                try {
+
+                                                    self.special_tools_msg.innerHTML = special_tools._T("Creando la parcela ...", json_lang, lang);
+
+                                                    map.fire('pm:create', {layer: polygon});
+
+                                                    modal._container.querySelector('.close').click();
+
+                                                } catch(error) {
+
+                                                    self.special_tools_msg.innerHTML = special_tools._T("Ha ocurrido un error al intentar crear la parcela", json_lang, lang);
+
+                                                    window.setTimeout(function(){
+
+                                                        modal._container.querySelector('.close').click();
+
+                                                    }, 3500);
+
+                                                }
+
+                                                L.DomEvent.stop(event);
+
+                                            }
+                                        })
+                                        .catch(function(error) {
+
+                                            self.special_tools_msg.innerHTML = special_tools._T("Ha ocurrido un error al intentar crear la parcela", json_lang, lang);
+
+                                            window.setTimeout(function(){
+
+                                                modal._container.querySelector('.close').click();
+
+                                            }, 3500);
+
+                                        });
+                                    }
+                                })
+                                .catch(function(error) {
+
+                                    self.special_tools_msg.innerHTML = special_tools._T("Ha ocurrido un error al intentar crear la parcela", json_lang, lang);
+
+                                    window.setTimeout(function(){
+
+                                        modal._container.querySelector('.close').click();
+
+                                    }, 3500);
+
+                                });
+                            }
+                        })
+                        .catch(function(error) {
+
+                            self.special_tools_msg.innerHTML = special_tools._T("Ha ocurrido un error al intentar crear la parcela", json_lang, lang);
+
+                            window.setTimeout(function(){
+
+                                modal._container.querySelector('.close').click();
+
+                            }, 3500);
+
+                        });
+
+                        map.off('click', map_click);
+
+                        window.setTimeout(function(){
+
+                            map.on('click', map_click);
+
+                        }, 1000);
+
+                    }
+                });
+            }
+        };
 
         var stop = false;
         
@@ -180,144 +399,285 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
                 !special_tools.geoman_edition_mode(map)
                 && enable_catastro && !stop
                 ) {
+            
+                    content = "<div id='special_tools_msg'></div>";
 
-                let bbox = map.getBounds().toBBoxString();
+                    map.fire('modal', {
 
-                let point = map.latLngToContainerPoint(event.latlng, map.getZoom());
+                        title: special_tools._T("Catastro", json_lang, lang),
+                        content: content,
+                        template: ['<div class="modal-header"><h2>{title}</h2></div>',
+                          '<hr>',
+                          '<div class="modal-body">{content}</div>',
+                          '<div class="modal-footer">',
+                          '</div>'
+                        ].join(''),
 
-                let size = map.getSize();
+                        width: 'auto',
 
-                let url = route+'/ajax/catastro/catastro_wms_refcat.php?';
+                        onShow: function(evt) {
 
-                fetch(url + new URLSearchParams({
-                    url: 'http://ovc.catastro.meh.es/Cartografia/WMS/ServidorWMS.aspx?request=getFeatureInfo&layers=Catastro&query_layers=Catastro&srs=EPSG:4326&bbox='+bbox+'&height='+size.y+'&width='+size.x+'&x='+point.x+'&y='+point.y
-                }))
-                .then(function(response) {
-                    return response.text();
-                })
-                .then(function(data){
-                    let content = L.DomUtil.create('div');
-                    content.innerHTML = data;
-                    let refcat = content.innerText.trim();
-                    let refcat_url = content.querySelectorAll('a')[0].href;
-                    if (typeof refcat_url !== 'undefined') {
+                            modal = evt.modal;
+                            
+                            self.special_tools_msg = modal._container.querySelector('#special_tools_msg');
 
-                        url = route+'/ajax/catastro/catastro_wfs_getfeature.php?';
+                            self.special_tools_msg.innerHTML = special_tools._T("Obteniendo parcela ...", json_lang, lang);
 
-                        fetch(url + new URLSearchParams({
-                            url: 'http://ovc.catastro.meh.es/INSPIRE/wfsCP.aspx?service=WFS&version=2.0&srs=EPSG:3857&request=getfeature&STOREDQUERIE_ID=getneighbourparcel&refcat='+refcat,
-                            getneighbourparcel: 1
-                        }))
-                        .then(function(response) {
-                            return response.text();
-                        })
-                        .then(function(polygon_coord){
-                            if (polygon_coord !== '') {
+                            let bbox = map.getBounds().toBBoxString();
 
-                                let latlngs = JSON.parse(polygon_coord);
+                            let point = map.latLngToContainerPoint(event.latlng, map.getZoom());
 
-                                let polygon = L.polygon(latlngs);
+                            let size = map.getSize();
 
-                                polygon.feature = polygon.toGeoJSON();
-                                polygon.feature.special_tools = {};
-                                polygon.feature.special_tools.is_catastro = true;
-                                polygon.feature.special_tools.geoman_edition = false;
-                                polygon.feature.special_tools.tools_id = special_tools.make_id(20);
+                            let url = route+'/ajax/catastro/catastro_wms_refcat.php?';
 
-                                //URL de la parcela catastral
-                                polygon.feature.properties.url = refcat_url;
+                            fetch(url + new URLSearchParams({
 
-                                if (_layer.hasOwnProperty('feature')) {
-                                    if (_layer.feature.geometry.coordinates === polygon.feature.geometry.coordinates) {
-                                        return;
-                                    }
+                                url: 'http://ovc.catastro.meh.es/Cartografia/WMS/ServidorWMS.aspx?request=getFeatureInfo&layers=Catastro&query_layers=Catastro&srs=EPSG:4326&bbox='+bbox+'&height='+size.y+'&width='+size.x+'&x='+point.x+'&y='+point.y
+
+                            }))
+                            .then(function(response) {
+
+                                return response.text();
+
+                            })
+                            .then(function(data) {
+
+                                let content = L.DomUtil.create('div');
+
+                                content.innerHTML = data;
+
+                                if (typeof content.querySelectorAll('a')[0] === 'undefined') {
+
+                                    self.special_tools_msg.innerHTML = special_tools._T("No ha sido posible obtener la parcela. Es posible que el servidor del Catastro esté saturado o la zona seleccionada no tenga una parcela asociada.", json_lang, lang);
+
+                                    window.setTimeout(function(){
+
+                                        modal._container.querySelector('.close').click();
+
+                                    }, 3500);
+
+                                    return;
+
                                 }
 
-                                map.fire('pm:create', {layer: polygon});
+                                let refcat = content.innerText.trim();
 
-                            } else {
+                                let refcat_url = content.querySelectorAll('a')[0].href;
 
-                                url = route+'/ajax/catastro/catastro_wfs_getfeature.php?';
-                                fetch(url + new URLSearchParams({
-                                    url: 'http://ovc.catastro.meh.es/INSPIRE/wfsCP.aspx?service=WFS&version=2.0&srs=EPSG:3857&request=getfeature&STOREDQUERIE_ID=getparcel&refcat='+refcat,
-                                    getparcel: 1
-                                }))
-                                .then(function(response){
-                                    return response.text();
-                                })
-                                .then(function(polygon_coord){
+                                if (typeof refcat_url !== 'undefined') {
 
-                                    if (polygon_coord !== '') {
+                                    url = route+'/ajax/catastro/catastro_wfs_getfeature.php?';
 
-                                        let latlngs = JSON.parse(polygon_coord);
-                                        let polygon = L.polygon(latlngs);
+                                    fetch(url + new URLSearchParams({
 
-                                        polygon.feature = polygon.toGeoJSON();
+                                        url: 'http://ovc.catastro.meh.es/INSPIRE/wfsCP.aspx?service=WFS&version=2.0&srs=EPSG:3857&request=getfeature&STOREDQUERIE_ID=getneighbourparcel&refcat='+refcat,
+                                        getneighbourparcel: 1
 
-                                        polygon.feature.special_tools = {};
-                                        polygon.feature.special_tools.is_catastro = true;
-                                        polygon.feature.special_tools.geoman_edition = false;
-                                        polygon.feature.special_tools.tools_id = special_tools.make_id(20);
+                                    }))
+                                    .then(function(response) {
 
-                                        //URL de la parcela catastral
-                                        polygon.feature.properties.url = refcat_url;
+                                        return response.text();
 
-                                        map.fire('pm:create', {layer: polygon});
+                                    })
+                                    .then(function(polygon_coord) {
 
-                                    }
-                                })
-                                .catch((error) => console.log(error));
-                            }
-                        })
-                        .catch((error) => console.log(error));
+                                        if (polygon_coord !== '') {
+
+                                            latlngs = JSON.parse(polygon_coord);
+                                    
+                                            if (typeof latlngs !== 'object') {
+                                                
+                                                self.special_tools_msg.innerHTML = special_tools._T("No ha sido posible obtener la parcela. Inténtelo de nuevo.", json_lang, lang);
+
+                                                window.setTimeout(function(){
+
+                                                    modal._container.querySelector('.close').click();
+
+                                                }, 3500);
+
+                                                return;
+                                                
+                                            }
+
+                                            let polygon = L.polygon(latlngs);
+
+                                            polygon.feature = polygon.toGeoJSON();
+
+                                            polygon.feature.special_tools = {};
+
+                                            polygon.feature.special_tools.is_catastro = true;
+
+                                            polygon.feature.special_tools.geoman_edition = false;
+
+                                            polygon.feature.special_tools.tools_id = special_tools.make_id(20);
+
+                                            polygon.feature.properties.url = refcat_url;
+
+                                            if (_layer.hasOwnProperty('feature')) {
+
+                                                if (_layer.feature.geometry.coordinates === polygon.feature.geometry.coordinates) {
+
+                                                    return;
+
+                                                }
+                                            }
+
+                                            try {
+
+                                                 self.special_tools_msg.innerHTML = special_tools._T("Creando la parcela ...", json_lang, lang);
+
+                                                 map.fire('pm:create', {layer: polygon});
+
+                                                 modal._container.querySelector('.close').click();
+
+                                             } catch(error) {
+
+                                                 self.special_tools_msg.innerHTML = special_tools._T("Ha ocurrido un error al intentar crear la parcela", json_lang, lang);
+
+                                                 window.setTimeout(function(){
+
+                                                     modal._container.querySelector('.close').click();
+
+                                                 }, 3500);
+
+                                             }
+
+                                        } else {
+
+                                            url = route+'/ajax/catastro/catastro_wfs_getfeature.php?';
+
+                                            fetch(url + new URLSearchParams({
+
+                                                url: 'http://ovc.catastro.meh.es/INSPIRE/wfsCP.aspx?service=WFS&version=2.0&srs=EPSG:3857&request=getfeature&STOREDQUERIE_ID=getparcel&refcat='+refcat,
+                                                getparcel: 1
+
+                                            }))
+                                            .then(function(response){
+
+                                                return response.text();
+
+                                            })
+                                            .then(function(polygon_coord){
+
+                                                if (polygon_coord !== '') {
+
+                                                    latlngs = JSON.parse(polygon_coord);
+
+                                                    if (typeof latlngs !== 'object') {
+
+                                                        self.special_tools_msg.innerHTML = special_tools._T("No ha sido posible obtener la parcela. Inténtelo de nuevo.", json_lang, lang);
+
+                                                        window.setTimeout(function(){
+
+                                                            modal._container.querySelector('.close').click();
+
+                                                        }, 3500);
+
+                                                        return;
+
+                                                    }
+
+                                                    let polygon = L.polygon(latlngs);
+
+                                                    polygon.feature = polygon.toGeoJSON();
+
+                                                    polygon.feature.special_tools = {};
+
+                                                    polygon.feature.special_tools.is_catastro = true;
+
+                                                    polygon.feature.special_tools.geoman_edition = false;
+
+                                                    polygon.feature.special_tools.tools_id = special_tools.make_id(20);
+
+                                                    polygon.feature.properties.url = refcat_url;
+
+                                                    try {
+
+                                                        self.special_tools_msg.innerHTML = special_tools._T("Creando la parcela ...", json_lang, lang);
+
+                                                        map.fire('pm:create', {layer: polygon});
+
+                                                        modal._container.querySelector('.close').click();
+
+                                                    } catch(error) {
+
+                                                        self.special_tools_msg.innerHTML = special_tools._T("Ha ocurrido un error al intentar crear la parcela", json_lang, lang);
+
+                                                        window.setTimeout(function(){
+
+                                                            modal._container.querySelector('.close').click();
+
+                                                        }, 3500);
+
+                                                    }
+
+                                                }
+                                            })
+                                            .catch((error) => {
+
+                                                self.special_tools_msg.innerHTML = special_tools._T("Ha ocurrido un error al intentar crear la parcela", json_lang, lang);
+
+                                                window.setTimeout(function(){
+
+                                                    modal._container.querySelector('.close').click();
+
+                                                }, 3500);
+
+                                            });
+                                        }
+                                    })
+                                    .catch((error) => {
+
+                                        self.special_tools_msg.innerHTML = special_tools._T("Ha ocurrido un error al intentar crear la parcela", json_lang, lang);
+
+                                        window.setTimeout(function(){
+
+                                            modal._container.querySelector('.close').click();
+
+                                        }, 3500);
+
+                                    });
+                                }
+                            })
+                            .catch((error) => {
+
+                                self.special_tools_msg.innerHTML = special_tools._T("Ha ocurrido un error al intentar crear la parcela", json_lang, lang);
+
+                                window.setTimeout(function(){
+
+                                    modal._container.querySelector('.close').click();
+
+                                }, 3500);
+
+                            });
+
+                            stop = true;
+
+                            _layer.off('click', map_click);
+
+                            window.setTimeout(function(){
+
+                                _layer.on('click', map_click);
+                                stop = false;
+
+                            }, 1000);
+                
+
                     }
-                })
-                .catch((error) => console.log(error));
-        
-                stop = true;
-                
-                _layer.off('click', map_click);
- 
-                window.setTimeout(function(){
-                    _layer.on('click', map_click);
-                    stop = false;
-                }, 3000);
-        
+                });
             }
-
         };     
-         
-        map.off('click', map_click);
 
-        map.eachLayer(function(layer){
-
-            if (!(layer instanceof L.TileLayer)) {
-                layer.off('click', layer_click);
-            }
-
-        });
-
-        window.setTimeout(function(){
-
-            map.on('click', map_click);
-
-            map.eachLayer(function(layer){
-
-                if (!(layer instanceof L.TileLayer)) {
-                    layer.on('click', layer_click);
-                }
-
-            });
-
-        }, 1500);
-                
-               
         false_div = L.DomUtil.create('div');
+        
         return false_div;
         
     }
 });
 
 L.control.specialToolsCatastro = function (options) {
+    
     return new L.Control.SpecialToolsCatastro(options);
+    
 };

@@ -13,6 +13,13 @@
     float: left;
 }
 
+.special-tools-container {
+    
+    margin-top: 8px;
+    margin-bottom: 8px;
+    
+}
+
 .special-tools-enable {
     background-color: #14fbcd !important;
 }

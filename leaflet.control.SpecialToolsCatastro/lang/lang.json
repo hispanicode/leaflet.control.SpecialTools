@@ -1,0 +1,57 @@
+{
+
+    "Catastro": {
+        
+        "lg-eng": "Cadastre",
+        "lg-cat": "Cadastre",
+        "lg-eus": "Katastroa",
+        "lg-fra": "Cadastre"
+        
+    },
+
+    "Creando la parcela ...": {
+        
+        "lg-eng": "Creating the plot ...",
+        "lg-cat": "Creant la parcel·la ...",
+        "lg-eus": "Lursaila sortzen ...",
+        "lg-fra": "Création de l'intrigue ..."
+        
+    },
+    
+    "Ha ocurrido un error al intentar crear la parcela": {
+        
+        "lg-eng": "An error occurred while trying to create the parcel",
+        "lg-cat": "S'ha produït un error en intentar crear la parcel·la",
+        "lg-eus": "Errore bat gertatu da lursaila sortzen saiatzean",
+        "lg-fra": "Une erreur s'est produite lors de la tentative de création de la parcelle"
+        
+    },
+    
+    "No ha sido posible obtener la parcela. Inténtelo de nuevo.": {
+        
+        "lg-eng": "It has not been possible to obtain the plot. Try again.",
+        "lg-cat": "No s'ha pogut obtenir la parcel·la. Intenteu-ho de nou.",
+        "lg-eus": "Ezin izan da lursaila eskuratu. Saiatu berriro.",
+        "lg-fra": "Il n'a pas été possible d'obtenir le terrain. Essayer à nouveau."
+        
+    },
+    
+    "Obteniendo parcela ...": {
+        
+        "lg-eng": "Getting plot ...",
+        "lg-cat": "Obtenint parcel·la ...",
+        "lg-eus": "Lursaila lortzen ...",
+        "lg-fra": "Obtenir l'intrigue ..."
+        
+    },
+    
+    "No ha sido posible obtener la parcela. Es posible que el servidor del Catastro esté saturado o la zona seleccionada no tenga una parcela asociada.": {
+        
+        "lg-eng": "It has not been possible to obtain the plot. It is possible that the Cadastre server is saturated or the selected area does not have an associated plot.",
+        "lg-cat": "No s'ha pogut obtenir la parcel·la. És possible que el servidor del Cadastre estigui saturat o la zona seleccionada no tingui una parcel·la associada.",
+        "lg-eus": "Ezin izan da lursaila eskuratu. Baliteke Katastroko zerbitzaria saturatuta egotea edo hautatutako eremuak erlazionatutako lursailik ez izatea.",
+        "lg-fra": "Il n'a pas été possible d'obtenir le terrain. Il est possible que le serveur de Cadastre soit saturé ou que la zone sélectionnée n'ait pas de parcelle associée."
+        
+    }
+   
+}

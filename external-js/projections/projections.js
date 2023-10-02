@@ -4,24 +4,39 @@
  */
 
 make_id = function(length) {
+    
     let result = '';
+    
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    
     const charactersLength = characters.length;
+    
     let counter = 0;
+    
     while (counter < length) {
+        
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
       counter += 1;
+      
     }
+    
     return result;
+    
 };
 
 project_point = function(GEOJSON, EPSG) {
+    
+        if (typeof EPSG === 'undefined') {
+            
+            EPSG = null;
+            
+        }
     
         crs = {"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } }};
     
         OBJECTS = new Array();
         
-        if (GEOJSON.hasOwnProperty("crs")) {
+        if (GEOJSON.hasOwnProperty("crs") && EPSG !== null) {
             
             for (let proj in EPSG) {
                 
@@ -50,6 +65,7 @@ project_point = function(GEOJSON, EPSG) {
                         OBJECTS.push(point); 
 
                     } 
+                    
                     else {
 
                         json = GEOJSON;
@@ -72,6 +88,7 @@ project_point = function(GEOJSON, EPSG) {
                 } 
             }
         } 
+        
         else {
             
             json = GEOJSON;
@@ -86,17 +103,26 @@ project_point = function(GEOJSON, EPSG) {
             point.feature.special_tools.geoman_edition = false;
             point.feature.properties = json.properties;
             OBJECTS.push(point);
+            
         }
+        
     return OBJECTS;
+    
 };
 
 project_multipoint = function(GEOJSON, EPSG) {
+    
+        if (typeof EPSG === 'undefined') {
+            
+            EPSG = null;
+            
+        }
     
         crs = {"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } }};
     
         OBJECTS = new Array();
         
-        if (GEOJSON.hasOwnProperty("crs")) {
+        if (GEOJSON.hasOwnProperty("crs") && EPSG !== null) {
             
             for (let proj in EPSG) {
                 
@@ -110,11 +136,13 @@ project_multipoint = function(GEOJSON, EPSG) {
                             if (typeof json.geometry.coordinates[index][0] === 'number'
                                 && !Number.isNaN(json.geometry.coordinates[index][0])
                                 ) {
+                            
                                 _x = json.geometry.coordinates[index][0];
                                 _y = json.geometry.coordinates[index][1];
                                 item = L.utm({x: _x, y: _y, zone: EPSG[proj].zone, band: EPSG[proj].band});
                                 json.geometry.coordinates[index][0] = item.latLng().lat;
                                 json.geometry.coordinates[index][1] = item.latLng().lng;
+                            
                             }
 
                             point = L.marker(json.geometry.coordinates[index]);
@@ -126,8 +154,8 @@ project_multipoint = function(GEOJSON, EPSG) {
                             point.feature.properties = json.properties;
                             point.feature.crs = crs.crs;
                             OBJECTS.push(point); 
+                            
                         }
-
 
                     } 
                     
@@ -177,17 +205,24 @@ project_multipoint = function(GEOJSON, EPSG) {
                 OBJECTS.push(point);
             }
         }
+        
     return OBJECTS;
+    
 };
 
 project_polygon = function(GEOJSON, EPSG) {
     
-    
+        if (typeof EPSG === 'undefined') {
+            
+            EPSG = null;
+            
+        }
+
         crs = {"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } }};
         
         OBJECTS = new Array();
         
-        if (GEOJSON.hasOwnProperty("crs")) {
+        if (GEOJSON.hasOwnProperty("crs") && EPSG !== null) {
             
             for (let proj in EPSG) {
                 
@@ -198,15 +233,18 @@ project_polygon = function(GEOJSON, EPSG) {
                         json = GEOJSON;
 
                         for (let index in json.geometry.coordinates) {
+                            
                             if (typeof json.geometry.coordinates[index][0] === 'number'
                                 && !Number.isNaN(json.geometry.coordinates[index][0])
                                 ) {
+                            
                                 _x = json.geometry.coordinates[index][0];
                                 _y = json.geometry.coordinates[index][1];
                                 item = L.utm({x: _x, y: _y, zone: EPSG[proj].zone, band: EPSG[proj].band});
                                 json.geometry.coordinates[index][0] = item.latLng().lat;
                                 json.geometry.coordinates[index][1] = item.latLng().lng;
                             }
+                            
                             polygon = L.polygon(json.geometry.coordinates);
                             polygon.feature = polygon.toGeoJSON();
                             polygon.feature.special_tools = {};
@@ -238,6 +276,7 @@ project_polygon = function(GEOJSON, EPSG) {
                             polygon.feature.special_tools.geoman_edition = false;
                             polygon.feature.properties = json.properties;
                             OBJECTS.push(polygon);
+                            
                         }
 
                     }
@@ -245,6 +284,7 @@ project_polygon = function(GEOJSON, EPSG) {
                 } 
             }
         } 
+        
         else {
             
             json = GEOJSON;
@@ -263,12 +303,21 @@ project_polygon = function(GEOJSON, EPSG) {
                 polygon.feature.special_tools.geoman_edition = false;
                 polygon.feature.properties = json.properties;
                 OBJECTS.push(polygon);
+                
             }
         }
+        
     return OBJECTS;
+    
 };
 
 project_multipolygon = function(GEOJSON, EPSG) {
+    
+        if (typeof EPSG === 'undefined') {
+            
+            EPSG = null;
+            
+        }
     
         crs = {"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } }};
     
@@ -276,7 +325,7 @@ project_multipolygon = function(GEOJSON, EPSG) {
         
         multi_id = make_id(20);
         
-        if (GEOJSON.hasOwnProperty("crs")) {
+        if (GEOJSON.hasOwnProperty("crs") && EPSG !== null) {
             
             for (let proj in EPSG) {
                 
@@ -287,17 +336,23 @@ project_multipolygon = function(GEOJSON, EPSG) {
                         json = GEOJSON;
 
                         for (let index_1 in json.geometry.coordinates) {
+                            
                             for (let index_2 in json.geometry.coordinates[index_1]) {
+                                
                                 if (typeof json.geometry.coordinates[index_1][index_2][0] === 'number'
                                     && !Number.isNaN(json.geometry.coordinates[index_1][index_2][0])
                                     ) {
+                                
                                     _x = json.geometry.coordinates[index_1][index_2][0];
                                     _y = json.geometry.coordinates[index_1][index_2][1];
                                     item = L.utm({x: _x, y: _y, zone: EPSG[proj].zone, band: EPSG[proj].band});
                                     json.geometry.coordinates[index_1][index_2][0] = item.latLng().lat;
                                     json.geometry.coordinates[index_1][index_2][1] = item.latLng().lng;
+                                
                                 } else {
+                                    
                                     for (let index_3 in json.geometry.coordinates[index_1][index_2]) {
+                                        
                                         _x = json.geometry.coordinates[index_1][index_2][index_3][0];
                                         _y = json.geometry.coordinates[index_1][index_2][index_3][1];
 
@@ -308,6 +363,7 @@ project_multipolygon = function(GEOJSON, EPSG) {
                                     }
                                 }
                             }
+                            
                             polygon = L.polygon(json.geometry.coordinates[index_1]);
                             polygon.feature = polygon.toGeoJSON();
                             polygon.feature.special_tools = {};
@@ -318,6 +374,7 @@ project_multipolygon = function(GEOJSON, EPSG) {
                             polygon.feature.properties = json.properties;
                             polygon.feature.crs = crs.crs;
                             OBJECTS.push(polygon);
+                            
                         }
 
                     } 
@@ -328,20 +385,23 @@ project_multipolygon = function(GEOJSON, EPSG) {
                         coordinates = json.geometry.coordinates;
 
                         for (let index_1 in coordinates) {
+                            
                             for(let index_2 in coordinates[index_1]) {
+                                
                                 polygon_coord = L.GeoJSON.coordsToLatLngs(coordinates[index_1][index_2]);
+                                
+                                polygon = L.polygon(polygon_coord);
+                                polygon.feature = polygon.toGeoJSON();
+                                polygon.feature.special_tools = {};
+                                polygon.feature.special_tools.tools_id = make_id(20);
+                                polygon.feature.special_tools.is_geojson = true;
+                                polygon.feature.special_tools.geoman_edition = false;
+                                polygon.feature.special_tools.multi_id = multi_id;
+                                polygon.feature.properties = json.properties;
+                                OBJECTS.push(polygon);
+                        
                             }
 
-                            polygon = L.polygon(polygon_coord);
-                            polygon.feature = polygon.toGeoJSON();
-                            polygon.feature.special_tools = {};
-                            polygon.feature.special_tools.tools_id = make_id(20);
-                            polygon.feature.special_tools.is_geojson = true;
-                            polygon.feature.special_tools.geoman_edition = false;
-                            polygon.feature.special_tools.multi_id = multi_id;
-                            polygon.feature.properties = json.properties;
-                            OBJECTS.push(polygon);
-                            
                         }
 
                     }
@@ -350,7 +410,7 @@ project_multipolygon = function(GEOJSON, EPSG) {
             }
         } 
         else {
-            
+
             json = GEOJSON;
 
             coordinates = json.geometry.coordinates;
@@ -358,31 +418,44 @@ project_multipolygon = function(GEOJSON, EPSG) {
             for (let index_1 in coordinates) {
 
                 for(let index_2 in coordinates[index_1]) {
+                    
                     polygon_coord = L.GeoJSON.coordsToLatLngs(coordinates[index_1][index_2]);
+                    
+                    polygon = L.polygon(polygon_coord);
+                    polygon.feature = polygon.toGeoJSON();
+                    polygon.feature.special_tools = {};
+                    polygon.feature.special_tools.tools_id = make_id(20);
+                    polygon.feature.special_tools.is_geojson = true;
+                    polygon.feature.special_tools.geoman_edition = false;
+                    polygon.feature.special_tools.multi_id = multi_id;
+                    polygon.feature.properties = json.properties;
+                    OBJECTS.push(polygon);
+                    
                 }
 
-                polygon = L.polygon(polygon_coord);
-                polygon.feature = polygon.toGeoJSON();
-                polygon.feature.special_tools = {};
-                polygon.feature.special_tools.tools_id = make_id(20);
-                polygon.feature.special_tools.is_geojson = true;
-                polygon.feature.special_tools.geoman_edition = false;
-                polygon.feature.special_tools.multi_id = multi_id;
-                polygon.feature.properties = json.properties;
-                OBJECTS.push(polygon);
             }
         }
+        
     return OBJECTS;
+    
 };
 
 project_linestring = function(GEOJSON, EPSG) {
+    
+        if (typeof EPSG === 'undefined') {
+            
+            EPSG = null;
+            
+        }
     
         crs = {"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } }};
     
         OBJECTS = new Array();
         
-        if (GEOJSON.hasOwnProperty("crs")) {
+        if (GEOJSON.hasOwnProperty("crs") && EPSG !== null) {
+            
             for (let proj in EPSG) {
+                
                 if (GEOJSON.crs.properties.name === EPSG[proj].crs) {
                     
                     if (EPSG[proj].zone !== null && EPSG[proj].band !== null) {
@@ -390,16 +463,20 @@ project_linestring = function(GEOJSON, EPSG) {
                         json = GEOJSON;
 
                         for (let index in json.geometry.coordinates) {
+                            
                             if (typeof json.geometry.coordinates[index][0] === 'number'
                                 && !Number.isNaN(json.geometry.coordinates[index][0])
                                 ) {
+                            
                                 _x = json.geometry.coordinates[index][0];
                                 _y = json.geometry.coordinates[index][1];
                                 item = L.utm({x: _x, y: _y, zone: EPSG[proj].zone, band: EPSG[proj].band});
                                 json.geometry.coordinates[index][0] = item.latLng().lat;
                                 json.geometry.coordinates[index][1] = item.latLng().lng;
+                                
                             }
                         }
+                        
                         linestring = L.polyline(json.geometry.coordinates);
                         linestring.feature = linestring.toGeoJSON();
                         linestring.feature.special_tools = {};
@@ -433,6 +510,7 @@ project_linestring = function(GEOJSON, EPSG) {
             }
         } 
         else {
+            
             json = GEOJSON;
 
             coordinates = json.geometry.coordinates;
@@ -445,11 +523,20 @@ project_linestring = function(GEOJSON, EPSG) {
             linestring.feature.special_tools.geoman_edition = false;
             linestring.feature.properties = json.properties;
             OBJECTS.push(linestring);
+            
         }
+        
     return OBJECTS;
+    
 };
 
 project_multilinestring = function(GEOJSON, EPSG) {
+    
+        if (typeof EPSG === 'undefined') {
+            
+            EPSG = null;
+            
+        }
     
         crs = {"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } }};
     
@@ -457,7 +544,7 @@ project_multilinestring = function(GEOJSON, EPSG) {
         
         multi_id = make_id(20);
         
-        if (GEOJSON.hasOwnProperty("crs")) {
+        if (GEOJSON.hasOwnProperty("crs") && EPSG !== null) {
             
             for (let proj in EPSG) {
                 
@@ -468,26 +555,36 @@ project_multilinestring = function(GEOJSON, EPSG) {
                         json = GEOJSON;
 
                         for (let index_1 in json.geometry.coordinates) {
+                            
                             for (let index_2 in json.geometry.coordinates[index_1]) {
+                                
                                 if (typeof json.geometry.coordinates[index_1][index_2][0] === 'number'
                                     && !Number.isNaN(json.geometry.coordinates[index_1][index_2][0])
                                     ) {
+                                
                                     _x = json.geometry.coordinates[index_1][index_2][0];
                                     _y = json.geometry.coordinates[index_1][index_2][1];
                                     item = L.utm({x: _x, y: _y, zone: EPSG[proj].zone, band: EPSG[proj].band});
                                     json.geometry.coordinates[index_1][index_2][0] = item.latLng().lat;
                                     json.geometry.coordinates[index_1][index_2][1] = item.latLng().lng;
+                                    
+                                
                                 } else {
+                                    
                                     for (let index_3 in json.geometry.coordinates[index_1][index_2]) {
+                                        
                                         _x = json.geometry.coordinates[index_1][index_2][index_3][0];
                                         _y = json.geometry.coordinates[index_1][index_2][index_3][1];
 
                                         item = L.utm({x: _x, y: _y, zone: EPSG[proj].zone, band: EPSG[proj].band});
                                         json.geometry.coordinates[index_1][index_2][index_3][0] = item.latLng().lat;
                                         json.geometry.coordinates[index_1][index_2][index_3][1] = item.latLng().lng;
+                                        
                                     }
+                                    
                                 }
                             }
+                            
                             linestring = L.polyline(json.geometry.coordinates[index_1]);
                             linestring.feature = linestring.toGeoJSON();
                             linestring.feature.special_tools = {};
@@ -521,6 +618,7 @@ project_multilinestring = function(GEOJSON, EPSG) {
                             linestring.feature.special_tools.multi_id = multi_id;
                             linestring.feature.properties = json.properties;
                             linestring.push(linestring);
+                            
                         }
                             
                     }
@@ -529,6 +627,7 @@ project_multilinestring = function(GEOJSON, EPSG) {
             }
         } 
         else {
+            
             json = GEOJSON;
 
             coordinates = json.geometry.coordinates;
@@ -546,6 +645,7 @@ project_multilinestring = function(GEOJSON, EPSG) {
                 linestring.feature.special_tools.multi_id = multi_id;
                 linestring.feature.properties = json.properties;
                 OBJECTS.push(linestring);
+                
             }          
         }
     return OBJECTS;

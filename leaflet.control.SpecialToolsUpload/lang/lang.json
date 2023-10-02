@@ -1,0 +1,255 @@
+{
+    
+    "Subir archivos": {
+        
+        "lg-eng": "Upload files",
+        "lg-cat": "Pujar fitxers",
+        "lg-eus": "Kargatu fitxategiak",
+        "lg-fra": "Télécharger des fichiers"
+        
+    },
+
+    "Capas Vectoriales": {
+        
+        "lg-eng": "Vector Layers",
+        "lg-cat": "Capes Vectorials",
+        "lg-eus": "Bektore-geruzak",
+        "lg-fra": "Couches vectorielles"
+        
+    },
+    
+    "Seleccione el tipo de archivo: ": {
+        
+        "lg-eng": "Select the file type: ",
+        "lg-cat": "Seleccioneu el tipus de fitxer: ",
+        "lg-eus": "Hautatu fitxategi mota: ",
+        "lg-fra": "Sélectionnez le type de fichier: "
+        
+    },
+    
+    " Seleccione el archivo: ": {
+        
+        "lg-eng": " Select the file: ",
+        "lg-cat": " Seleccioneu el fitxer: ",
+        "lg-eus": " Hautatu fitxategia: ",
+        "lg-fra": " Sélectionnez le fichier: "
+        
+    },
+    
+    "Subir archivo": {
+        
+        "lg-eng": "Upload file",
+        "lg-cat": "Pujar fitxer",
+        "lg-eus": "Kargatu fitxategia",
+        "lg-fra": "Téléverser un fichier"
+        
+    },
+    
+    "Proyecciones por defecto": {
+        
+        "lg-eng": "Default projections",
+        "lg-cat": "Projeccions per defecte",
+        "lg-eus": "Aurreikuspen lehenetsiak",
+        "lg-fra": "Projections par défaut"
+        
+    },
+    
+    "Incluir proyección para UTM (Universal Transverse Mercator) en el caso de que no se encuentre entre las proyecciones por defecto (Asegúrese de que el archivo que va a subir viene proyectado. Ejemplo: ": {
+        
+        "lg-eng": "Include projection for UTM (Universal Transverse Mercator) in case it is not among the default projections (Make sure that the file you are going to upload is projected. Example: ",
+        "lg-cat": "Incloure projecció per a UTM (Universal Transverse Mercator) en cas que no es trobi entre les projeccions per defecte (Assegureu-vos que l'arxiu que voleu pujar ve projectat. Exemple: ",
+        "lg-eus": "Sartu UTM (Universal Transverse Mercator) proiekzioa proiekzio lehenetsien artean ez badago (ziurtatu kargatuko duzun fitxategia proiektatuta dagoela. Adibidea: ",
+        "lg-fra": "Incluez la projection pour UTM (Universal Transverse Mercator) au cas où elle ne ferait pas partie des projections par défaut (assurez-vous que le fichier que vous allez télécharger est projeté. Exemple: "
+        
+    },
+    
+    "A continuación se listan las proyecciones por defecto: (Asegúrese de que el archivo que va a subir viene proyectado. Ejemplo: ": {
+        
+        "lg-eng": "The default projections are listed below: (Make sure the file you are uploading is projected. Example: ",
+        "lg-cat": "A continuació es llisten les projeccions per defecte: (Assegureu-vos que el fitxer que voleu pujar ve projectat. Exemple: ",
+        "lg-eus": "Behean agertzen dira aurreikuspen lehenetsiak: (Ziurtatu kargatzen ari zaren fitxategia proiektatuta dagoela. Adibidea: ",
+        "lg-fra": "Les projections par défaut sont répertoriées ci-dessous : (Assurez-vous que le fichier que vous téléchargez est projeté. Exemple: "
+        
+    },
+    
+    "Imágenes": {
+        
+        "lg-eng": "Images",
+        "lg-cat": "Imatges",
+        "lg-eus": "Irudiak",
+        "lg-fra": "Images"
+        
+    },
+    
+    "Subir imagen": {
+        
+        "lg-eng": "Upload image",
+        "lg-cat": "Pujar imatge",
+        "lg-eus": "Igo irudia",
+        "lg-fra": "Télécharger une image"
+        
+    },
+    
+    "Obtener la imagen": {
+        
+        "lg-eng": "Get the image",
+        "lg-cat": "Obtenir la imatge",
+        "lg-eus": "Lortu irudia",
+        "lg-fra": "Obtenez l'image"
+        
+    },
+    
+    "Añadir la imagen al mapa": {
+        
+        "lg-eng": "Add the image to the map",
+        "lg-cat": "Afegir la imatge al mapa",
+        "lg-eus": "Gehitu irudia mapara",
+        "lg-fra": "Ajouter l'image à la carte"
+        
+    },
+    
+    "El archivo shape tiene que ir comprimido en un archivo .zip": {
+        
+        "lg-eng": "The shape file must be compressed in a .zip file",
+        "lg-cat": "El fitxer shape ha d'anar comprimit en un fitxer .zip",
+        "lg-eus": "Forma fitxategia .zip fitxategi batean konprimitu behar da",
+        "lg-fra": "Le fichier shape doit être compressé dans un fichier .zip"
+        
+    },
+    
+    "El archivo que estás intentando subir no es un archivo .geojson": {
+        
+        "lg-eng": "The file you are trying to upload is not a .geojson file",
+        "lg-cat": "El fitxer que esteu intentant pujar no és un fitxer .geojson",
+        "lg-eus": "Kargatzen saiatzen ari zaren fitxategia ez da .geojson fitxategia",
+        "lg-fra": "Le fichier que vous essayez de télécharger n'est pas un fichier .geojson"
+        
+    },
+    
+    "El archivo que estás intentando subir no es un archivo .kml": {
+        
+        "lg-eng": "The file you are trying to upload is not a .kml file",
+        "lg-cat": "El fitxer que esteu intentant pujar no és un fitxer .kml",
+        "lg-eus": "Kargatzen saiatzen ari zaren fitxategia ez da .kml fitxategia",
+        "lg-fra": "Le fichier que vous essayez de télécharger n'est pas un fichier .kml"
+        
+    },
+    
+    "Por favor, seleccione un archivo": {
+        
+        "lg-eng": "Please select a file",
+        "lg-cat": "Seleccioneu un fitxer",
+        "lg-eus": "Mesedez, hautatu fitxategi bat",
+        "lg-fra": "Veuillez sélectionner un fichier"
+        
+    },
+    
+    "El archivo shape no es válido": {
+        
+        "lg-eng": "Shapefile is invalid",
+        "lg-cat": "El fitxer shape no és vàlid",
+        "lg-eus": "Shapefile ez da baliozkoa",
+        "lg-fra": "Le fichier de formes n'est pas valide"
+        
+    },
+    
+    "El archivo .zip está dañado o no contiene los ficheros adecuados.": {
+        
+        "lg-eng": "The .zip file is damaged or does not contain the appropriate files.",
+        "lg-cat": "El fitxer .zip està malmès o no conté els fitxers adequats.",
+        "lg-eus": ".zip fitxategia hondatuta dago edo ez ditu fitxategi egokiak.",
+        "lg-fra": "Le fichier .zip est endommagé ou ne contient pas les fichiers appropriés."
+        
+    },
+    
+    "El archivo .geojson no es válido": {
+        
+        "lg-eng": "The .geojson file is invalid",
+        "lg-cat": "El fitxer .geojson no és vàlid",
+        "lg-eus": ".geojson fitxategia baliogabea da",
+        "lg-fra": "Le fichier .geojson n'est pas valide"
+        
+    },
+    
+    "El archivo .kml no es válido": {
+        
+        "lg-eng": "The .kml file is invalid",
+        "lg-cat": "El fitxer .kml no és vàlid",
+        "lg-eus": ".kml fitxategia baliogabea da",
+        "lg-fra": "Le fichier .kml n'est pas valide"
+        
+    },
+    
+    "Previamente debes subir la imagen": {
+        
+        "lg-eng": "You must previously upload the image",
+        "lg-cat": "Prèviament has de pujar la imatge",
+        "lg-eus": "Aurretik irudia igo behar duzu",
+        "lg-fra": "Vous devez préalablement télécharger l'image"
+        
+    },
+    
+    "La imagen: ": {
+        
+        "lg-eng": "The image: ",
+        "lg-cat": "La imatge: ",
+        "lg-eus": "Argazkia: ",
+        "lg-fra": "L'image: "
+        
+    },
+    
+    " tiene el formato ": {
+        
+        "lg-eng": " has the format ",
+        "lg-cat": " té el format ",
+        "lg-eus": " formatua du ",
+        "lg-fra": " a le format "
+        
+    },
+    
+    "Asegúrese de que la imagen está georrefenciada": {
+        
+        "lg-eng": "Make sure the image is georeferenced",
+        "lg-cat": "Assegureu-vos que la imatge està georefenciada",
+        "lg-eus": "Ziurtatu irudia geoerreferentziatuta dagoela",
+        "lg-fra": "Assurez-vous que l'image est géoréférencée"
+        
+    },
+    
+    "La imagen se ajustará al contexto actual del mapa": {
+        
+        "lg-eng": "The image will adjust to the current map context",
+        "lg-cat": "La imatge s'ajustarà al context actual del mapa",
+        "lg-eus": "Irudia uneko maparen testuingurura egokituko da",
+        "lg-fra": "L'image s'ajustera au contexte actuel de la carte"
+        
+    },
+    
+    "Cargando ... ": {
+        
+        "lg-eng": "Loading ... ",
+        "lg-cat": "Carregant ... ",
+        "lg-eus": "Kargatzen ... ",
+        "lg-fra": "Chargement ... "
+        
+    },
+    
+    "La imagen .tif no es válida o no está georreferenciada": {
+        
+        "lg-eng": "The .tif image is invalid or not georeferenced",
+        "lg-cat": "La imatge .tif no és vàlida o no està georeferenciada",
+        "lg-eus": ".tif irudia baliogabea da edo ez dago geoerreferentziarik",
+        "lg-fra": "L'image .tif n'est pas valide ou n'est pas géoréférencée"
+        
+    },
+    
+    "Ha ocurrido un error inesperado": {
+        
+        "lg-eng": "An unexpected error has occurred",
+        "lg-cat": "Ha passat un error inesperat",
+        "lg-eus": "Ustekabeko errore bat gertatu da",
+        "lg-fra": "Une erreur imprévue s'est produite"
+        
+    }
+    
+}

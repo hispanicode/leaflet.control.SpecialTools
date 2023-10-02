@@ -1,0 +1,84 @@
+{
+    
+    "Unidades Administrativas": {
+        
+        "lg-eng": "Administrative Units",
+        "lg-cat": "Unitats administratives",
+        "lg-eus": "Unitate Administratiboak",
+        "lg-fra": "Unités administratives"
+        
+    },
+    
+    "Municipio": {
+        
+        "lg-eng": "Municipality",
+        "lg-cat": "Municipi",
+        "lg-eus": "Udalerria",
+        "lg-fra": "Municipalité"
+        
+    },
+    
+    "Provincia": {
+        
+        "lg-eng": "Province",
+        "lg-cat": "Província",
+        "lg-eus": "Probintzia",
+        "lg-fra": "Province"
+        
+    },
+    
+    "CCAA": {
+        
+        "lg-eng": "Autonomous community",
+        "lg-cat": "CCAA",
+        "lg-eus": "Autonomia-erkidegoa",
+        "lg-fra": "Communauté autonome"
+        
+    },
+    
+    "Obteniendo Unidad Administrativa ...": {
+        
+        "lg-eng": "Obtaining Administrative Unit ...",
+        "lg-cat": "Obtenint Unitat Administrativa ...",
+        "lg-eus": "Administrazio Unitatea lortzen ...",
+        "lg-fra": "Obtention de l'unité administrative ..."
+        
+    },
+    
+    "No ha sido posible obtener resultados": {
+        
+        "lg-eng": "It has not been possible to obtain results",
+        "lg-cat": "No ha estat possible obtenir resultats",
+        "lg-eus": "Ezin izan da emaitzarik lortu",
+        "lg-fra": "Il n'a pas été possible d'obtenir des résultats"
+        
+    },
+    
+    "Puede tomar unos segundos, por favor espere ...": {
+        
+        "lg-eng": "It may take a few seconds, please wait ...",
+        "lg-cat": "Podeu prendre uns segons, si us plau ...",
+        "lg-eus": "Baliteke segundo batzuk behar izatea, itxaron mesedez ...",
+        "lg-fra": "Cela peut prendre quelques secondes, veuillez patienter ..."
+        
+    },
+    
+    "Unidad Administrativa cargada en el mapa con éxito": {
+        
+        "lg-eng": "Administrative Unit loaded on the map successfully",
+        "lg-cat": "Unitat Administrativa carregada al mapa amb èxit",
+        "lg-eus": "Mapan behar bezala kargatu da Administrazio Unitatea",
+        "lg-fra": "Unité administrative chargée sur la carte avec succès"
+        
+    },
+    
+    "No ha sido posible obtener la Unidad Administrativa": {
+        
+        "lg-eng": "It has not been possible to obtain the Administrative Unit",
+        "lg-cat": "No ha estat possible obtenir la Unitat Administrativa",
+        "lg-eus": "Ezin izan da Administrazio Unitatea lortu",
+        "lg-fra": "Il n'a pas été possible d'obtenir l'unité administrative"
+        
+    }
+    
+}

@@ -11,6 +11,8 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
         
         const route = special_tools.options.route;
         
+        const lang = special_tools.options.lang;
+        
         const server = special_tools.options.server;
         
         const component_geolocation = special_tools.options.component_geolocation;
@@ -18,6 +20,19 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
         const controlDiv = L.DomUtil.create('div', 'special-tools-roman-empire special-tools-controls special-tools-disable');
 
         special_tools.special_tools_btns.appendChild(controlDiv);
+        
+        var json_lang = {};
+        
+        fetch(route + '/leaflet.control.SpecialToolsRomanEmpire/lang/lang.json')
+        .then(function(response){
+            
+            return response.json();
+            
+        }).then(function(data){
+            
+            json_lang = data;
+            
+        });
         
         L.DomEvent.addListener(controlDiv, 'click', function(){
             
@@ -34,16 +49,20 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
             pleiades = "<h3>Pleiades (pleiades.stoa.org)</h3>";
             pleiades = pleiades + "<div class='pleiades-div'>";
             pleiades = pleiades + "<input type='search' id='search_pleiades'>";
-            pleiades = pleiades + " <button type='button' id='btn_pleiades' class='special-tools-btn-default'>Buscar</button>";
-            pleiades = pleiades + "<p>Filtrar por:</p>";
+            pleiades = pleiades + " <button type='button' id='btn_pleiades' class='special-tools-btn-default'>" + special_tools._T("Buscar", json_lang, lang) + "</button>";
+            pleiades = pleiades + "<p>" + special_tools._T("Filtrar por:", json_lang, lang) + "</p>";
             pleiades = pleiades + "<p>";
-            pleiades = pleiades + "Nombre: <input type='radio' name='radio_pleiades' class='radio_pleiades' value='name' checked>";
+            pleiades = pleiades + special_tools._T("Nombre: ", json_lang, lang) + "<input type='radio' name='radio_pleiades' class='radio_pleiades' value='name' checked>";
             pleiades = pleiades + " ID: <input type='radio' name='radio_pleiades' class='radio_pleiades' value='id'>";
             pleiades = pleiades + "</p>";
             pleiades = pleiades + "<div id='pleiades_items_founds'>";
+            
             for (let n=1; n<=10; n++) {
+                
                 pleiades = pleiades + "<p class='p-get-pleiades' style='display: none'><button type='button' style='margin-top: 4px; margin-bottom: 4px;' class='get-pleiades special-tools-btn-success' pleiades-id=''></button></p>";
+            
             }
+            
             pleiades = pleiades + "</div>";
             pleiades = pleiades + "</div>";
             /* PLEIADES */
@@ -52,9 +71,9 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
             pelagios = "<h3>Pelagios D.A.R.E</h3>";
             pelagios = pelagios + "<div class='pelagios-div'>";
             pelagios = pelagios + "<input type='search' id='search_pelagios'>";
-            pelagios = pelagios + " <button type='button' id='btn_pelagios' class='special-tools-btn-default'>Buscar</button>";
-            pelagios = pelagios + " <input type='checkbox' id='check_uncheck_all' checked> Marcar/Desmarcar todo";
-            pelagios = pelagios + "<p>Filtrar por:</p>";
+            pelagios = pelagios + " <button type='button' id='btn_pelagios' class='special-tools-btn-default'>" + special_tools._T("Buscar", json_lang, lang) + "</button>";
+            pelagios = pelagios + " <input type='checkbox' id='check_uncheck_all' checked>" + special_tools._T(" Marcar/Desmarcar todo", json_lang, lang);
+            pelagios = pelagios + "<p>" + special_tools._T("Filtrar por:", json_lang, lang) + "</p>";
             pelagios = pelagios + "<div>";
             pelagios = pelagios + "<div class='w-col-3'><input type='checkbox' name='10m_lakes' checked> 10m_lakes</div>";
             pelagios = pelagios + "<div class='w-col-3'><input type='checkbox' name='10m_lakes_label' checked> 10m_lakes_label</div>";
@@ -84,7 +103,7 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
             imperium = "<h3>imperium.ahlfeldt.se (Lund University)</h3>";
             imperium = imperium + "<div class='imperium-div'>";
             imperium = imperium + "<input type='search' id='search_imperium'>";
-            imperium = imperium + " <button type='button' id='btn_imperium' class='special-tools-btn-default'>Buscar</button>";
+            imperium = imperium + " <button type='button' id='btn_imperium' class='special-tools-btn-default'>" + special_tools._T("Buscar", json_lang, lang) + "</button>";
             imperium = imperium + "";
             imperium = imperium + "<select id='select_imperium_type'>";
             imperium = imperium + "<option value=''>All types</option>";
@@ -193,18 +212,14 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
             content = pleiades + '<hr>' + pelagios + '<hr>' + imperium;
             
             map.fire('modal', {
-              title: 'Consulta a otros servicios',
+              title: special_tools._T("Consulta a servicios relacionados con el Imperio Romano", json_lang, lang),
               content: content,
               template: ['<div class="modal-header"><h2>{title}</h2></div>',
                 '<hr>',
                 '<div class="modal-body">{content}</div>',
                 '<div class="modal-footer">',
-                '<p><button class="topcoat-button--large {CANCEL_CLS}">{cancelText}</button></p>',
                 '</div>'
               ].join(''),
-
-              cancelText: 'Cerrar',
-              CANCEL_CLS: 'modal-cancel',
 
               width: 'auto',
 
@@ -213,15 +228,6 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                 var modal = evt.modal;
                 
                 modal._container.querySelector('.modal-content').style.backgroundColor = "rgba(255, 255, 255, 0.8)";
-                
-                L.DomEvent
-                  .on(modal._container.querySelector('.modal-cancel'), 'click', function() {
-                    //alert('You pressed cancel');
-                    modal.hide();
-                  });
-
-                
-
                 /* PLEIADES */
                 L.DomEvent.on(modal._container.querySelector('#search_pleiades'), 'keyup', function() {
                     modal._container.querySelector('#btn_pleiades').click();

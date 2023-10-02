@@ -17,3 +17,32 @@
     cursor: pointer;
 }
 
+.special-tools-legend-div {
+    
+    width: 300px;
+    height: 180px;
+    background-color: #ffffff;
+    padding: 6px;
+    position: relative;
+    opacity: 0.6;
+    
+}
+
+.special-tools-legend-name {
+    
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.special-tools-column-name {
+    
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.special-tools-column-div {
+    
+    width: 25%;
+    float: left;
+}
+

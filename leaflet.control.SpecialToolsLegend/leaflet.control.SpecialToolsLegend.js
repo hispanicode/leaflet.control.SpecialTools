@@ -18,7 +18,29 @@ L.Control.SpecialToolsLegend = L.Control.extend({
 
         const controlDiv = L.DomUtil.create('div', 'special-tools-legend special-tools-controls special-tools-disable');
 
+        this.legend_div = L.DomUtil.create('div');
+        
+        this.legend_div.setAttribute('class', 'special-tools-legend-div');
+        
+        map_width = map.getSize().x;
+        
+        legend_left = (map_width / 2) - 150;
+        
+        this.legend_div.style.left = legend_left + 'px';
+
+        map._controlCorners.bottomleft.appendChild(this.legend_div);
+
         special_tools.special_tools_btns.appendChild(controlDiv);
+        
+        map.on('resize', function(e){
+
+            map_width = e.newSize.x;;
+
+            legend_left = (map_width / 2) - 150;
+
+            self.legend_div.style.left = legend_left + 'px';
+            
+        });
 
         L.DomEvent.addListener(controlDiv, 'click', function(){
             
@@ -31,13 +53,18 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                 special_tools.only_one_control_active(elements_controls, controlDiv);
             } catch (e) {};
             
-            content = "<br><p>Leyenda: <input type='text' style='width: 250px' id='legend_name'>";
+            content = "<div class='special-tools-container'>";
+            content = content + "Leyenda: <input type='text' style='width: 250px' id='legend_name'>";
+            content = content + "</div>";
             
-            content = content + " <button type='button' id='btn_add_column' class='special-tools-btn-default'>Nueva columna</button>";
+            content = content + "<div class='special-tools-container'>";
+            content = content + "<button type='button' id='btn_add_column' class='special-tools-btn-default'>Nueva columna</button>";
+            content = content + " <button type='button' id='btn_save_legend' class='special-tools-btn-success'>Guardar</button>";
+            content = content + "</div>";
             
-            content = content + "<button type='button' id='btn_save_legend' class='special-tools-btn-default'>Guardar</button></p>";
-            
+            content = content + "<div class='special-tools-container'>";
             content = content + "<div id='div_columns'></div>";
+            content = content + "</div>";
 
             map.fire('modal', {
                 
@@ -73,8 +100,6 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                         
                     });
                     
-                    
-                    
                     legend_name = modal._container.querySelector('#legend_name');
                     
                     btn_save_legend = modal._container.querySelector('#btn_save_legend');
@@ -91,7 +116,76 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                     
                     L.DomEvent.on(btn_save_legend, 'click', function(){
                         
-                        //console.log(columns);
+                        url = route + "/leaflet.control.SpecialToolsLegend/ajax/legend.php?";
+
+                        fetch(url + new URLSearchParams({
+                                    
+                             content: JSON.stringify(columns)
+                                
+                        }))
+                        .then(function(response) {
+                            
+                            return response.json();
+                            
+                        }).then(function(data){
+                            
+                            console.log(data);
+                            
+                        });
+                        
+
+                        self.legend_div.innerHTML = '';
+                        
+                        legend_title = modal._container.querySelector('#legend_name');
+
+                        _legend_title = L.DomUtil.create('div');
+                        _legend_title.setAttribute('class', 'special-tools-legend-name');
+                        _legend_title.innerText = legend_title.value;
+                        
+                        self.legend_div.appendChild(_legend_title);
+                        
+                        for (let col in columns) {
+                            
+                            _column_div = L.DomUtil.create('div');
+                            
+                            _column_div.setAttribute('class', 'special-tools-column-div');
+                            
+                            _column_name = L.DomUtil.create('div');
+                            _column_name.setAttribute('class', 'special-tools-container special-tools-column-name');
+                            _column_name.innerText = columns[col].name;;
+                            
+                            _column_div.appendChild(_column_name);
+                            
+                            self.legend_div.appendChild(_column_div);
+                            
+                            for (let elem in columns[col].elements) {
+                                
+                                _element_div = L.DomUtil.create('div');
+                                
+                                _element_color = L.DomUtil.create('div');
+                                _element_color.style.backgroundColor = columns[col].elements[elem].color;
+                                _element_color.style.width = '8px';
+                                _element_color.style.height = '8px';
+                                _element_color.style.marginTop = '3px';
+                                _element_color.style.marginRight = '4px';
+                                _element_color.style.float = 'left';
+                                
+                                _element_name = L.DomUtil.create('div');
+                                _element_name.innerText = columns[col].elements[elem].name;
+                                _element_name.style.float = 'left';
+                                
+                                _element_clear = L.DomUtil.create('div');
+                                _element_clear.style.clear = 'left';
+
+                                _element_div.appendChild(_element_color);
+                                _element_div.appendChild(_element_name);
+                                _element_div.appendChild(_element_clear);
+
+                                _column_div.appendChild(_element_div);
+                            }
+                            
+                            
+                        }
                         
                     });
 
@@ -115,21 +209,20 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                             columns[columns.length] = {
                                 
                                 "name": "",
-                                "elements": ""
+                                "elements": []
                             };
                             
                             _index_column_ = columns.length-1;
                             
                         }
-                        
-                        
 
                         const div = L.DomUtil.create('div');
-                        div.style.marginTop = '12px';
-                        div.style.paddingTop = '10px';
-                        div.style.paddingBottom = '10px';
                         div.style.borderTop = '1px solid #1ACBED';
-                        
+                        div.setAttribute('class', 'div-column');
+
+                        const div_container_1 = L.DomUtil.create('div');
+                        div_container_1.setAttribute('class', 'special-tools-container');
+
                         const input_column_span = L.DomUtil.create('span');
                         input_column_span.innerText = 'Columna: ';
                         
@@ -137,6 +230,13 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                         input_column.type = 'text';
                         input_column.style.width = '150px';
                         input_column.setAttribute('index-column', _index_column_);
+                        
+                        div_container_1.appendChild(input_column_span);
+                        div_container_1.appendChild(input_column);
+                        
+                        
+                        const div_container_2 = L.DomUtil.create('div');
+                        div_container_2.setAttribute('class', 'special-tools-container');
                         
                         const btn_column = L.DomUtil.create('button');
                         btn_column.type = 'button';
@@ -149,17 +249,14 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                         btn_column_delete.setAttribute('class', 'special-tools-btn-danger');
                         btn_column_delete.setAttribute('index-column', _index_column_);
                         
+                        div_container_2.appendChild(btn_column);
+                        div_container_2.appendChild(btn_column_delete);
+                        
                         const div_column = L.DomUtil.create('div');
                         
-                        div.appendChild(input_column_span);
-                        div.appendChild(input_column);
-                        div.appendChild(btn_column);
-                        div.appendChild(btn_column_delete);
+                        div.appendChild(div_container_1);
+                        div.appendChild(div_container_2);
                         div.appendChild(div_column);
-                        
-                        br = L.DomUtil.create('br');
-                        
-                        div.appendChild(br);
 
                         div_columns.appendChild(div);
                         
@@ -168,13 +265,35 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                             _index_column = this.getAttribute('index-column');
                             
                             delete columns[parseInt(_index_column)];
+                            
                             columns = columns.flat();
+                            
+                            console.log(columns);
                             
                             L.DomUtil.remove(div);
                             
+                            _div_columns = div_columns.querySelectorAll('.div-column');
+                            
+                            for (x = 0; x < _div_columns.length; x++) {
+                                
+                                _div_columns[x].children[0].querySelector('input').setAttribute('index-column', x);
+                                _div_columns[x].children[1].querySelectorAll('button')[0].setAttribute('index-column', x);
+                                _div_columns[x].children[1].querySelectorAll('button')[1].setAttribute('index-column', x);
+                                
+                                _div_elements = _div_columns[x].children[2].querySelectorAll('.div-elements');
+
+                                for (y = 0; y < _div_elements.length; y++) {
+
+                                    _div_elements[y].children[1].setAttribute('index-column', x);
+                                    _div_elements[y].children[2].setAttribute('index-column', x);
+                                    _div_elements[y].children[3].setAttribute('index-column', x);
+
+                                }
+                                
+                            } 
+                            
                         });
-                       
-                        
+
                         L.DomEvent.on(input_column, 'keyup', function(){
                             
                             this.setAttribute('value', this.value);
@@ -194,7 +313,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                                 columns[__index_column__].elements[0] = {
                                     
                                     "name": "",
-                                    "color": ""
+                                    "color": "#000000"
                                     
                                 };
                                 
@@ -205,7 +324,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                                 columns[parseInt(__index_column__)].elements[columns[parseInt(__index_column__)].elements.length] = {
                                     
                                     "name": "",
-                                    "color": ""
+                                    "color": "#000000"
                                     
                                 };
                                 
@@ -213,10 +332,8 @@ L.Control.SpecialToolsLegend = L.Control.extend({
 
                             }
                             
-                            
-                            
                             const column = L.DomUtil.create('div');
-                            column.style.padding = '8px';
+                            column.setAttribute('class', 'special-tools-container div-elements');
                             
                             const element_name_span = L.DomUtil.create('span');
                             element_name_span.innerText = "Elemento: ";
@@ -234,7 +351,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                             element_color.setAttribute('index-element', __index_element__);
                             
                             const element_delete = L.DomUtil.create('button');
-                            element_delete.innerText = 'Eliminar elemento';
+                            element_delete.innerText = 'Eliminar';
                             element_delete.setAttribute('class', 'special-tools-btn-danger');
                             element_delete.setAttribute('index-column', __index_column__);
                             element_delete.setAttribute('index-element', __index_element__);
@@ -270,11 +387,24 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                             L.DomEvent.on(element_delete, 'click', function(){
                                 
                                 _index_column = parseInt(this.getAttribute('index-column'));
+                                
                                 _index_element = parseInt(this.getAttribute('index-element'));
+                                
                                 delete columns[_index_column].elements[_index_element];
+                                
                                 columns[_index_column].elements = columns[_index_column].elements.flat();
                                 
                                 L.DomUtil.remove(column);
+                                
+                                _div_elements = div_column.querySelectorAll('.div-elements');
+
+                                for (x = 0; x < _div_elements.length; x++) {
+
+                                    _div_elements[x].children[1].setAttribute('index-element', x);
+                                    _div_elements[x].children[2].setAttribute('index-element', x);
+                                    _div_elements[x].children[3].setAttribute('index-element', x);
+
+                                }
                                 
                             });
                           
@@ -285,7 +415,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                     
                 },
                 
-                onHide: function(){
+                onHide: function() {
                     
                     L.DomUtil.addClass(controlDiv, 'special-tools-disable');
                     L.DomUtil.removeClass(controlDiv, 'special-tools-enable');

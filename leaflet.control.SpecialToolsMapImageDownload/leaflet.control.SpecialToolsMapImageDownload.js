@@ -5,12 +5,14 @@
 L.Control.SpecialToolsMapImageDownload = L.Control.extend({
     
     onAdd: function (map) {
-        
+
         const self = this;
         
         const special_tools = this.options.special_tools;
         
         const route = special_tools.options.route;
+        
+        const lang = special_tools.options.lang;
         
         const server = special_tools.options.server;
         
@@ -19,6 +21,19 @@ L.Control.SpecialToolsMapImageDownload = L.Control.extend({
         const controlDiv = L.DomUtil.create('div', 'special-tools-map-image-download special-tools-controls special-tools-disable');
 
         special_tools.special_tools_btns.appendChild(controlDiv);
+        
+        var json_lang = {};
+        
+        fetch(route + '/leaflet.control.SpecialToolsMapImageDownload/lang/lang.json')
+        .then(function(response){
+            
+            return response.json();
+            
+        }).then(function(data){
+            
+            json_lang = data;
+            
+        });
 
         L.DomEvent.addListener(controlDiv, 'click', function(){
             
@@ -31,7 +46,7 @@ L.Control.SpecialToolsMapImageDownload = L.Control.extend({
                 special_tools.only_one_control_active(elements_controls, controlDiv);
             } catch (e) {};
             
-            content = "<p>Exportar como: ";
+            content = "<p>" + special_tools._T("Exportar como: ", json_lang, lang);
             content = content + "<select id='raster_export'>";
             content = content + "<option value='tif'>Raster GeoTiff</option>";
             content = content + "<option value='png'>png</option>";
@@ -39,13 +54,13 @@ L.Control.SpecialToolsMapImageDownload = L.Control.extend({
             content = content + "<option value='gif'>gif</option>";
             content = content + "<option value='webp'>webp</option>";
             content = content + "</select>"; 
-            content = content + " Nombre: <input type='text' id='raster_name' value='archivo' style='width: 110px;'>";
-            content = content + "<img id='btn_map_download' src='"+route+"/img/download.png' style='cursor: pointer; width: 24px; height; 24px; position: relative; top: 8px;' title='Download'></p>";
+            content = content + special_tools._T(" Nombre: ", json_lang, lang) + "<input type='text' id='raster_name' value='" + special_tools._T("archivo", json_lang, lang) + "' style='width: 110px;'>";
+            content = content + "<img id='btn_map_download' src='"+route+"/img/download.png' style='cursor: pointer; width: 24px; height; 24px; position: relative; top: 8px;' title='" + special_tools._T("Descargar Mapa", json_lang, lang) + "'></p>";
             content = content + "<br><div id='while_download' style='line-height: 36px; background-color: #fff; font-weight: bold; padding-left: 3px; padding-right: 3px; margin-top: 5px;'></div>";
             
             map.fire('modal', {
                 
-              title: 'Descargar Mapa',
+              title: special_tools._T("Descargar Mapa", json_lang, lang),
               content: content,
               template: ['<div class="modal-header"><h2>{title}</h2></div>',
                 '<hr>',
@@ -74,7 +89,7 @@ L.Control.SpecialToolsMapImageDownload = L.Control.extend({
                         file_type = raster_export.options[raster_export.selectedIndex].value;
 
                         if (raster_name.value === '') {
-                            while_download.innerHTML = 'Por favor, indique el nombre del archivo';
+                            while_download.innerHTML = special_tools._T("Por favor, indique un nombre para el archivo", json_lang, lang);
                             L.DomUtil.addClass(while_download, 'special-tools-msg-error');
                             return;
                         }
@@ -101,7 +116,7 @@ L.Control.SpecialToolsMapImageDownload = L.Control.extend({
 
                                     if (i_char > chars_download.length-1) i_char = 0;
 
-                                    while_download.innerHTML = "Descargando ... " + chars_download[i_char];
+                                    while_download.innerHTML = special_tools._T("Descargando ... ", json_lang, lang) + chars_download[i_char];
 
                                     i_char++;
                                 }
@@ -152,14 +167,14 @@ L.Control.SpecialToolsMapImageDownload = L.Control.extend({
                                         window.clearInterval(timer);
                                         
                                         L.DomUtil.addClass(while_download, 'special-tools-msg-ok');
-                                        while_download.innerHTML = 'Archivo descargado correctamente';
+                                        while_download.innerHTML = special_tools._T("Archivo descargado correctamente", json_lang, lang);
 
                                     } else {
 
                                         window.clearInterval(timer);
                                         
                                         L.DomUtil.addClass(while_download, 'special-tools-msg-error');
-                                        while_download.innerHTML = 'Ha ocurrido un error al crear el archivo';
+                                        while_download.innerHTML = special_tools._T("Ha ocurrido un error al crear el archivo", json_lang, lang);
 
                                     }
 
@@ -167,10 +182,14 @@ L.Control.SpecialToolsMapImageDownload = L.Control.extend({
                                 
                             }).catch(function(error){
                                 
-                                window.clearInterval(timer);
-
+                                if (typeof timer !== 'undefined') {
+                                    
+                                    window.clearInterval(timer);
+                                    
+                                }
+ 
                                 L.DomUtil.addClass(while_download, 'special-tools-msg-error');
-                                while_download.innerHTML = 'Ha ocurrido un error al crear la imagen. La imagen del basemap debe tener el protocolo https';
+                                while_download.innerHTML = special_tools._T("Ha ocurrido un error al crear la imagen. Error CORS. El mapa base no tiene el protocolo https.", json_lang, lang);
                                 
                                 map._controlCorners.topright.style.display = 'block';
                                 map._controlCorners.topleft.style.display = 'block';
