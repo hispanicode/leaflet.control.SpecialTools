@@ -4,9 +4,9 @@
 
 <p>TED2021-131704A-I00, financiado por MCIN/AEI/10.13039/501100011033 y por la Unión Europea “NextGenerationEU”/PRTR</p>
 
-<img src='https://raw.githubusercontent.com/hispanicode/leaflet.control.SpecialTools/main/image.png' style='width: auto'>
+<img src='https://raw.githubusercontent.com/hispanicode/leaflet.control.SpecialTools/main/contributors/image.png'>
 
-<img src='https://raw.githubusercontent.com/hispanicode/leaflet.control.SpecialTools/main/WONDERLOGO_2023 copia.gif' style='width: auto'>
+<img src='https://raw.githubusercontent.com/hispanicode/leaflet.control.SpecialTools/main/contributors/WONDERLOGO_2023.gif' width='300' height='300'>
 
 <h3>Requisitos para su correcto funcionamiento:</h3>
 

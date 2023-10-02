@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - lg-spa, lg-eng, lg-cat, lg-eus, lg-fra Translations (lang/lang.json)
 - Improvements in the code of leaflet.control.SpecialToolsCatastro and leaflet.control.SpecialToolsUA
-- Advances in the leaflet.control.specialToolsLegend control
+- Advances in the leaflet.control.SpecialToolsLegend control
 - Bug fixes after the first file upload and the inclusion of essential folders for downloading and uploading files
 
 ### Removed
