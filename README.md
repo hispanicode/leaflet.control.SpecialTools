@@ -8,6 +8,8 @@
 
 <img src='https://raw.githubusercontent.com/hispanicode/leaflet.control.SpecialTools/main/contributors/WONDERLOGO_2023.gif' width='300' height='300'>
 
+<p>Instalación de leaflet.control.SpecialTools en <a href='https://github.com/renderpci/dedalo'>Dédalo</a></p>
+
 <h3>Requisitos para su correcto funcionamiento:</h3>
 
 <p><strong>Instalar Python3 y GDAL.</strong></p>
