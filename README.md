@@ -10,7 +10,7 @@
 
 <p>Instalación de leaflet.control.SpecialTools en <a href='https://github.com/renderpci/dedalo'>Dédalo</a></p>
 
-<h3>Requisitos para su correcto funcionamiento:</h3>
+<h2>Requisitos para su correcto funcionamiento:</h2>
 
 <p><strong>Instalar Python3 y GDAL.</strong></p>
 
