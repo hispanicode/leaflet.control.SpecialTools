@@ -1221,16 +1221,20 @@ L.Control.SpecialTools = L.Control.extend({
                     marker1.on('dragend', function(){
                         
                         if (self.server) {
+                            
                             active_layer_id = self.component_geolocation.active_layer_id;
                             self.component_geolocation.update_draw_data(active_layer_id);
+                            
                         }
                     });
 
                     marker2.on('dragend', function(){
                         
                         if (self.server) {
+                            
                             active_layer_id = self.component_geolocation.active_layer_id;
                             self.component_geolocation.update_draw_data(active_layer_id);
+                            
                         }
 
                     });
@@ -1238,17 +1242,21 @@ L.Control.SpecialTools = L.Control.extend({
                     marker3.on('dragend', function(){
                         
                         if (self.server) {
+                            
                             active_layer_id = self.component_geolocation.active_layer_id;
                             self.component_geolocation.update_draw_data(active_layer_id);
+                            
                         }
 
                     });
 
                     overlay.on('pm:remove', function(){
+                        
                         marker1.removeFrom(self.map);
                         marker2.removeFrom(self.map);
                         marker3.removeFrom(self.map);
                         layer.pm.remove();
+                        
                     });
 
                     overlay.on('click', function () {
@@ -1265,9 +1273,9 @@ L.Control.SpecialTools = L.Control.extend({
                             
                         }
 
-                        content = "<p>Imagen</p>";
+                        content = "<p>" + self._T("Imagen", self.json_lang, self.lang) + "</p>";
                         content = content + "<p>url: <a href='?t="+stored_image_data_item.section_tipo+"&section_id=" +stored_image_data_item.section_id  + "&component_tipo="+stored_image_data_item.component_tipo+"' target='_blank'>" + self._T("Ver imagen", self.json_lang, self.lang) + "</a></p>";
-                        content = content + "<p><input type='checkbox' id='special_tools_image_edition' image-id='"+image_id+"' "+is_interactive+"> Activar edición</p>";
+                        content = content + "<p><input type='checkbox' id='special_tools_image_edition' image-id='"+image_id+"' "+is_interactive+">" + self._T(" Activar edición", self.json_lang, self.lang) + "</p>";
                         content = content + "<p>" + self._T("Opacidad: ", self.json_lang, self.lang) + "<input id='special_tools_image_opacity' image-id='"+image_id+"' type='range' min='0' max='1' step='0.1' value='"+layer.feature.special_tools.imageOpacity+"'></p>";
                         content = content + "<p>zIndex: <input id='special_tools_image_zIndex' image-id='"+image_id+"' type='range' min='0' max='1000' step='1' value='"+layer.feature.special_tools.image_zIndex+"'></p>";
                         content = content + "<br><p><button id='btn_show_modal_raster_download' class='special-tools-btn-default' style='font-size: 9px;'>" + self._T("Descargar", self.json_lang, self.lang) + "</button></p>";

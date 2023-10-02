@@ -313,6 +313,24 @@
         "lg-eus": "Ertzaren opakutasuna: ",
         "lg-fra": "Opacité de la bordure: "
         
-    } 
+    },
+    
+    " Activar edición": {
+        
+        "lg-eng": " Activate editing",
+        "lg-cat": " Activar edició",
+        "lg-eus": " Aktibatu edizioa",
+        "lg-fra": " Activer l'édition"
+        
+    },
+    
+    "Imagen": {
+        
+        "lg-eng": "Image",
+        "lg-cat": "Imatge",
+        "lg-eus": "Irudia",
+        "lg-fra": "Image"
+        
+    }
 
 }
