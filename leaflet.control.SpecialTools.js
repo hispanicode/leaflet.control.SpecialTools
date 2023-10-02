@@ -84,15 +84,7 @@ L.Control.SpecialTools = L.Control.extend({
             self.special_tools_info_console.innerHTML = self._T("Haga clic sobre algún objeto del mapa.", self.json_lang, self.lang);
             
         });
-        
-        L.DomEvent.on(self.special_tools_console, 'mouseover', function(e) {
-            
-            map.stop('dblclick');
-            map.stop('click');
-            
-        });
-        
-
+ 
         map.on('pm:remove', function(e){
 
             if (self.has_centroid(e.layer)) {
