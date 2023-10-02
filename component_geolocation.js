@@ -213,12 +213,9 @@ component_geolocation.prototype.init = async function(options) {
                         const leaflet_special_tools_legend_lib_css_file = DEDALO_ROOT_WEB + '/core/component_geolocation/leaflet.control.SpecialTools/leaflet.control.SpecialToolsLegend/leaflet.control.SpecialToolsLegend.css?v='+Math.floor(Math.random() * 10000000000000000000000000000000000000000000000000000000000000000000000000)
 			load_promises.push( common.prototype.load_style(leaflet_special_tools_legend_lib_css_file, license) )
     
-<<<<<<< HEAD
                         const leaflet_special_tools_geolocation_lib_css_file = DEDALO_ROOT_WEB + '/core/component_geolocation/leaflet.control.SpecialTools/leaflet.control.SpecialToolsGeolocation/leaflet.control.SpecialToolsGeolocation.css?v='+Math.floor(Math.random() * 10000000000000000000000000000000000000000000000000000000000000000000000000)
 			load_promises.push( common.prototype.load_style(leaflet_special_tools_geolocation_lib_css_file, license) )
     
-=======
->>>>>>> 3cd4498d27f88217ccaf499eafbb400e852c0cf6
                         /* SPECIALTOOLS CSS */
                         
                         /* SPECIALTOOLS JS */
@@ -255,11 +252,7 @@ component_geolocation.prototype.init = async function(options) {
     			const leaflet_utm_lib_js_file = DEDALO_ROOT_WEB + '/core/component_geolocation/leaflet.control.SpecialTools/external-js/Leaflet.UTM/L.LatLng.UTM.js'
 			load_promises.push( common.prototype.load_script(leaflet_utm_lib_js_file, license) )
     
-<<<<<<< HEAD
                         const leaflet_projections_lib_js_file = DEDALO_ROOT_WEB + '/core/component_geolocation/leaflet.control.SpecialTools/external-js/projections/projections.js?v='+Math.floor(Math.random() * 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000);
-=======
-                        const leaflet_projections_lib_js_file = DEDALO_ROOT_WEB + '/core/component_geolocation/leaflet.control.SpecialTools/external-js/projections/projections.js'
->>>>>>> 3cd4498d27f88217ccaf499eafbb400e852c0cf6
 			load_promises.push( common.prototype.load_script(leaflet_projections_lib_js_file, license) )
     
                         const leaflet_special_tools_lib_js_file = DEDALO_ROOT_WEB + '/core/component_geolocation/leaflet.control.SpecialTools/leaflet.control.SpecialTools.js?v='+Math.floor(Math.random() * 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000);
@@ -288,12 +281,9 @@ component_geolocation.prototype.init = async function(options) {
                         
                         const leaflet_special_tools_legend_lib_js_file = DEDALO_ROOT_WEB + '/core/component_geolocation/leaflet.control.SpecialTools/leaflet.control.SpecialToolsLegend/leaflet.control.SpecialToolsLegend.js?v='+Math.floor(Math.random() * 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000);
 			load_promises.push( common.prototype.load_script(leaflet_special_tools_legend_lib_js_file, license) )
-<<<<<<< HEAD
                         
                         const leaflet_special_tools_geolocation_lib_js_file = DEDALO_ROOT_WEB + '/core/component_geolocation/leaflet.control.SpecialTools/leaflet.control.SpecialToolsGeolocation/leaflet.control.SpecialToolsGeolocation.js?v='+Math.floor(Math.random() * 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000);
 			load_promises.push( common.prototype.load_script(leaflet_special_tools_geolocation_lib_js_file, license) )
-=======
->>>>>>> 3cd4498d27f88217ccaf499eafbb400e852c0cf6
     
                         /* SPECIALTOOLS JS */
 
@@ -580,10 +570,7 @@ component_geolocation.prototype.get_map = async function(map_container, key) {
                                 self.specialTools = L.control.specialTools({
                                     position: "topleft",
                                     route: DEDALO_ROOT_WEB + '/core/component_geolocation/leaflet.control.SpecialTools',
-<<<<<<< HEAD
                                     lang: self.section_lang,
-=======
->>>>>>> 3cd4498d27f88217ccaf499eafbb400e852c0cf6
                                     server: true,
                                     component_geolocation: self
                                 });
@@ -638,15 +625,12 @@ component_geolocation.prototype.get_map = async function(map_container, key) {
                                 
                                 self.specialToolsLegend.addTo(self.map);
                                 
-<<<<<<< HEAD
                                 self.specialToolsGeolocation = L.control.specialToolsGeolocation({
                                     special_tools: self.specialTools
                                 });
                                 
                                 self.specialToolsGeolocation.addTo(self.map);
                                 
-=======
->>>>>>> 3cd4498d27f88217ccaf499eafbb400e852c0cf6
                                 L.control.graphicScale({fill: 'hollow', doubleLine: true, position: 'bottomright'}).addTo(self.map);
                                 
                                 /* SPECIALTOOLS CONTROLS */
@@ -1796,4 +1780,5 @@ component_geolocation.prototype.get_image_upload = async function(stored_image_d
 /* SPECIALTOOLS */
 
 // @license-end
+
 
