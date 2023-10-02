@@ -31,7 +31,14 @@ L.Control.SpecialToolsGeolocation = L.Control.extend({
                 special_tools.only_one_control_active(elements_controls, controlDiv);
             } catch (e) {};
             
-            map.locate({setView: true, maxZoom: 16});
+            map.locate({
+                
+                setView: true, 
+                maxZoom: 16,
+                enableHighAccuracy: true,
+                timeout: 14000
+            
+            });
             
             map.on('locationfound', function(e){
                 
@@ -60,6 +67,8 @@ L.Control.SpecialToolsGeolocation = L.Control.extend({
             });
             
             map.on('locationerror', function(e){
+                
+                alert('No ha sido posible encontrar la localización');
                 
                 L.DomUtil.addClass(controlDiv, 'special-tools-disable');
                 L.DomUtil.removeClass(controlDiv, 'special-tools-enable');

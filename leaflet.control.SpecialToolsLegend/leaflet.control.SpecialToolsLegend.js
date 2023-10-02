@@ -106,7 +106,9 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                     btn_save_legend = modal._container.querySelector('#btn_save_legend');
                     
                     btn_add_column = modal._container.querySelector('#btn_add_column');
+                    
                     div_columns = modal._container.querySelector('#div_columns');
+                    
                     btn_add_element = modal._container.querySelector('#btn_add_element');
                     
                     L.DomEvent.on(legend_name, 'keyup', function(){

@@ -27,11 +27,39 @@ L.Control.SpecialTools = L.Control.extend({
         this.special_tools_btns = L.DomUtil.create('div', 'special-tools-btns', this.controlDiv);
         
         this.special_tools_panel_show_hide = L.DomUtil.create('div', 'special-tools-panel-show-hide', this.special_tools_btns);
-        this.special_tools_panel_show_hide.setAttribute('show', '1');
-        
+
         this.special_tools_console = L.DomUtil.create('div', 'special-tools-console', this.controlDiv);
         
         this.special_tools_info_console = L.DomUtil.create('div', 'special-tools-info-console', this.special_tools_console);
+
+        if (!L.Browser.mobile) {
+        
+            this.special_tools_panel_show_hide.setAttribute('show', '1');
+        
+        } else {
+            
+            this.special_tools_panel_show_hide.setAttribute('show', '0');
+            
+            this.special_tools_console.style.display = 'none';
+            
+        }
+
+        L.DomEvent.on(this.special_tools_console, 'mouseover', function(e){
+            
+            map.dragging.disable();
+            
+            L.DomEvent.preventDefault(e);
+            
+        });
+        
+        L.DomEvent.on(this.special_tools_console, 'mouseout', function(e) {
+            
+            map.dragging.enable();
+            
+            L.DomEvent.preventDefault(e);
+            
+        });
+        
         
         window.setTimeout(function(){
             
@@ -1276,8 +1304,8 @@ L.Control.SpecialTools = L.Control.extend({
                         content = "<p>" + self._T("Imagen", self.json_lang, self.lang) + "</p>";
                         content = content + "<p>url: <a href='?t="+stored_image_data_item.section_tipo+"&section_id=" +stored_image_data_item.section_id  + "&component_tipo="+stored_image_data_item.component_tipo+"' target='_blank'>" + self._T("Ver imagen", self.json_lang, self.lang) + "</a></p>";
                         content = content + "<p><input type='checkbox' id='special_tools_image_edition' image-id='"+image_id+"' "+is_interactive+">" + self._T(" Activar edición", self.json_lang, self.lang) + "</p>";
-                        content = content + "<p>" + self._T("Opacidad: ", self.json_lang, self.lang) + "<input id='special_tools_image_opacity' image-id='"+image_id+"' type='range' min='0' max='1' step='0.1' value='"+layer.feature.special_tools.imageOpacity+"'></p>";
-                        content = content + "<p>zIndex: <input id='special_tools_image_zIndex' image-id='"+image_id+"' type='range' min='0' max='1000' step='1' value='"+layer.feature.special_tools.image_zIndex+"'></p>";
+                        content = content + "<p>" + self._T("Opacidad: ", self.json_lang, self.lang) + "<input id='special_tools_image_opacity' class='special-tools-input-range' image-id='"+image_id+"' type='range' min='0' max='1' step='0.1' value='"+layer.feature.special_tools.imageOpacity+"'></p>";
+                        content = content + "<p>zIndex: <input id='special_tools_image_zIndex' image-id='"+image_id+"' class='special-tools-input-range' type='range' min='0' max='1000' step='1' value='"+layer.feature.special_tools.image_zIndex+"'></p>";
                         content = content + "<br><p><button id='btn_show_modal_raster_download' class='special-tools-btn-default' style='font-size: 9px;'>" + self._T("Descargar", self.json_lang, self.lang) + "</button></p>";
 
                         self.special_tools_info_console.innerHTML = content;
@@ -1286,15 +1314,17 @@ L.Control.SpecialTools = L.Control.extend({
 
                         special_tools_image_opacity.setAttribute("value", layer.feature.special_tools.imageOpacity);
 
-                        L.DomEvent.on(special_tools_image_opacity, 'change', function() {
+                        L.DomEvent.on(special_tools_image_opacity, 'change input', function() {
 
                             overlay.setOpacity(this.value);
                             
                             layer.feature.special_tools.imageOpacity = this.value;
                             
                             if (self.server) {
+                                
                                 active_layer_id = self.component_geolocation.active_layer_id;
                                 self.component_geolocation.update_draw_data(active_layer_id);
+                                
                             }
 
                         });
@@ -1303,14 +1333,16 @@ L.Control.SpecialTools = L.Control.extend({
 
                         special_tools_image_zIndex.setAttribute("value", layer.feature.special_tools.image_zIndex);
                         
-                        L.DomEvent.on(special_tools_image_zIndex, 'change', function() {
+                        L.DomEvent.on(special_tools_image_zIndex, 'change input', function() {
 
                             overlay.setZIndex(this.value);
                             layer.feature.special_tools.image_zIndex = this.value;
                             
                             if (self.server) {
+                                
                                 active_layer_id = self.component_geolocation.active_layer_id;
                                 self.component_geolocation.update_draw_data(active_layer_id);
+                                
                             }
 
                         });
@@ -2709,11 +2741,11 @@ L.Control.SpecialTools = L.Control.extend({
 
             content = "<p>" + self._T("Color: ", self.json_lang, self.lang) + "<input type='color' id='stroke_color' value='"+stroke_color+"'><input type='text' id='readonly_color' readonly='true' value='"+stroke_color+"' style='width: 130px; margin-left: 10px; position: relative; top: -5px;'></p>";
             
-            content = content + "<p>" + self._T("Ancho del borde: ", self.json_lang, self.lang) + "<input type='range' id='stroke_width' min='1' max='100' step='1' value='"+stroke_width+"'></p>";
+            content = content + "<p>" + self._T("Ancho del borde: ", self.json_lang, self.lang) + "<input type='range' id='stroke_width' class='special-tools-input-range' min='1' max='100' step='1' value='"+stroke_width+"'></p>";
 
-            content = content + "<p>" + self._T("Opacidad: ", self.json_lang, self.lang) + "<input type='range' id='stroke_opacity' min='0' max='1' step='0.1' value='"+stroke_opacity+"'></p>"; 
+            content = content + "<p>" + self._T("Opacidad: ", self.json_lang, self.lang) + "<input type='range' id='stroke_opacity' class='special-tools-input-range' min='0' max='1' step='0.1' value='"+stroke_opacity+"'></p>"; 
 
-            content = content + "<p>" + self._T("Borde discontinuo: ", self.json_lang, self.lang) + "<input type='range' id='stroke_dasharray' min='0' max='100' step='2' value='"+stroke_dasharray+"'></p>"; 
+            content = content + "<p>" + self._T("Borde discontinuo: ", self.json_lang, self.lang) + "<input type='range' id='stroke_dasharray' class='special-tools-input-range' min='0' max='100' step='2' value='"+stroke_dasharray+"'></p>"; 
 
             content = content + "<svg viewBox='0 0 300 100' xmlns='http://www.w3.org/2000/svg'><path id='linestring_preview' stroke-linecap='round' stroke-linejoin='round' fill='none' d='M 75 50 l 150 0' stroke='"+stroke_color+"' stroke-width='"+stroke_width+"' stroke-opacity='"+stroke_opacity+"' stroke-dasharray='"+stroke_dasharray+"' stroke-dashoffset='0'></path></svg>";
             
@@ -3075,13 +3107,13 @@ L.Control.SpecialTools = L.Control.extend({
             
             content = "<p>" + self._T("Color: ", self.json_lang, self.lang) + "<input type='color' id='stroke_color' value='"+stroke_color+"'><input type='text' id='readonly_color' readonly='true' value='"+stroke_color+"' style='width: 130px; margin-left: 10px; position: relative; top: -5px;'></p>";
             
-            content = content + "<p>" + self._T("Ancho del borde: ", self.json_lang, self.lang) + "<input type='range' id='stroke_width' min='1' max='100' step='1' value='"+stroke_width+"'></p>";
+            content = content + "<p>" + self._T("Ancho del borde: ", self.json_lang, self.lang) + "<input type='range' id='stroke_width' class='special-tools-input-range' min='1' max='100' step='1' value='"+stroke_width+"'></p>";
 
-            content = content + "<p>" + self._T("Opacidad del borde: ", self.json_lang, self.lang) + "<input type='range' id='stroke_opacity' min='0' max='1' step='0.1' value='"+stroke_opacity+"'></p>"; 
+            content = content + "<p>" + self._T("Opacidad del borde: ", self.json_lang, self.lang) + "<input type='range' id='stroke_opacity' class='special-tools-input-range' min='0' max='1' step='0.1' value='"+stroke_opacity+"'></p>"; 
 
-            content = content + "<p>" + self._T("Borde discontinuo: ", self.json_lang, self.lang) + "<input type='range' id='stroke_dasharray' min='0' max='100' step='2' value='"+stroke_dasharray+"'></p>"; 
+            content = content + "<p>" + self._T("Borde discontinuo: ", self.json_lang, self.lang) + "<input type='range' id='stroke_dasharray' class='special-tools-input-range' min='0' max='100' step='2' value='"+stroke_dasharray+"'></p>"; 
 
-            content = content + "<p>" + self._T("Opacidad de relleno: ", self.json_lang, self.lang) + "<input type='range' id='fill_opacity' min='0' max='1' step='0.1' value='"+fill_opacity+"'></p>";
+            content = content + "<p>" + self._T("Opacidad de relleno: ", self.json_lang, self.lang) + "<input type='range' id='fill_opacity' class='special-tools-input-range' min='0' max='1' step='0.1' value='"+fill_opacity+"'></p>";
 
             content = content + "<br><br><svg viewBox='0 0 300 100' xmlns='http://www.w3.org/2000/svg'><rect id='obj_preview' rect width='300' height='100' stroke-linecap='round' stroke-linejoin='round' stroke='"+stroke_color+"' stroke-width='"+stroke_width+"' stroke-opacity='"+stroke_opacity+"' fill-opacity='"+fill_opacity+"' stroke-dasharray='"+stroke_dasharray+"' stroke-dashoffset='0' fill='"+stroke_color+"'></rect></svg>";
             
