@@ -6,6 +6,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
  
 ## [Unreleased]
 
+## [1.0.1-dev] - 2023-10-03
+
+### Added
+
+- leaflet.control.SpecialToolsLegend
+- Add lang/lang.json in leaflet.control.SpecialToolsGeolocation
+
+### Changed
+
+- Changes in README.md
+- leaflet.controlSpecialToolsLegend is available
+- leaflet.control.SpecialToolsGeolocation
+
+### Removed
+
 ## [1.0.0-dev] - 2023-10-02
 
 ### Added

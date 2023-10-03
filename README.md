@@ -44,9 +44,7 @@ La carpeta leaflet.control.SpecialTools está incluida en la raíz de la carpeta
 
 <img src='https://raw.githubusercontent.com/hispanicode/leaflet.control.SpecialTools/main/img/ruta.png'>
 
-<p>leaflet.control.SpecialToolsLegend: de momento se encuentra en desarrollo.</p>
-
-<p style='color: red'>* Punto importante. Las urls de los mapas base deben incluir https o es posible que al realizar la petición a determinados servidores para imprimir el mapa, caso de Arcgis, por ejemplo, devuelva un error CORS. http es inseguro.</p>
+<p>* Nota importante. Las urls de los mapas base deben incluir https o es posible que al realizar la petición a determinados servidores para imprimir el mapa, caso de Arcgis, por ejemplo, devuelva un error CORS. http es inseguro.</p>
 
 <p>Si en la subida o descarga de archivos tenéis algún error, hay que habilitar los permisos de escritura en la carpeta leaflet.control.SpecialTools:<p>
 

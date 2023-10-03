@@ -12,6 +12,21 @@ L.Control.SpecialToolsGeolocation = L.Control.extend({
         
         const route = special_tools.options.route;
         
+        const lang = special_tools.options.lang;
+        
+        var json_lang = {};
+        
+        fetch(route + '/leaflet.control.SpecialToolsGeolocation/lang/lang.json')
+        .then(function(response){
+            
+            return response.json();
+            
+        }).then(function(data){
+            
+            json_lang = data;
+            
+        });
+        
         const server = special_tools.options.server;
         
         const component_geolocation = special_tools.options.component_geolocation;
@@ -68,7 +83,7 @@ L.Control.SpecialToolsGeolocation = L.Control.extend({
             
             map.on('locationerror', function(e){
                 
-                alert('No ha sido posible encontrar la localización');
+                alert(special_tools._T("No ha sido posible encontrar la localización", json_lang, lang));
                 
                 L.DomUtil.addClass(controlDiv, 'special-tools-disable');
                 L.DomUtil.removeClass(controlDiv, 'special-tools-enable');
