@@ -12,6 +12,21 @@ L.Control.SpecialToolsLegend = L.Control.extend({
         
         const route = special_tools.options.route;
         
+        const lang = special_tools.options.lang;
+        
+        var json_lang = {};
+        
+        fetch(route + '/leaflet.control.SpecialToolsLegend/lang/lang.json')
+        .then(function(response){
+            
+            return response.json();
+            
+        }).then(function(data){
+            
+            json_lang = data;
+            
+        });
+        
         const server = special_tools.options.server;
         
         const component_geolocation = special_tools.options.component_geolocation;
@@ -41,8 +56,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
             this.legend_div.style.display = 'none';
             
         }
-        
-
+       
         url = route + "/leaflet.control.SpecialToolsLegend/ajax/legend.json";
 
         fetch(url)
@@ -149,16 +163,16 @@ L.Control.SpecialToolsLegend = L.Control.extend({
             }
             
             content = "<div class='special-tools-container'>";
-            content = content + "Leyenda: <input type='text' style='width: 250px' id='legend_name' value='"+ legend_json.legend +"'>";
+            content = content + special_tools._T("Leyenda: ", json_lang, lang) + "<input type='text' style='width: 250px' id='legend_name' value='"+ legend_json.legend +"'>";
             content = content + "</div>";
             
             content = content + "<div class='special-tools-container'>";
-            content = content + "<button type='button' id='btn_add_column' class='special-tools-btn-default'>Nueva columna</button>";
-            content = content + " <button type='button' id='btn_save_legend' class='special-tools-btn-success'>Guardar</button>";
+            content = content + "<button type='button' id='btn_add_column' class='special-tools-btn-default'>" + special_tools._T("Nueva columna", json_lang, lang) + "</button>";
+            content = content + " <button type='button' id='btn_save_legend' class='special-tools-btn-success'>" + special_tools._T("Guardar", json_lang, lang) + "</button>";
             content = content + "</div>";
             
             content = content + "<div class='special-tools-container'>";
-            content = content + "Mostrar leyenda: <input type='checkbox' id='chk_show_legend' " + chk_checked + ">";
+            content = content + special_tools._T("Mostrar leyenda: ", json_lang, lang) + "<input type='checkbox' id='chk_show_legend' " + chk_checked + ">";
             content = content + "</div>";
             
             content = content + "<div class='special-tools-container' id='legend_msg_box'></div>";
@@ -169,7 +183,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
 
             map.fire('modal', {
                 
-              title: 'Generar leyenda',
+              title: special_tools._T("Generar leyenda", json_lang, lang),
               content: content,
               template: ['<div class="modal-header"><h2>{title}</h2></div>',
                 '<hr>',
@@ -312,7 +326,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                             
                         }
                         
-                        legend_msg_box.innerHTML = "Leyenda guardada con éxito";
+                        legend_msg_box.innerHTML = special_tools._T("Leyenda guardada con éxito", json_lang, lang);
                         L.DomUtil.removeClass(legend_msg_box, 'special-tools-msg-error');
                         L.DomUtil.addClass(legend_msg_box, 'special-tools-msg-ok');
                         
@@ -336,7 +350,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                         div_container_1.setAttribute('class', 'special-tools-container');
 
                         const input_column_span = L.DomUtil.create('span');
-                        input_column_span.innerText = 'Columna: ';
+                        input_column_span.innerText = special_tools._T("Columna: ", json_lang, lang);
                         
                         const input_column = L.DomUtil.create('input');
                         input_column.type = 'text';
@@ -353,12 +367,12 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                         
                         const btn_column = L.DomUtil.create('button');
                         btn_column.type = 'button';
-                        btn_column.innerText = 'Añadir elemento';
+                        btn_column.innerText = special_tools._T("Añadir elemento", json_lang, lang);
                         btn_column.setAttribute('class', 'special-tools-btn-default');
                         btn_column.setAttribute('index-column', index);
                         
                         const btn_column_delete = L.DomUtil.create('button');
-                        btn_column_delete.innerText = 'Eliminar columna';
+                        btn_column_delete.innerText = special_tools._T("Eliminar columna", json_lang, lang);
                         btn_column_delete.setAttribute('class', 'special-tools-btn-danger');
                         btn_column_delete.setAttribute('index-column', index);
                         
@@ -385,7 +399,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                                 
                                 L.DomUtil.remove(div);
                                 
-                            }, 1000);
+                            }, 500);
                             
                             
                             _div_columns = div_columns.querySelectorAll('.div-column');
@@ -452,7 +466,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                             column.setAttribute('class', 'special-tools-container div-elements');
                             
                             const element_name_span = L.DomUtil.create('span');
-                            element_name_span.innerText = "Elemento: ";
+                            element_name_span.innerText = special_tools._T("Elemento: ", json_lang, lang);
                             
                             const element_name = L.DomUtil.create('input');
                             element_name.type = 'text';
@@ -467,7 +481,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                             element_color.setAttribute('index-element', __index_element__);
                             
                             const element_delete = L.DomUtil.create('button');
-                            element_delete.innerText = 'Eliminar';
+                            element_delete.innerHTML = "<img width='20' height='20' src='" + route + "/leaflet.control.SpecialToolsLegend/img/trash.png'>";
                             element_delete.setAttribute('class', 'special-tools-btn-danger');
                             element_delete.setAttribute('index-column', __index_column__);
                             element_delete.setAttribute('index-element', __index_element__);
@@ -514,7 +528,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                                     
                                     L.DomUtil.remove(column);
                                     
-                                }, 1000);
+                                }, 500);
                                 
                                 _div_elements = div_column.querySelectorAll('.div-elements');
 
@@ -537,7 +551,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                             column.setAttribute('class', 'special-tools-container div-elements');
                             
                             const element_name_span = L.DomUtil.create('span');
-                            element_name_span.innerText = "Elemento: ";
+                            element_name_span.innerText = special_tools._T("Elemento: ", json_lang, lang);
                             
                             const element_name = L.DomUtil.create('input');
                             element_name.type = 'text';
@@ -554,7 +568,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                             element_color.value = columns[index].elements[index_elem].color;
                             
                             const element_delete = L.DomUtil.create('button');
-                            element_delete.innerText = 'Eliminar';
+                            element_delete.innerHTML = "<img width='20' height='20' src='" + route + "/leaflet.control.SpecialToolsLegend/img/trash.png'>";
                             element_delete.setAttribute('class', 'special-tools-btn-danger');
                             element_delete.setAttribute('index-column',index);
                             element_delete.setAttribute('index-element', index_elem);
@@ -601,7 +615,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                                 
                                     L.DomUtil.remove(column);
                                 
-                                }, 1000);
+                                }, 500);
                                 
                                 _div_elements = div_column.querySelectorAll('.div-elements');
 
@@ -625,7 +639,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                         
                         if (columns.length === 4) {
                             
-                            legend_msg_box.innerHTML = "El máximo de columnas permitidas son 4";
+                            legend_msg_box.innerHTML = special_tools._T("El máximo de columnas permitidas son 4", json_lang, lang);
                             L.DomUtil.removeClass(legend_msg_box, 'special-tools-msg-ok');
                             L.DomUtil.addClass(legend_msg_box, 'special-tools-msg-error');
 
@@ -670,7 +684,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                         div_container_1.setAttribute('class', 'special-tools-container');
 
                         const input_column_span = L.DomUtil.create('span');
-                        input_column_span.innerText = 'Columna: ';
+                        input_column_span.innerText = special_tools._T("Columna: ", json_lang, lang);
                         
                         const input_column = L.DomUtil.create('input');
                         input_column.type = 'text';
@@ -686,12 +700,12 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                         
                         const btn_column = L.DomUtil.create('button');
                         btn_column.type = 'button';
-                        btn_column.innerText = 'Añadir elemento';
+                        btn_column.innerText = special_tools._T("Añadir elemento", json_lang, lang);
                         btn_column.setAttribute('class', 'special-tools-btn-default');
                         btn_column.setAttribute('index-column', _index_column_);
                         
                         const btn_column_delete = L.DomUtil.create('button');
-                        btn_column_delete.innerText = 'Eliminar columna';
+                        btn_column_delete.innerText = special_tools._T("Eliminar columna", json_lang, lang);
                         btn_column_delete.setAttribute('class', 'special-tools-btn-danger');
                         btn_column_delete.setAttribute('index-column', _index_column_);
                         
@@ -720,7 +734,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                             
                                 L.DomUtil.remove(div);
                             
-                            }, 1000);
+                            }, 500);
                             
                             _div_columns = div_columns.querySelectorAll('.div-column');
                             
@@ -786,7 +800,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                             column.setAttribute('class', 'special-tools-container div-elements');
                             
                             const element_name_span = L.DomUtil.create('span');
-                            element_name_span.innerText = "Elemento: ";
+                            element_name_span.innerText = special_tools._T("Elemento: ", json_lang, lang);
                             
                             const element_name = L.DomUtil.create('input');
                             element_name.type = 'text';
@@ -801,7 +815,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                             element_color.setAttribute('index-element', __index_element__);
                             
                             const element_delete = L.DomUtil.create('button');
-                            element_delete.innerText = 'Eliminar';
+                            element_delete.innerHTML = "<img width='20' height='20' src='" + route + "/leaflet.control.SpecialToolsLegend/img/trash.png'>";
                             element_delete.setAttribute('class', 'special-tools-btn-danger');
                             element_delete.setAttribute('index-column', __index_column__);
                             element_delete.setAttribute('index-element', __index_element__);
@@ -848,7 +862,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                                 
                                     L.DomUtil.remove(column);
                                 
-                                }, 1000);
+                                }, 500);
                                 
                                 _div_elements = div_column.querySelectorAll('.div-elements');
 

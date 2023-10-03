@@ -1,0 +1,102 @@
+{
+
+    "Leyenda: ": {
+        
+        "lg-eng": "Legend: ",
+        "lg-cat": "Llegenda: ",
+        "lg-eus": "Kondaira: ",
+        "lg-fra": "Légende: "
+        
+    },
+    
+    "Columna: ": {
+        
+        "lg-eng": "Column: ",
+        "lg-cat": "Columna: ",
+        "lg-eus": "Zutabea: ",
+        "lg-fra": "Colonne: "
+        
+    },
+    
+    "Nueva columna": {
+        
+        "lg-eng": "New column",
+        "lg-cat": "Nova columna",
+        "lg-eus": "Zutabe berria",
+        "lg-fra": "Nouvelle colonne"
+        
+    },
+    
+    "Guardar": {
+        
+        "lg-eng": "Save",
+        "lg-cat": "Desa",
+        "lg-eus": "Gorde",
+        "lg-fra": "Sauvegarder"
+        
+    },
+    
+    "Mostrar leyenda: ": {
+        
+        "lg-eng": "Show legend: ",
+        "lg-cat": "Mostra llegenda: ",
+        "lg-eus": "Erakutsi legenda: ",
+        "lg-fra": "Afficher la légende: "
+        
+    },
+    
+    "Generar leyenda": {
+        
+        "lg-eng": "Generate legend",
+        "lg-cat": "Generar llegenda",
+        "lg-eus": "Kondaira sortu",
+        "lg-fra": "Générer une légende"
+        
+    },
+    
+    "Leyenda guardada con éxito": {
+        
+        "lg-eng": "Legend saved successfully",
+        "lg-cat": "Llegenda guardada amb èxit",
+        "lg-eus": "Kondaira behar bezala gorde da",
+        "lg-fra": "Légende enregistrée avec succès"
+        
+    },
+    
+    "Añadir elemento": {
+        
+        "lg-eng": "Add item",
+        "lg-cat": "Afegir element",
+        "lg-eus": "Gehitu elementua",
+        "lg-fra": "Ajouter un item"
+        
+    },
+    
+    "Eliminar columna": {
+        
+        "lg-eng": "Delete column",
+        "lg-cat": "Eliminar columna",
+        "lg-eus": "Ezabatu zutabea",
+        "lg-fra": "Supprimer la colonne"
+        
+    },
+    
+    "Elemento: ": {
+        
+        "lg-eng": "Element: ",
+        "lg-cat": "Element: ",
+        "lg-eus": "Elementua: ",
+        "lg-fra": "Élément: "
+        
+    },
+    
+    "El máximo de columnas permitidas son 4": {
+        
+        "lg-eng": "The maximum number of columns allowed is 4",
+        "lg-cat": "El màxim de columnes permeses són 4",
+        "lg-eus": "Onartutako gehienezko zutabe kopurua 4 da",
+        "lg-fra": "Le nombre maximum de colonnes autorisé est de 4"
+        
+    }
+
+}
