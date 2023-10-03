@@ -19,12 +19,13 @@
 
 .special-tools-legend-div {
     
-    width: 300px;
-    height: 180px;
+    width: 325px;
+    height: auto;
     background-color: #ffffff;
     padding: 6px;
-    position: relative;
-    opacity: 0.6;
+    position: absolute;
+    opacity: 0.8;
+    display: none;
     
 }
 
