@@ -106,13 +106,27 @@ L.Control.SpecialToolsUA = L.Control.extend({
 
                     component_geolocation.layer_control.addBaseLayer(wms, "Unidades Administrativas (ES)");
 
-                    let leaflet_control_layers_base = document.querySelector('.leaflet-control-layers-base');
+                    leaflet_control_layers_base = document.querySelector('.leaflet-control-layers-base');
+                    
+                    leaflet_control_layers_selector = leaflet_control_layers_base.querySelectorAll('.leaflet-control-layers-selector');
+                    
+                    for (let index in leaflet_control_layers_selector) {
+                        
+                        if (leaflet_control_layers_selector[index].checked) {
+                            
+                            basemap_history = index;
+                            
+                            break;
+                            
+                        }
+                        
+                    }
 
-                    let last_basemap_index = leaflet_control_layers_base.querySelectorAll('.leaflet-control-layers-selector').length-1;
+                    last_basemap_index = leaflet_control_layers_selector.length-1;
 
-                    let UA_html = leaflet_control_layers_base.querySelectorAll('.leaflet-control-layers-selector')[last_basemap_index];
+                    UA_input_radio = leaflet_control_layers_selector[last_basemap_index];
 
-                    UA_html.click();
+                    UA_input_radio.click();
 
                 }  else {
 
@@ -126,7 +140,7 @@ L.Control.SpecialToolsUA = L.Control.extend({
                     
                     wms.removeFrom(map);
                     
-                    document.querySelectorAll('.leaflet-control-layers-selector')[0].click();
+                    document.querySelectorAll('.leaflet-control-layers-selector')[basemap_history].click();
                     
                     enable_UA = false;
                     
@@ -191,9 +205,7 @@ L.Control.SpecialToolsUA = L.Control.extend({
                                 
                                 })
                                 .then(function(data){
-                                    
-                                    console.log(data);
-                                    
+
                                     if (data.numberReturned === 0) {
                                         
                                         self.special_tools_msg.innerHTML = special_tools._T("No ha sido posible obtener resultados", json_lang, lang);

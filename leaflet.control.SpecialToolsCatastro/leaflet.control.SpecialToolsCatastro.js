@@ -19,7 +19,7 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
         const component_geolocation = special_tools.options.component_geolocation;
         
         this.special_tools_msg = null;
-
+        
         const controlDiv = L.DomUtil.create('div', 'special-tools-catastro special-tools-controls special-tools-disable');
         
         controlDiv.innerText = 'Catast';
@@ -82,12 +82,26 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
                     component_geolocation.layer_control.addBaseLayer(wms, "Catastro");
 
                     leaflet_control_layers_base = document.querySelector('.leaflet-control-layers-base');
+                    
+                    leaflet_control_layers_selector = leaflet_control_layers_base.querySelectorAll('.leaflet-control-layers-selector');
+                    
+                    for (let index in leaflet_control_layers_selector) {
+                        
+                        if (leaflet_control_layers_selector[index].checked) {
+                            
+                            basemap_history = index;
+                            
+                            break;
+                            
+                        }
+                        
+                    }
 
-                    last_basemap_index = leaflet_control_layers_base.querySelectorAll('.leaflet-control-layers-selector').length-1;
+                    last_basemap_index = leaflet_control_layers_selector.length-1;
 
-                    catastro_html = leaflet_control_layers_base.querySelectorAll('.leaflet-control-layers-selector')[last_basemap_index];
+                    catastro_input_radio = leaflet_control_layers_selector[last_basemap_index];
 
-                    catastro_html.click();
+                    catastro_input_radio.click();
 
                 }  else {
                     
@@ -110,8 +124,8 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
                     component_geolocation.layer_control.removeLayer(wms);
                     
                     wms.removeFrom(map);
-                    
-                    document.querySelectorAll('.leaflet-control-layers-selector')[0].click();
+
+                    document.querySelectorAll('.leaflet-control-layers-selector')[basemap_history].click();
                     
                     enable_catastro = false;
                     
@@ -210,6 +224,20 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
 
                                 })
                                 .then(function(polygon_coord) {
+                                    
+                                    if (polygon_coord === '') {
+                                    
+                                        self.special_tools_msg.innerHTML = special_tools._T("No ha sido posible obtener la parcela. Inténtelo de nuevo.", json_lang, lang);
+
+                                        window.setTimeout(function(){
+
+                                            modal._container.querySelector('.close').click();
+
+                                        }, 3500);
+
+                                        return;
+                                        
+                                    }
 
                                     if (polygon_coord !== '') {
 
@@ -248,6 +276,8 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
                                             self.special_tools_msg.innerHTML = special_tools._T("Creando la parcela ...", json_lang, lang);
 
                                             map.fire('pm:create', {layer: polygon});
+                                            
+                                            map.fitBounds(polygon.getBounds());
 
                                             modal._container.querySelector('.close').click();
 
@@ -281,6 +311,20 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
 
                                         })
                                         .then(function(polygon_coord) {
+                                            
+                                            if (polygon_coord === '') {
+                                                
+                                                self.special_tools_msg.innerHTML = special_tools._T("No ha sido posible obtener la parcela. Inténtelo de nuevo.", json_lang, lang);
+
+                                                window.setTimeout(function(){
+
+                                                    modal._container.querySelector('.close').click();
+
+                                                }, 3500);
+
+                                                return;
+                                                
+                                            }
 
                                             if (polygon_coord !== '') {
 
@@ -319,6 +363,8 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
                                                     self.special_tools_msg.innerHTML = special_tools._T("Creando la parcela ...", json_lang, lang);
 
                                                     map.fire('pm:create', {layer: polygon});
+                                                    
+                                                    map.fitBounds(polygon.getBounds());
 
                                                     modal._container.querySelector('.close').click();
 
@@ -481,7 +527,21 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
 
                                     })
                                     .then(function(polygon_coord) {
+                                        
+                                        if (polygon_coord === '') {
 
+                                            self.special_tools_msg.innerHTML = special_tools._T("No ha sido posible obtener la parcela. Inténtelo de nuevo.", json_lang, lang);
+
+                                            window.setTimeout(function(){
+
+                                                modal._container.querySelector('.close').click();
+
+                                            }, 3500);
+
+                                            return;
+
+                                        }
+                                        
                                         if (polygon_coord !== '') {
 
                                             latlngs = JSON.parse(polygon_coord);
@@ -528,6 +588,8 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
                                                  self.special_tools_msg.innerHTML = special_tools._T("Creando la parcela ...", json_lang, lang);
 
                                                  map.fire('pm:create', {layer: polygon});
+                                                 
+                                                 map.fitBounds(polygon.getBounds());
 
                                                  modal._container.querySelector('.close').click();
 
@@ -558,7 +620,21 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
                                                 return response.text();
 
                                             })
-                                            .then(function(polygon_coord){
+                                            .then(function(polygon_coord) {
+                                                
+                                                if (polygon_coord === '') {
+
+                                                    self.special_tools_msg.innerHTML = special_tools._T("No ha sido posible obtener la parcela. Inténtelo de nuevo.", json_lang, lang);
+
+                                                    window.setTimeout(function(){
+
+                                                        modal._container.querySelector('.close').click();
+
+                                                    }, 3500);
+
+                                                    return;
+
+                                                }
 
                                                 if (polygon_coord !== '') {
 
@@ -597,6 +673,8 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
                                                         self.special_tools_msg.innerHTML = special_tools._T("Creando la parcela ...", json_lang, lang);
 
                                                         map.fire('pm:create', {layer: polygon});
+                                                        
+                                                        map.fitBounds(polygon.getBounds());
 
                                                         modal._container.querySelector('.close').click();
 
