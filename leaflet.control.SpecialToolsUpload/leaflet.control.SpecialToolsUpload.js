@@ -56,17 +56,19 @@ L.Control.SpecialToolsUpload = L.Control.extend({
             content = "<h3>" + special_tools._T("Capas Vectoriales", json_lang, lang) + "</h3>";
             content = content + "</div>";
             
-            content = content + "<div class='special-tools-container'>";
+            content = content + "<div class='special-tools-container special-tools-div-40'>";
             content = content + special_tools._T("Seleccione el tipo de archivo: ", json_lang, lang) + "<select id='file_type'>";
             content = content + "<option value='shape' selected>Shape (*.zip)</option>";
             content = content + "<option value='geojson'>(*.geojson)</option>";
             content = content + "<option value='kml'>(*.kml)</option>";
             content = content + "</select>";
-            content = content + "<div>";
+            content = content + "</div>";
             
-            content = content + "<div class='special-tools-container'>";
+            content = content + "<div class='special-tools-container special-tools-div-60'>";
             content = content + special_tools._T(" Seleccione el archivo: ", json_lang, lang) + "<input type='file' name='vector_upload' id='vector_upload'>";
             content = content + "</div>";
+            
+            content = content + "<div style='clear: left;'></div>";
             
             content = content + "<div class='special-tools-container'>";
             content = content + "<button type='button' id='btn_vector_upload' class='special-tools-btn-default'>" + special_tools._T("Subir archivo", json_lang, lang) + "</button>";
@@ -74,54 +76,47 @@ L.Control.SpecialToolsUpload = L.Control.extend({
             content = content + "</div>";
             
             content = content + "<div class='special-tools-container'>";
+            content = content + "<div id='vector_upload_msg'></div>";
+            content = content + "</div>";
+            
+            content = content + "<div class='special-tools-container'>";
             content = content + special_tools._T("Incluir proyección para UTM (Universal Transverse Mercator) en el caso de que no se encuentre entre las proyecciones por defecto (Asegúrese de que el archivo que va a subir viene proyectado. Ejemplo: ", json_lang, lang) + "<i>urn:ogc:def:crs:EPSG::32619</i>):";
             content = content + "</div>";
             
             content = content + "<div class='special-tools-container'>";
-            content = content + "EPSG: <input type='text' style='width: 150px;' id='project_crs' placeholder='32619'>";
-            content = content + "</div>";
-            
-            content = content + "<div class='special-tools-container'>";
-            content = content + "zone: <input type='text' style='width: 50px;' id='project_zone' placeholder='19'>";
-            content = content + "</div>";
-            
-            content = content + "<div class='special-tools-container'>";
-            content = content + "band: <input type='text' style='width: 50px;' id='project_band' placeholder='N'>";
-            content = content + "</div>";
-            
-            content = content + "<div class='special-tools-container'>";
+            content = content + "EPSG: <input type='text' id='project_crs' class='special-tools-input-50' placeholder='32619'>";
+            content = content + "zone: <input type='text' id='project_zone' class='special-tools-input-25' placeholder='19'> ";
+            content = content + "band: <input type='text' id='project_band' class='special-tools-input-25' placeholder='N'> ";
             content = content + "<a href='https://epsg.io/' target='_blank' id='link_epsg_io'>https://epsg.io/</a>";
             content = content + "</div>";
 
             content = content + "<div class='special-tools-container'>";
             content = content + "<div id='list_projections' class='special-tools-display-none'><p>" + special_tools._T("A continuación se listan las proyecciones por defecto: (Asegúrese de que el archivo que va a subir viene proyectado. Ejemplo: ", json_lang, lang) + "<i>urn:ogc:def:crs:EPSG::4326</i>)</p><p>EPSG:4230 EPSG:4326 EPSG:4258 EPSG:3857 EPSG:32628 EPSG:32629 EPSG:32630 EPSG:32631 EPSG:25828 EPSG:25829 EPSG:25830 EPSG:25831 EPSG:23028 EPSG:23029 EPSG:23030 EPSG:23031 EPSG:4082 EPSG:4083</p></div>";
             content = content + "</div>";
-            
-            content = content + "<div class='special-tools-container'>";
-            content = content + "<div id='vector_upload_msg'></div>";
-            content = content + "</div>",
-            
+
             content = content + "<hr>";
             
             content = content + "<div class='special-tools-container'>";
             content = content + "<h3>" + special_tools._T("Imágenes", json_lang, lang) + "</h3>";
             content = content + "</div>";
             
-            content = content + "<div class='special-tools-container'>";
+            content = content + "<div class='special-tools-container special-tools-div-20'>";
             content = content + "<button type='button' id='btn_image_upload' class='special-tools-btn-default'>" + special_tools._T("Subir imagen", json_lang, lang) + "</button>";
             content = content + "</div>";
             
-            content = content + "<div class='special-tools-container'>";
+            content = content + "<div class='special-tools-container special-tools-div-20'>";
             content = content + "<button type='button' id='btn_get_image_upload' class='special-tools-btn-success special-tools-visibility-hide'>" + special_tools._T("Obtener la imagen", json_lang, lang) + "</button>";
             content = content + "</div>";
             
-            content = content + "<div class='special-tools-container'>";
-            content = content + "<button type='button' id='btn_add_image_to_map' class='special-tools-btn-success special-tools-visibility-hide'>" + special_tools._T("Añadir la imagen al mapa", json_lang, lang) + "</button>";
+            content = content + "<div class='special-tools-container special-tools-div-20'>";
+            content = content + "<button type='button' id='btn_add_image_to_map' class='special-tools-btn-primary special-tools-visibility-hide'>" + special_tools._T("Añadir la imagen al mapa", json_lang, lang) + "</button>";
             content = content + "</div>";
             
             content = content + "<div class='special-tools-container'>";
             content = content + "<div id='image_upload_msg'></div>";
             content = content + "</div>";
+            
+            content = content + "<div style='clear: left;'></div>";
             
             content = content + "<div class='special-tools-container'>";
             content = content + "<div id='box_image_config' class='special-tools-visibility-hide special-tools-text-info'>";
@@ -232,7 +227,7 @@ L.Control.SpecialToolsUpload = L.Control.extend({
                         
                         if (typeof vector_upload.files[0] === 'undefined') {
                             
-                            vector_upload_msg.innerHTML = "No se ha seleccionado ningún archivo";
+                            vector_upload_msg.innerHTML = special_tools._T("No se ha seleccionado ningún archivo", json_lang, lang);;
                             L.DomUtil.addClass(vector_upload_msg, 'special-tools-msg-error');
                             
                             return;
@@ -310,7 +305,7 @@ L.Control.SpecialToolsUpload = L.Control.extend({
                             
                             if (data.hasOwnProperty('error')) {
 
-                                vector_upload_msg.innerHTML = data.error;
+                                vector_upload_msg.innerHTML = special_tools._T(data.error, json_lang, lang);
                                 L.DomUtil.addClass(vector_upload_msg, 'special-tools-msg-error');
                                 
                                 return;
@@ -359,37 +354,37 @@ L.Control.SpecialToolsUpload = L.Control.extend({
 
                                             if (GEOJSON.features[feature].geometry.type === 'Polygon') {
                                                 
-                                                polygon = project_polygon(GEOJSON.features[feature], EPSG);
+                                                polygon = projections.polygon(GEOJSON.features[feature], EPSG);
                                                 
                                                 OBJECTS_GEOJSON.push(polygon);
                                                 
                                             } else if (GEOJSON.features[feature].geometry.type === 'MultiPolygon') {
                                                 
-                                                multipolygon = project_multipolygon(GEOJSON.features[feature], EPSG);
+                                                multipolygon = projections.multipolygon(GEOJSON.features[feature], EPSG);
                                                 
                                                 OBJECTS_GEOJSON.push(multipolygon);
                                                 
                                             } else if (GEOJSON.features[feature].geometry.type === 'LineString') {
                                                 
-                                                linestring = project_linestring(GEOJSON.features[feature], EPSG);
+                                                linestring = projections.linestring(GEOJSON.features[feature], EPSG);
                                                 
                                                 OBJECTS_GEOJSON.push(linestring);
                                                 
                                             } else if (GEOJSON.features[feature].geometry.type === 'MultiLineString') {
                                                 
-                                                multilinestring = project_multilinestring(GEOJSON.features[feature], EPSG);
+                                                multilinestring = projections.multilinestring(GEOJSON.features[feature], EPSG);
                                                 
                                                 OBJECTS_GEOJSON.push(multilinestring);
                                                 
                                             } else if (GEOJSON.features[feature].geometry.type === 'Point') {
                                                 
-                                                point = project_point(GEOJSON.features[feature], EPSG);
+                                                point = projections.point(GEOJSON.features[feature], EPSG);
                                                 
                                                 OBJECTS_GEOJSON.push(point);
                                                 
                                             } else if (GEOJSON.features[feature].geometry.type === 'MultiPoint') {
                                                 
-                                                multipoint = project_multipoint(GEOJSON.features[feature], EPSG);
+                                                multipoint = projections.multipoint(GEOJSON.features[feature], EPSG);
                                                 
                                                 OBJECTS_GEOJSON.push(multipoint);
                                                 
@@ -398,36 +393,36 @@ L.Control.SpecialToolsUpload = L.Control.extend({
                                         
                                     } else if (GEOJSON.geometry.type === "Polygon") {
                                         
-                                        polygon = project_polygon(GEOJSON, EPSG);
+                                        polygon = projections.polygon(GEOJSON, EPSG);
                                         
                                         OBJECTS_GEOJSON.push(polygon);
                                         
                                     } else if (GEOJSON.geometry.type === "MultiPolygon") {
                                         
-                                        multipolygon = project_multipolygon(GEOJSON, EPSG);
+                                        multipolygon = projections.multipolygon(GEOJSON, EPSG);
                                         
                                         OBJECTS_GEOJSON.push(multipolygon);
                                         
                                     } else if (GEOJSON.geometry.type === "LineString") {
                                         
-                                        linestring = project_linestring(GEOJSON, EPSG);
+                                        linestring = projections.linestring(GEOJSON, EPSG);
                                         
                                         OBJECTS_GEOJSON.push(linestring);
                                         
                                     } else if (GEOJSON.geometry.type === "MultiLineString") {
                                         
-                                        multilinestring = project_multilinestring(GEOJSON, EPSG);
+                                        multilinestring = projections.multilinestring(GEOJSON, EPSG);
                                         
                                         OBJECTS_GEOJSON.push(multilinestring);
                                         
                                     } else if (GEOJSON.geometry.type === "Point") {
                                         
-                                        point = project_point(GEOJSON, EPSG);
+                                        point = projections.point(GEOJSON, EPSG);
                                         OBJECTS_GEOJSON.push(point);
                                         
                                     } else if (GEOJSON.geometry.type === "MultiPoint") {
                                         
-                                        multipoint = project_multipoint(GEOJSON, EPSG);
+                                        multipoint = projections.multipoint(GEOJSON, EPSG);
                                         OBJECTS_GEOJSON.push(multipoint);
                                         
                                     }
@@ -508,37 +503,37 @@ L.Control.SpecialToolsUpload = L.Control.extend({
                                         
                                         if (GEOJSON.features[feature].geometry.type === 'Polygon') {
                                             
-                                            polygon = project_polygon(GEOJSON.features[feature], EPSG);
+                                            polygon = projections.polygon(GEOJSON.features[feature], EPSG);
                                             
                                             OBJECTS_GEOJSON.push(polygon);
                                             
                                         } else if (GEOJSON.features[feature].geometry.type === 'MultiPolygon') {
                                             
-                                            multipolygon = project_multipolygon(GEOJSON.features[feature], EPSG);
+                                            multipolygon = projections.multipolygon(GEOJSON.features[feature], EPSG);
                                             
                                             OBJECTS_GEOJSON.push(multipolygon);
                                             
                                         } else if (GEOJSON.features[feature].geometry.type === 'LineString') {
                                             
-                                            linestring = project_linestring(GEOJSON.features[feature], EPSG);
+                                            linestring = projections.linestring(GEOJSON.features[feature], EPSG);
                                             
                                             OBJECTS_GEOJSON.push(linestring);
                                             
                                         } else if (GEOJSON.features[feature].geometry.type === 'MultiLineString') {
                                             
-                                            multilinestring = project_multilinestring(GEOJSON.features[feature], EPSG);
+                                            multilinestring = projections.multilinestring(GEOJSON.features[feature], EPSG);
                                             
                                             OBJECTS_GEOJSON.push(multilinestring);
                                             
                                         } else if (GEOJSON.features[feature].geometry.type === 'Point') {
                                             
-                                            point = project_point(GEOJSON.features[feature], EPSG);
+                                            point = projections.point(GEOJSON.features[feature], EPSG);
                                             
                                             OBJECTS_GEOJSON.push(point);
                                             
                                         } else if (GEOJSON.features[feature].geometry.type === 'MultiPoint') {
                                             
-                                            multipoint = project_multipoint(GEOJSON.features[feature], EPSG);
+                                            multipoint = projections.multipoint(GEOJSON.features[feature], EPSG);
                                             
                                             OBJECTS_GEOJSON.push(multipoint);
                                             
@@ -546,37 +541,37 @@ L.Control.SpecialToolsUpload = L.Control.extend({
                                     }
                                 } else if (GEOJSON.geometry.type === "Polygon") {
                                     
-                                    polygon = project_polygon(GEOJSON, EPSG);
+                                    polygon = projections.polygon(GEOJSON, EPSG);
                                     
                                     OBJECTS_GEOJSON.push(polygon);
                                     
                                 } else if (GEOJSON.geometry.type === "MultiPolygon") {
                                     
-                                    multipolygon = project_multipolygon(GEOJSON, EPSG);
+                                    multipolygon = projections.multipolygon(GEOJSON, EPSG);
                                     
                                     OBJECTS_GEOJSON.push(multipolygon);
                                     
                                 } else if (GEOJSON.geometry.type === "LineString") {
                                     
-                                    linestring = project_linestring(GEOJSON, EPSG);
+                                    linestring = projections.linestring(GEOJSON, EPSG);
                                     
                                     OBJECTS_GEOJSON.push(linestring);
                                     
                                 } else if (GEOJSON.geometry.type === "MultiLineString") {
                                     
-                                    multilinestring = project_multilinestring(GEOJSON, EPSG);
+                                    multilinestring = projections.multilinestring(GEOJSON, EPSG);
                                     
                                     OBJECTS_GEOJSON.push(multilinestring);
                                     
                                 } else if (GEOJSON.geometry.type === "Point") {
                                     
-                                    point = project_point(GEOJSON, EPSG);
+                                    point = projections.point(GEOJSON, EPSG);
                                     
                                     OBJECTS_GEOJSON.push(point);
                                     
                                 } else if (GEOJSON.geometry.type === "MultiPoint") {
                                     
-                                    multipoint = project_multipoint(GEOJSON, EPSG);
+                                    multipoint = projections.multipoint(GEOJSON, EPSG);
                                     
                                     OBJECTS_GEOJSON.push(multipoint);
                                     
@@ -653,74 +648,74 @@ L.Control.SpecialToolsUpload = L.Control.extend({
                                         
                                         if (GEOJSON.features[feature].geometry.type === 'Polygon') {
                                             
-                                            polygon = project_polygon(GEOJSON.features[feature], EPSG);
+                                            polygon = projections.polygon(GEOJSON.features[feature], EPSG);
                                             
                                             OBJECTS_GEOJSON.push(polygon);
                                             
                                         } else if (GEOJSON.features[feature].geometry.type === 'MultiPolygon') {
                                             
-                                            multipolygon = project_multipolygon(GEOJSON.features[feature], EPSG);
+                                            multipolygon = projections.multipolygon(GEOJSON.features[feature], EPSG);
                                             
                                             OBJECTS_GEOJSON.push(multipolygon);
                                             
                                         } else if (GEOJSON.features[feature].geometry.type === 'LineString') {
                                             
-                                            linestring = project_linestring(GEOJSON.features[feature], EPSG);
+                                            linestring = projections.linestring(GEOJSON.features[feature], EPSG);
                                             
                                             OBJECTS_GEOJSON.push(linestring);
                                             
                                         } else if (GEOJSON.features[feature].geometry.type === 'MultiLineString') {
                                             
-                                            multilinestring = project_multilinestring(GEOJSON.features[feature], EPSG);
+                                            multilinestring = projections.multilinestring(GEOJSON.features[feature], EPSG);
                                             
                                             OBJECTS_GEOJSON.push(multilinestring);
                                             
                                         } else if (GEOJSON.features[feature].geometry.type === 'Point') {
                                             
-                                            point = project_point(GEOJSON.features[feature], EPSG);
+                                            point = projections.point(GEOJSON.features[feature], EPSG);
                                             
                                             OBJECTS_GEOJSON.push(point);
                                             
                                         } else if (GEOJSON.features[feature].geometry.type === 'MultiPoint') {
                                             
-                                            multipoint = project_multipoint(GEOJSON.features[feature], EPSG);
+                                            multipoint = projections.multipoint(GEOJSON.features[feature], EPSG);
                                             
                                             OBJECTS_GEOJSON.push(multipoint);
                                         }
                                     }
                                 } else if (GEOJSON.geometry.type === "Polygon") {
                                     
-                                    polygon = project_polygon(GEOJSON, EPSG);
+                                    polygon = projections.polygon(GEOJSON, EPSG);
                                     
                                     OBJECTS_GEOJSON.push(polygon);
                                     
                                 } else if (GEOJSON.geometry.type === "MultiPolygon") {
                                     
-                                    multipolygon = project_multipolygon(GEOJSON, EPSG);
+                                    multipolygon = projections.multipolygon(GEOJSON, EPSG);
                                     
                                     OBJECTS_GEOJSON.push(multipolygon);
                                     
                                 } else if (GEOJSON.geometry.type === "LineString") {
                                     
-                                    linestring = project_linestring(GEOJSON, EPSG);
+                                    linestring = projections.linestring(GEOJSON, EPSG);
                                     
                                     OBJECTS_GEOJSON.push(linestring);
                                     
                                 } else if (GEOJSON.geometry.type === "MultiLineString") {
                                     
-                                    multilinestring = project_multilinestring(GEOJSON, EPSG);
+                                    multilinestring = projections.multilinestring(GEOJSON, EPSG);
                                     
                                     OBJECTS_GEOJSON.push(multilinestring);
                                     
                                 } else if (GEOJSON.geometry.type === "Point") {
                                     
-                                    point = project_point(GEOJSON, EPSG);
+                                    point = projections.point(GEOJSON, EPSG);
                                     
                                     OBJECTS_GEOJSON.push(point);
                                     
                                 } else if (GEOJSON.geometry.type === "MultiPoint") {
                                     
-                                    multipoint = project_multipoint(GEOJSON, EPSG);
+                                    multipoint = projections.multipoint(GEOJSON, EPSG);
                                     
                                     OBJECTS_GEOJSON.push(multipoint);
                                     
@@ -766,9 +761,9 @@ L.Control.SpecialToolsUpload = L.Control.extend({
                     });
 
                     L.DomEvent.on(modal._container.querySelector('#btn_image_upload'), 'click', function() {
-                        
+
                         btn_get_image_upload = modal._container.querySelector("#btn_get_image_upload");
-                        
+
                         window.setTimeout(function(){
                             
                             L.DomUtil.removeClass(btn_get_image_upload, 'special-tools-visibility-hide');
@@ -777,11 +772,15 @@ L.Control.SpecialToolsUpload = L.Control.extend({
                         }, 8000);
 
                         btn_add_image_to_map = modal._container.querySelector("#btn_add_image_to_map");
+                        
                         box_image_config = modal._container.querySelector('#box_image_config');
+                        
                         box_image_msg = modal._container.querySelector('#box_image_msg');
+
                         image_preview = modal._container.querySelector('#image_preview');
                         
                         image_upload_msg = modal._container.querySelector('#image_upload_msg');
+                        image_upload_msg.innerHTML = '';
 
                         L.DomUtil.removeClass(btn_get_image_upload, 'special-tools-visibility-visible');
                         L.DomUtil.addClass(btn_get_image_upload, 'special-tools-visibility-hide');

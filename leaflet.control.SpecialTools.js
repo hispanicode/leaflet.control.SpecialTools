@@ -59,8 +59,7 @@ L.Control.SpecialTools = L.Control.extend({
             L.DomEvent.preventDefault(e);
             
         });
-        
-        
+
         window.setTimeout(function(){
             
             map.eachLayer(function(layer){
@@ -70,7 +69,6 @@ L.Control.SpecialTools = L.Control.extend({
             });
             
         }, 500);
-
 
         fetch(this.route + '/lang/lang.json')
         .then(function(response){
@@ -180,6 +178,7 @@ L.Control.SpecialTools = L.Control.extend({
                                         map_bounds.getNorth()
                                     ] 
                                 );
+                        
                                 poly_2 = turf.bboxPolygon(
                                     [
                                         layer.getBounds().getWest(),
@@ -188,116 +187,177 @@ L.Control.SpecialTools = L.Control.extend({
                                         layer.getBounds().getNorth()
                                     ]
                                 );
+                        
                                 area_poly_1 = turf.area(poly_1);
                                 area_poly_2 = turf.area(poly_2);
                             
                                 if (!map_bounds.contains(layer.getBounds().getCenter()) && area_poly_1 > area_poly_2) {
 
                                  midpoint = turf.midpoint(
-                                        [layer.getBounds().getCenter().lat, layer.getBounds().getCenter().lng], 
-                                        [
-                                            layer.getBounds().getSouthWest().lat, 
-                                            layer.getBounds().getSouthWest().lng]
-                                        );
+                                         
+                                    [layer.getBounds().getCenter().lat, layer.getBounds().getCenter().lng], 
+                                    [
+                                        layer.getBounds().getSouthWest().lat, 
+                                        layer.getBounds().getSouthWest().lng
+                                    ]
+                                            
+                                );
                                 
                                 new_coordinates = L.latLng(midpoint.geometry.coordinates);
+                                
                                 if (map_bounds.contains(new_coordinates) && self.point_in_polygon(new_coordinates, layer)) {
+                                    
                                     centroid.setLatLng(new_coordinates);
+                                    
                                     return;
-                                } else {
                                     
                                 }
                                 
                                  midpoint = turf.midpoint(
-                                        [layer.getBounds().getCenter().lat, layer.getBounds().getCenter().lng], 
-                                        [
-                                            layer.getBounds().getNorthEast().lat, 
-                                            layer.getBounds().getNorthEast().lng]
-                                        );
+                                         
+                                    [layer.getBounds().getCenter().lat, layer.getBounds().getCenter().lng], 
+                                    [
+                                        layer.getBounds().getNorthEast().lat, 
+                                        layer.getBounds().getNorthEast().lng
+                                    ]
+                                            
+                                );
                                 
                                 new_coordinates = L.latLng(midpoint.geometry.coordinates);
+                                
                                 if (map_bounds.contains(new_coordinates) && self.point_in_polygon(new_coordinates, layer)) {
+                                    
                                     centroid.setLatLng(new_coordinates);
+
                                     return;
+                                    
+                                }
+
+                                 midpoint = turf.midpoint(
+                                         
+                                    [layer.getBounds().getCenter().lat, layer.getBounds().getCenter().lng], 
+                                    [
+                                        layer.getBounds().getNorthWest().lat, 
+                                        layer.getBounds().getNorthWest().lng
+                                    ]
+                                            
+                                );
+                                
+                                new_coordinates = L.latLng(midpoint.geometry.coordinates);
+                                
+                                if (map_bounds.contains(new_coordinates) && self.point_in_polygon(new_coordinates, layer)) {
+                                    
+                                    centroid.setLatLng(new_coordinates);
+
+                                    return;
+                                    
                                 }
                                 
-                               
                                  midpoint = turf.midpoint(
-                                        [layer.getBounds().getCenter().lat, layer.getBounds().getCenter().lng], 
-                                        [
-                                            layer.getBounds().getNorthWest().lat, 
-                                            layer.getBounds().getNorthWest().lng]
-                                        );
+                                         
+                                    [layer.getBounds().getCenter().lat, layer.getBounds().getCenter().lng], 
+                                    [
+                                        layer.getBounds().getSouthEast().lat, 
+                                        layer.getBounds().getSouthEast().lng
+                                    ]
+                                            
+                                );
                                 
                                 new_coordinates = L.latLng(midpoint.geometry.coordinates);
-                                if (map_bounds.contains(new_coordinates) && self.point_in_polygon(new_coordinates, layer)) {
-                                    centroid.setLatLng(new_coordinates);
-                                    return;
-                                }
                                 
-                                 midpoint = turf.midpoint(
-                                        [layer.getBounds().getCenter().lat, layer.getBounds().getCenter().lng], 
-                                        [
-                                            layer.getBounds().getSouthEast().lat, 
-                                            layer.getBounds().getSouthEast().lng]
-                                        );
-                                
-                                new_coordinates = L.latLng(midpoint.geometry.coordinates);
                                 if (map_bounds.contains(new_coordinates) && self.point_in_polygon(new_coordinates, layer)) {
+                                    
                                     centroid.setLatLng(new_coordinates);
+
                                     return;
+                                    
                                 }
                                 
                                 if (map_bounds.contains(layer.getBounds().getSouthWest())) {
+                                    
                                     new_coordinates = layer.getBounds().getSouthWest();
+                                    
                                     if (self.point_in_polygon(new_coordinates, layer)) {
+                                        
                                         centroid.setLatLng(new_coordinates);
+                                        
                                         return;
+                                        
                                     } 
+                                    
                                 }
                                 
                                 if (map_bounds.contains(layer.getBounds().getNorthEast())) {
+                                    
                                     new_coordinates = layer.getBounds().getNorthEast();
+                                    
                                     if (self.point_in_polygon(new_coordinates, layer)) {
+                                        
                                         centroid.setLatLng(new_coordinates);
+                                        
                                         return;
+                                        
                                     }
+                                    
                                 }
                                 
                                 if (map_bounds.contains(layer.getBounds().getNorthWest())) {
+                                    
                                     new_coordinates = layer.getBounds().getNorthWest();
+                                    
                                     if (self.point_in_polygon(new_coordinates, layer)) {
+                                        
                                         centroid.setLatLng(new_coordinates);
+                                        
                                         return;
+                                        
                                     }
+                                    
                                 }
                                 
                                 if (map_bounds.contains(layer.getBounds().getSouthEast())) {
+                                    
                                     new_coordinates = layer.getBounds().getSouthEast();
+                                    
                                     if (self.point_in_polygon(new_coordinates, layer)) {
+                                        
                                         centroid.setLatLng(new_coordinates);
+                                        
                                         return;
+                                        
                                     }
+                                    
                                 } 
                                 
 
                             } else if (area_poly_1 < area_poly_2 && layer.getBounds().contains(map_bounds.getCenter())){
                                 
-                            if (self.point_in_polygon(map_bounds.getCenter(), layer)) {
-                                last_position = map_bounds.getCenter();
-                                centroid.setLatLng(map_bounds.getCenter());
-                                return;
-                            }
+                                if (self.point_in_polygon(map_bounds.getCenter(), layer)) {
+
+                                    last_position = map_bounds.getCenter();
+
+                                    centroid.setLatLng(map_bounds.getCenter());
+
+                                    return;
+
+                                }
                                 
                             } else if (map_bounds.contains(layer.getBounds().getCenter()) && area_poly_1 > area_poly_2) {
                                 
                                 if (self.point_in_polygon(layer.getBounds().getCenter(), layer)) {
+                                    
                                     centroid.setLatLng(layer.getBounds().getCenter());
+
                                     return;
+                                        
                                 } else {
+                                    
                                     if (last_position !== null) {
+                                        
                                         centroid.setLatLng(last_position);
+                                        
                                     }
+                                    
                                 }
                                 
                             } else if(area_poly_1 < area_poly_2 && !layer.getBounds().contains(map_bounds.getCenter())) {
@@ -307,42 +367,64 @@ L.Control.SpecialTools = L.Control.extend({
                                     && layer.getBounds().contains(last_position)
                                     && self.point_in_polygon(last_position, layer)
                                 ) {
+                            
                                     centroid.setLatLng(last_position);
+                                    
                                     return;
                                 }
 
                                 else if (map_bounds.contains(layer.getBounds().getSouthWest())) {
+                                    
                                     new_coordinates = layer.getBounds().getSouthWest();
+                                    
                                     if (self.point_in_polygon(new_coordinates, layer)) {
+                                        
                                         centroid.setLatLng(new_coordinates);
+                                        
                                         return;
+                                        
                                     }
+                                    
                                 }
                                 
                                 else if (map_bounds.contains(layer.getBounds().getNorthEast())) {
+                                    
                                     new_coordinates = layer.getBounds().getNorthEast();
+                                    
                                     if (self.point_in_polygon(new_coordinates, layer)) {
+                                        
                                         centroid.setLatLng(new_coordinates);
+                                        
                                         return;
+                                        
                                     }
                                 }
                                 
                                 else if (map_bounds.contains(layer.getBounds().getNorthWest())) {
+                                    
                                     new_coordinates = layer.getBounds().getNorthWest();
+                                    
                                     if (self.point_in_polygon(new_coordinates, layer)) {
+                                        
                                         centroid.setLatLng(new_coordinates);
+                                        
                                         return;
+                                        
                                     }
                                 }
                                 
                                 else if (map_bounds.contains(layer.getBounds().getSouthEast())) {
+                                    
                                     new_coordinates = layer.getBounds().getSouthEast();
+                                    
                                     if (self.point_in_polygon(new_coordinates, layer)) {
+                                        
                                         centroid.setLatLng(new_coordinates);
+                                        
                                         return;
+                                        
                                     }
-                                }
-                                
+                                }   
                             }
                         }
                     }
@@ -430,7 +512,6 @@ L.Control.SpecialTools = L.Control.extend({
                     }
 
                 }
-
 
                 if (!self.is_geoman_edition_mode(layer)) {
                     
@@ -526,7 +607,6 @@ L.Control.SpecialTools = L.Control.extend({
                             
                             }
 
-
                         } else {
                             
                             self.pm_disable(_this);
@@ -572,7 +652,6 @@ L.Control.SpecialTools = L.Control.extend({
                     layer.setStyle({fillColor: default_color});
 
                 }
-
 
                 if (layer.feature.special_tools.hasOwnProperty('obj_stroke_width')) {
 
@@ -815,8 +894,6 @@ L.Control.SpecialTools = L.Control.extend({
                         
                     });
                     
-                    
-
                     L.DomEvent.on(leaflet_control_bringtofront, "click", function(){
 
                         if (this.checked) {
@@ -1011,7 +1088,6 @@ L.Control.SpecialTools = L.Control.extend({
                                 self.component_geolocation.update_draw_data(active_layer_id);
                             }
 
-
                         } else {
                             
                             self.pm_disable(_this);
@@ -1049,8 +1125,6 @@ L.Control.SpecialTools = L.Control.extend({
                         }
                         
                     });
-                    
-                    
 
                     L.DomEvent.on(leaflet_control_bringtofront, "click", function(){
 
@@ -1237,7 +1311,6 @@ L.Control.SpecialTools = L.Control.extend({
 
                     });
 
-
                     marker1.on('dragend', function(){
                         
                         if (self.server) {
@@ -1388,8 +1461,7 @@ L.Control.SpecialTools = L.Control.extend({
                 } 
                 
                 else {
-                    
-                    
+
                     if (layer.feature.special_tools.hasOwnProperty('obj_stroke_color')) {
 
                         layer.setStyle({color: layer.feature.special_tools.obj_stroke_color});
@@ -1689,8 +1761,6 @@ L.Control.SpecialTools = L.Control.extend({
 
                         });
 
-
-
                         L.DomEvent.on(leaflet_control_bringtofront, "click", function(){
 
                             if (this.checked) {
@@ -1749,19 +1819,6 @@ L.Control.SpecialTools = L.Control.extend({
             }
         }
         return false;
-    },
-    
-    get_oneXone_type: function(layer) {
-        if (layer.hasOwnProperty('feature')) {
-            if (layer.feature.hasOwnProperty('special_tools')) {
-                if (layer.feature.special_tools.hasOwnProperty('is_oneXone')) {
-                    if (layer.feature.special_tools.is_oneXone) {
-                        return layer.feature.special_tools.oneXone_type;
-                    }
-                }
-            }
-        }
-        return null;
     },
     
     is_catastro: function(layer) {
@@ -1834,19 +1891,6 @@ L.Control.SpecialTools = L.Control.extend({
             if (layer.feature.hasOwnProperty('special_tools')) {
                 if (layer.feature.special_tools.hasOwnProperty('is_clipPolygon')) {
                     if (layer.feature.special_tools.is_clipPolygon) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    },
-
-    is_shape: function(layer) {
-        if (layer.hasOwnProperty('feature')) {
-            if (layer.feature.hasOwnProperty('special_tools')) {
-                if (layer.feature.special_tools.hasOwnProperty('is_shape')) {
-                    if (layer.feature.special_tools.is_shape) {
                         return true;
                     }
                 }
@@ -3506,5 +3550,7 @@ L.Control.SpecialTools = L.Control.extend({
 });
 
 L.control.specialTools = function (options) {
+    
     return new L.Control.SpecialTools(options);
+    
 };

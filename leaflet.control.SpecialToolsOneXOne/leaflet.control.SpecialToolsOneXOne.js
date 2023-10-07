@@ -96,17 +96,16 @@ L.Control.SpecialToolsOneXOne = L.Control.extend({
                                 L.DomUtil.removeClass(controlDiv, 'special-tools-disable');
                                 enable_oneXone = true;
 
-                                L.DomEvent.off(layer);    
+                                L.DomEvent.off(layer);
+                                
                             }
                         });
                     }
-
-                } else {
-
-                    e.preventDefault();
                 }
             });
-            e.preventDefault();
+            
+            L.DomEvent.preventDefault(e);
+            
         });
                
         false_div = L.DomUtil.create('div');
@@ -116,5 +115,7 @@ L.Control.SpecialToolsOneXOne = L.Control.extend({
 });
 
 L.control.specialToolsOneXOne = function (options) {
+    
     return new L.Control.SpecialToolsOneXOne(options);
+    
 };

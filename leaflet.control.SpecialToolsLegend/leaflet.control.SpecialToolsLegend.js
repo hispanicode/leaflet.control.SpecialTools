@@ -57,7 +57,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
             
         }
        
-        url = route + "/leaflet.control.SpecialToolsLegend/ajax/legend.json";
+        url = route + "/leaflet.control.SpecialToolsLegend/ajax/legend.json?v=" + special_tools.make_id(100);
 
         fetch(url)
         .then(function(response) {
@@ -162,18 +162,20 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                 
             }
             
-            content = "<div class='special-tools-container'>";
-            content = content + special_tools._T("Leyenda: ", json_lang, lang) + "<input type='text' style='width: 250px' id='legend_name' value='"+ legend_json.legend +"'>";
+            content = "<div class='special-tools-container special-tools-div-33'>";
+            content = content + special_tools._T("Leyenda: ", json_lang, lang) + "<input type='text' id='legend_name' class='special-tools-input-150' value='"+ legend_json.legend +"'>";
             content = content + "</div>";
             
-            content = content + "<div class='special-tools-container'>";
+            content = content + "<div class='special-tools-container special-tools-div-33'>";
             content = content + "<button type='button' id='btn_add_column' class='special-tools-btn-default'>" + special_tools._T("Nueva columna", json_lang, lang) + "</button>";
-            content = content + " <button type='button' id='btn_save_legend' class='special-tools-btn-success'>" + special_tools._T("Guardar", json_lang, lang) + "</button>";
+            content = content + " <button type='button' id='btn_save_legend' class='special-tools-btn-primary'>" + special_tools._T("Guardar", json_lang, lang) + "</button>";
             content = content + "</div>";
-            
-            content = content + "<div class='special-tools-container'>";
+
+            content = content + "<div class='special-tools-container special-tools-div-33'>";
             content = content + special_tools._T("Mostrar leyenda: ", json_lang, lang) + "<input type='checkbox' id='chk_show_legend' " + chk_checked + ">";
             content = content + "</div>";
+            
+            content = content + "<div style='clear: left;'></div>";
             
             content = content + "<div class='special-tools-container' id='legend_msg_box'></div>";
             
@@ -200,7 +202,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                     
                     modal._container.querySelector('.modal-content').style.backgroundColor = "rgba(255, 255, 255, 0.8)";
 
-                    legend_url = route + '/leaflet.control.SpecialToolsLegend/ajax/legend.json';
+                    legend_url = route + '/leaflet.control.SpecialToolsLegend/ajax/legend.json?' + self.make_id(100);
                     
                     fetch(legend_url)
                     .then(function(response){
@@ -347,7 +349,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                         div.setAttribute('class', 'div-column');
 
                         const div_container_1 = L.DomUtil.create('div');
-                        div_container_1.setAttribute('class', 'special-tools-container');
+                        div_container_1.setAttribute('class', 'special-tools-container special-tools-div-33');
 
                         const input_column_span = L.DomUtil.create('span');
                         input_column_span.innerText = special_tools._T("Columna: ", json_lang, lang);
@@ -363,7 +365,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                         
                         
                         const div_container_2 = L.DomUtil.create('div');
-                        div_container_2.setAttribute('class', 'special-tools-container');
+                        div_container_2.setAttribute('class', 'special-tools-container special-tools-div-33');
                         
                         const btn_column = L.DomUtil.create('button');
                         btn_column.type = 'button';
@@ -379,10 +381,14 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                         div_container_2.appendChild(btn_column);
                         div_container_2.appendChild(btn_column_delete);
                         
+                        const div_clear = L.DomUtil.create('div');
+                        div_clear.style.clear = 'left';
+                        
                         const div_column = L.DomUtil.create('div');
                         
                         div.appendChild(div_container_1);
                         div.appendChild(div_container_2);
+                        div.appendChild(div_clear);
                         div.appendChild(div_column);
 
                         div_columns.appendChild(div);
@@ -681,7 +687,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                         div.setAttribute('class', 'div-column');
 
                         const div_container_1 = L.DomUtil.create('div');
-                        div_container_1.setAttribute('class', 'special-tools-container');
+                        div_container_1.setAttribute('class', 'special-tools-container special-tools-div-33');
 
                         const input_column_span = L.DomUtil.create('span');
                         input_column_span.innerText = special_tools._T("Columna: ", json_lang, lang);
@@ -696,7 +702,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                         
                         
                         const div_container_2 = L.DomUtil.create('div');
-                        div_container_2.setAttribute('class', 'special-tools-container');
+                        div_container_2.setAttribute('class', 'special-tools-container special-tools-div-33');
                         
                         const btn_column = L.DomUtil.create('button');
                         btn_column.type = 'button';
@@ -712,10 +718,14 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                         div_container_2.appendChild(btn_column);
                         div_container_2.appendChild(btn_column_delete);
                         
+                        const div_clear = L.DomUtil.create('div');
+                        div_clear.style.clear = 'left';
+                        
                         const div_column = L.DomUtil.create('div');
                         
                         div.appendChild(div_container_1);
                         div.appendChild(div_container_2);
+                        div.appendChild(div_clear);
                         div.appendChild(div_column);
 
                         div_columns.appendChild(div);

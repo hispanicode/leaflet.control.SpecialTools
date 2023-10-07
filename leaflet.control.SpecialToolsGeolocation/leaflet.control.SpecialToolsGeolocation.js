@@ -102,5 +102,7 @@ L.Control.SpecialToolsGeolocation = L.Control.extend({
 });
 
 L.control.specialToolsGeolocation = function (options) {
+    
     return new L.Control.SpecialToolsGeolocation(options);
+    
 };

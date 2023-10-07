@@ -250,6 +250,69 @@
         "lg-eus": "Ustekabeko errore bat gertatu da",
         "lg-fra": "Une erreur imprévue s'est produite"
         
+    },
+    
+    "No se ha seleccionado ningún archivo": {
+        
+        "lg-eng": "No file selected",
+        "lg-cat": "No s'ha seleccionat cap fitxer",
+        "lg-eus": "Ez da fitxategirik hautatu",
+        "lg-fra": "Aucun fichier sélectionné"
+        
+    },
+    
+    "El archivo .zip no debe superar los 1500 kilobytes para no colapsar el navegador": {
+        
+        "lg-eng": "The .zip file should not exceed 1500 kilobytes to avoid crashing the browser",
+        "lg-cat": "El fitxer .zip no ha de superar els 1500 kilobytes per no col·lapsar el navegador",
+        "lg-eus": ".zip fitxategiak ez du 1500 kilobytes baino gehiago izan behar arakatzailea hutsegiterik ez izateko",
+        "lg-fra": "Le fichier .zip ne doit pas dépasser 1500 kilo-octets pour éviter de planter le navigateur"
+        
+    },
+    
+    "Ha ocurrido un error al guardar el archivo shape .zip": {
+        
+        "lg-eng": "An error occurred while saving the .zip shape file",
+        "lg-cat": "S'ha produït un error en desar el fitxer shape .zip",
+        "lg-eus": "Errore bat gertatu da .zip forma fitxategia gordetzean",
+        "lg-fra": "Une erreur s'est produite lors de l'enregistrement du fichier de forme .zip"
+        
+    },
+    
+    "El archivo .geojson no debe superar los 1500 kilobytes": {
+        
+        "lg-eng": "The .geojson file must not exceed 1500 kilobytes",
+        "lg-cat": "El fitxer .geojson no ha de superar els 1500 kilobytes",
+        "lg-eus": ".geojson fitxategiak ezin du 1500 kilobyte baino gehiago izan",
+        "lg-fra": "Le fichier .geojson ne doit pas dépasser 1500 kilo-octets"
+        
+    },
+    
+    "El archivo .kml no debe superar los 1500 kilobytes": {
+        
+        "lg-eng": "The .kml file must not exceed 1500 kilobytes",
+        "lg-cat": "El fitxer .kml no ha de superar els 1500 kilobytes",
+        "lg-eus": ".kml fitxategiak ezin du 1500 kilobyte baino gehiago izan",
+        "lg-fra": "Le fichier .kml ne doit pas dépasser 1500 kilo-octets"
+        
+    },
+    
+    "Ha ocurrido un error al guardar el archivo .kml": {
+        
+        "lg-eng": "An error occurred while saving the .kml file",
+        "lg-cat": "S'ha produït un error en desar el fitxer .kml",
+        "lg-eus": "Errore bat gertatu da .kml fitxategia gordetzean",
+        "lg-fra": "Une erreur s'est produite lors de l'enregistrement du fichier .kml"
+        
+    },
+    
+    "Ha ocurrido un error inesperado": {
+        
+        "lg-eng": "An unexpected error has occurred",
+        "lg-cat": "Ha passat un error inesperat",
+        "lg-eus": "Ustekabeko errore bat gertatu da",
+        "lg-fra": "Une erreur imprévue s'est produite"
+        
     }
     
 }

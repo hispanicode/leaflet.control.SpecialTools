@@ -3,6 +3,7 @@
  * e-mail: manudavgonz@gmail.com
  */
 L.Control.SpecialToolsRomanEmpire = L.Control.extend({
+    
     onAdd: function (map) {
         
         self = this;
@@ -47,14 +48,22 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
             
             /* PLEIADES */
             pleiades = "<h3>Pleiades (pleiades.stoa.org)</h3>";
+            
             pleiades = pleiades + "<div class='pleiades-div'>";
-            pleiades = pleiades + "<input type='search' id='search_pleiades'>";
-            pleiades = pleiades + " <button type='button' id='btn_pleiades' class='special-tools-btn-default'>" + special_tools._T("Buscar", json_lang, lang) + "</button>";
-            pleiades = pleiades + "<p>" + special_tools._T("Filtrar por:", json_lang, lang) + "</p>";
-            pleiades = pleiades + "<p>";
+            
+            pleiades = pleiades + "<div class='special-tools-container special-tools-div-50'>";
+            pleiades = pleiades + "<input type='text' id='search_pleiades' class='special-tools-input-150'> ";
+            pleiades = pleiades + "<button type='button' id='btn_pleiades' class='special-tools-btn-default'>" + special_tools._T("Buscar", json_lang, lang) + "</button>";
+            pleiades = pleiades + "</div>";
+            
+            pleiades = pleiades + "<div class='special-tools-container special-tools-div-33'>";
+            pleiades = pleiades + special_tools._T("Filtrar por:", json_lang, lang);
             pleiades = pleiades + special_tools._T("Nombre: ", json_lang, lang) + "<input type='radio' name='radio_pleiades' class='radio_pleiades' value='name' checked>";
             pleiades = pleiades + " ID: <input type='radio' name='radio_pleiades' class='radio_pleiades' value='id'>";
-            pleiades = pleiades + "</p>";
+            pleiades = pleiades + "</div>";
+            
+            pleiades = pleiades + "<div style='clear: left;'></div>";
+
             pleiades = pleiades + "<div id='pleiades_items_founds'>";
             
             for (let n=1; n<=10; n++) {
@@ -64,17 +73,31 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
             }
             
             pleiades = pleiades + "</div>";
+            
             pleiades = pleiades + "</div>";
             /* PLEIADES */
             
             /* PELAGIOS DARE */
             pelagios = "<h3>Pelagios D.A.R.E</h3>";
+            
             pelagios = pelagios + "<div class='pelagios-div'>";
-            pelagios = pelagios + "<input type='search' id='search_pelagios'>";
-            pelagios = pelagios + " <button type='button' id='btn_pelagios' class='special-tools-btn-default'>" + special_tools._T("Buscar", json_lang, lang) + "</button>";
-            pelagios = pelagios + " <input type='checkbox' id='check_uncheck_all' checked>" + special_tools._T(" Marcar/Desmarcar todo", json_lang, lang);
-            pelagios = pelagios + "<p>" + special_tools._T("Filtrar por:", json_lang, lang) + "</p>";
-            pelagios = pelagios + "<div>";
+            
+            pelagios = pelagios + "<div class='special-tools-container special-tools-div-50'>";
+            pelagios = pelagios + "<input type='text' id='search_pelagios' class='special-tools-input-150'> ";
+            pelagios = pelagios + "<button type='button' id='btn_pelagios' class='special-tools-btn-default'>" + special_tools._T("Buscar", json_lang, lang) + "</button>";
+            pelagios = pelagios + "</div>";
+            
+            pelagios = pelagios + "<div class='special-tools-container special-tools-div-33'>";
+            pelagios = pelagios + "<input type='checkbox' id='check_uncheck_all' checked>" + special_tools._T(" Marcar/Desmarcar todo", json_lang, lang);
+            pelagios = pelagios + "</div>";
+
+            pelagios = pelagios + "<div style='clear: left;'></div>";
+            
+            pelagios = pelagios + "<div class='special-tools-container'>";
+            pelagios = pelagios + special_tools._T("Filtrar por:", json_lang, lang);
+            pelagios = pelagios + "</div>";
+            
+            pelagios = pelagios + "<div class='special-tools-container'>";
             pelagios = pelagios + "<div class='w-col-3'><input type='checkbox' name='10m_lakes' checked> 10m_lakes</div>";
             pelagios = pelagios + "<div class='w-col-3'><input type='checkbox' name='10m_lakes_label' checked> 10m_lakes_label</div>";
             pelagios = pelagios + "<div class='w-col-6'><input type='checkbox' name='10m_rivers_lake_centerlines' checked> 10m_rivers_lake_centerlines</div>";
@@ -90,10 +113,15 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
             pelagios = pelagios + "</div>";
             
             pelagios = pelagios + "<div id='pelagios_items_founds'>";
+            
             for (let n=1; n<=10; n++) {
+                
                 pelagios = pelagios + "<p class='p-get-pelagios' style='display: none'><button type='button' style='margin-top: 4px; margin-bottom: 4px;' class='get-pelagios special-tools-btn-success' pelagios-geojson=''></button></p>";
+            
             }
+            
             pelagios = pelagios + "</div>";
+            
             pelagios = pelagios + "</div>";
             /* PELAGIOS DARE */
             
@@ -101,10 +129,15 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
              * imperium.ahlfeldt.se
              */
             imperium = "<h3>imperium.ahlfeldt.se (Lund University)</h3>";
+            
             imperium = imperium + "<div class='imperium-div'>";
-            imperium = imperium + "<input type='search' id='search_imperium'>";
-            imperium = imperium + " <button type='button' id='btn_imperium' class='special-tools-btn-default'>" + special_tools._T("Buscar", json_lang, lang) + "</button>";
-            imperium = imperium + "";
+            
+            imperium = imperium + "<div class='special-tools-container'>";
+            imperium = imperium + "<input type='text' id='search_imperium' class='special-tools-input-150'> ";
+            imperium = imperium + "<button type='button' id='btn_imperium' class='special-tools-btn-default'>" + special_tools._T("Buscar", json_lang, lang) + "</button>";
+            imperium = imperium + "</div>";
+            
+            imperium = imperium + "<div class='special-tools-container special-tools-div-25'>";
             imperium = imperium + "<select id='select_imperium_type'>";
             imperium = imperium + "<option value=''>All types</option>";
             imperium = imperium + "<option value='11'>City</option>";
@@ -132,12 +165,16 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
             imperium = imperium + "<option value='77'>Canal</option>";
             imperium = imperium + "<option value='20'>Well</option>";
             imperium = imperium + "</select>";
-
+            imperium = imperium + "</div>";
+            
+            imperium = imperium + "<div class='special-tools-container special-tools-div-25'>";
             imperium = imperium + "<select id='select_imperium_name'>";
             imperium = imperium + "<option value='mss'>Modern placename</option>";
             imperium = imperium + "<option value='ass'>Ancient placename</option>";
             imperium = imperium + "</select>";
+            imperium = imperium + "</div>";
             
+            imperium = imperium + "<div class='special-tools-container special-tools-div-25'>";
             imperium = imperium + '<select id="select_imperium_country">';
             imperium = imperium + '<option value="">All countries</option>';
             imperium = imperium + '<option value="AL">Albania</option>';
@@ -198,13 +235,21 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
             imperium = imperium + '<option value="AE">United Arab Emirates</option>';
             imperium = imperium + '<option value="YE">Yemen</option>';
             imperium = imperium + '</select>';
+            imperium = imperium + "</div>";
+            
+            inperium = imperium + "<div style='clear: left;'></div>";
             
             imperium = imperium + "<div id='imperium_items_founds'>";
+            
             for (let n=1; n<=10; n++) {
+                
                 imperium = imperium + "<p class='p-get-imperium' style='display: none;'><button type='button' style='margin-top: 4px; margin-bottom: 4px;' class='get-imperium special-tools-btn-success' imperium-geojson=''></button></p>";
+            
             }
+            
             imperium = imperium + "</div>";
-            imperium = imperium + "</div>";
+            
+            imperium = imperium + "</div><br><br><br><br><br><br><br><br>";
             /*
              * imperium.ahlfeldt.se
              */
@@ -212,6 +257,7 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
             content = pleiades + '<hr>' + pelagios + '<hr>' + imperium;
             
             map.fire('modal', {
+                
               title: special_tools._T("Consulta a servicios relacionados con el Imperio Romano", json_lang, lang),
               content: content,
               template: ['<div class="modal-header"><h2>{title}</h2></div>',
@@ -230,7 +276,9 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                 modal._container.querySelector('.modal-content').style.backgroundColor = "rgba(255, 255, 255, 0.8)";
                 /* PLEIADES */
                 L.DomEvent.on(modal._container.querySelector('#search_pleiades'), 'keyup', function() {
+                    
                     modal._container.querySelector('#btn_pleiades').click();
+                
                 });
 
                 L.DomEvent.on(modal._container.querySelector('#btn_pleiades'), 'click', function() {
@@ -253,10 +301,13 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
 
                         pleiades_array = modal._container.querySelectorAll('.get-pleiades');
                         p_pleiades_array = modal._container.querySelectorAll('.p-get-pleiades');
+                        
                         for (let index = 0; index < pleiades_array.length; index++) {
+                            
                             pleiades_array[index].setAttribute('pleiades-id', '');
                             pleiades_array[index].innerText = '';
                             p_pleiades_array[index].style.display = 'none';
+                            
                         }
                         
                         get_pleiades = '';
@@ -296,39 +347,63 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                             first_feature_type = data.features[0].geometry.type;
                                             
                                             if (first_feature_type === 'Point') {
+                                                
                                                 coordinates = data.features[0].geometry.coordinates;
+                                                
                                                 lng = coordinates[0];
                                                 lat = coordinates[1];    
+                                                
                                                 marker = L.marker([lat, lng]);
-                                                map.setView([lat, lng], 11);
+
                                                 marker.feature = marker.toGeoJSON();
                                                 marker.feature.special_tools = {};
                                                 marker.feature.special_tools.is_pleiades = true;
                                                 marker.feature.special_tools.geoman_edition = false;
                                                 marker.feature.properties = {};
+                                                
                                                 if (data.hasOwnProperty('id')) {
+                                                    
                                                     marker.feature.properties.id = "https://pleiades.stoa.org/places/"+data.id;
+                                                
                                                 }
                                                 if (data.hasOwnProperty('title')) {
+                                                    
                                                     marker.feature.properties.title = data.title;
+                                                
                                                 }
                                                 if (data.hasOwnProperty('description')) {
+                                                    
                                                     marker.feature.properties.description = data.description;
+                                                
                                                 }
                                                 if (data.hasOwnProperty('names')) {
+                                                    
                                                     marker.feature.properties.names = data.names.toString();
+                                                
                                                 }
+                                                
                                                 if (data.features.length === 1) {
+                                                    
                                                     if (data.features[0].properties.hasOwnProperty('description')) {
+                                                        
                                                         marker.feature.properties.info = data.features[0].properties.description;
+                                                    
                                                     }
                                                 }
+                                                
                                                 else if (data.features.length > 1) {
+                                                    
                                                     if (data.features[1].properties.hasOwnProperty('description')) {
+                                                        
                                                         marker.feature.properties.info = data.features[1].properties.description;
+                                                    
                                                     }
                                                 }
+                                                
                                                 map.fire("pm:create", {layer: marker});
+                                                
+                                                map.setView([lat, lng], 11);
+                                                
                                             }
                                             
                                             
@@ -359,19 +434,31 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                                     linestring.feature.properties = {};
 
                                                     if (data.hasOwnProperty('id')) {
+                                                        
                                                         linestring.feature.properties.id = "https://pleiades.stoa.org/places/"+data.id;
+                                                    
                                                     }
+                                                    
                                                     if (data.hasOwnProperty('title')) {
+                                                        
                                                         linestring.feature.properties.title = data.title;
+                                                    
                                                     }
+                                                    
                                                     if (data.hasOwnProperty('description')) {
                                                         linestring.feature.properties.description = data.description;
                                                     }
+                                                    
                                                     if (data.hasOwnProperty('names')) {
+                                                        
                                                         linestring.feature.properties.names = data.names.toString();
+                                                    
                                                     }
+                                                    
                                                     if (feature.properties.hasOwnProperty('description')) {
+                                                        
                                                         linestring.feature.properties.info = feature.properties.description;
+                                                    
                                                     }
                                                     
                                                     map.fire("pm:create", {layer: linestring});
@@ -383,9 +470,9 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
 
                                                     multi_id = self.make_id(20);
 
-                                                    for (let coords in coordinates) {
+                                                    for (let index in coordinates) {
 
-                                                        multilinestring_coord = L.GeoJSON.coordsToLatLngs(coordinates[coords]);
+                                                        multilinestring_coord = L.GeoJSON.coordsToLatLngs(coordinates[index]);
 
                                                         multilinestring = L.polyline(multilinestring_coord);
 
@@ -401,25 +488,40 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                                         multilinestring.feature.properties = {};
 
                                                         if (data.hasOwnProperty('id')) {
+                                                            
                                                             multilinestring.feature.properties.id = "https://pleiades.stoa.org/places/"+data.id;
+                                                        
                                                         }
+                                                        
                                                         if (data.hasOwnProperty('title')) {
+                                                            
                                                             multilinestring.feature.properties.title = data.title;
+                                                        
                                                         }
+                                                        
                                                         if (data.hasOwnProperty('description')) {
+                                                            
                                                             multilinestring.feature.properties.description = data.description;
+                                                        
                                                         }
+                                                        
                                                         if (data.hasOwnProperty('names')) {
+                                                            
                                                             multilinestring.feature.properties.names = data.names.toString();
+                                                        
                                                         }
+                                                        
                                                         if (feature.properties.hasOwnProperty('description')) {
+                                                            
                                                             multilinestring.feature.properties.info = feature.properties.description;
+                                                        
                                                         }
 
                                                         map.fire('pm:create', {layer: multilinestring});
 
                                                     }
-
+                                                    
+                                                    map.getBounds(multilinestring.getBounds());
                                                     
                                                 } else if (feature_type === 'MultiPoint') {
                                                     
@@ -428,9 +530,9 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
 
                                                     multi_id = self.make_id(20);
 
-                                                    for (let coords in coordinates) {
+                                                    for (let index in coordinates) {
 
-                                                        multipoint_coord = L.GeoJSON.coordsToLatLngs(coordinates[coords]);
+                                                        multipoint_coord = L.GeoJSON.coordsToLatLngs(coordinates[index]);
 
                                                         multipoint = L.marker(multipoint_coord);
 
@@ -446,25 +548,40 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                                         multipoint.feature.properties = {};
 
                                                         if (data.hasOwnProperty('id')) {
+                                                            
                                                             multipoint.feature.properties.id = "https://pleiades.stoa.org/places/"+data.id;
+                                                        
                                                         }
+                                                        
                                                         if (data.hasOwnProperty('title')) {
+                                                            
                                                             multipoint.feature.properties.title = data.title;
+                                                        
                                                         }
+                                                        
                                                         if (data.hasOwnProperty('description')) {
+                                                            
                                                             multipoint.feature.properties.description = data.description;
+                                                        
                                                         }
+                                                        
                                                         if (data.hasOwnProperty('names')) {
+                                                            
                                                             multipoint.feature.properties.names = data.names.toString();
+                                                        
                                                         }
+                                                        
                                                         if (feature.properties.hasOwnProperty('description')) {
+                                                            
                                                             multipoint.feature.properties.info = feature.properties.description;
+                                                        
                                                         }
 
                                                         map.fire('pm:create', {layer: multipoint});
 
                                                     }
 
+                                                    map.setView(multipoint.getLatLng(), 11);
                                                     
                                                 } else if (feature_type === 'Polygon') {
 
@@ -479,25 +596,40 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                                     polygon.feature.special_tools.is_pleiades = true;
                                                     polygon.feature.special_tools.geoman_edition = false;
                                                     polygon.feature.properties = {};
+                                                    
                                                     if (data.hasOwnProperty('id')) {
+                                                        
                                                         polygon.feature.properties.id = "https://pleiades.stoa.org/places/"+data.id;
+                                                    
                                                     }
+                                                    
                                                     if (data.hasOwnProperty('title')) {
+                                                        
                                                         polygon.feature.properties.title = data.title;
+                                                    
                                                     }
+                                                    
                                                     if (data.hasOwnProperty('description')) {
+                                                        
                                                         polygon.feature.properties.description = data.description;
+                                                    
                                                     }
+                                                    
                                                     if (data.hasOwnProperty('names')) {
+                                                        
                                                         polygon.feature.properties.names = data.names.toString();
+                                                    
                                                     }
+                                                    
                                                     if (feature.properties.hasOwnProperty('description')) {
+                                                        
                                                         polygon.feature.properties.info = feature.properties.description;
+                                                    
                                                     }
                                                     
                                                     map.fire("pm:create", {layer: polygon});
                                                     
-                                                    map.setView(polygon.getBounds().getCenter(), 7);
+                                                    map.fitBounds(polygon.getBounds());
 
                                                 } else if (feature_type === 'MultiPolygon') {
 
@@ -505,47 +637,65 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
 
                                                     multi_id = self.make_id(20);
 
-                                                    for (let coords in coordinates) {
+                                                    for (let index_1 in coordinates) {
 
-                                                        for(let coord in coordinates[coords]) {
+                                                        for(let index_2 in coordinates[index_1]) {
 
-                                                            multipolygon_coord = L.GeoJSON.coordsToLatLngs(coordinates[coords][coord]);
+                                                            multipolygon_coord = L.GeoJSON.coordsToLatLngs(coordinates[index_1][index_2]);
 
+                                                            multipolygon = L.polygon(multipolygon_coord);
+
+                                                            multipolygon.feature = multipolygon.toGeoJSON();
+                                                            multipolygon.feature.special_tools = {};
+
+                                                            tools_id = self.make_id(20);
+
+                                                            multipolygon.feature.special_tools.tools_id = tools_id;
+                                                            
+                                                            multipolygon.feature.special_tools.is_pleiades = true;
+                                                            
+                                                            multipolygon.feature.special_tools.geoman_edition = false;
+                                                            
+                                                            multipolygon.feature.special_tools.multi_id = multi_id;
+                                                            
+                                                            multipolygon.feature.properties = {};
+
+                                                            if (data.hasOwnProperty('id')) {
+
+                                                                multipolygon.feature.properties.id = "https://pleiades.stoa.org/places/"+data.id;
+
+                                                            }
+
+                                                            if (data.hasOwnProperty('title')) {
+
+                                                                multipolygon.feature.properties.title = data.title;
+
+                                                            }
+
+                                                            if (data.hasOwnProperty('description')) {
+
+                                                                multipolygon.feature.properties.description = data.description;
+
+                                                            }
+
+                                                            if (data.hasOwnProperty('names')) {
+
+                                                                multipolygon.feature.properties.names = data.names.toString();
+
+                                                            }
+
+                                                            if (feature.properties.hasOwnProperty('description')) {
+
+                                                                multipolygon.feature.properties.info = feature.properties.description;
+
+                                                            }
+
+                                                            map.fire('pm:create', {layer: multipolygon});
                                                         }
-
-                                                        multipolygon = L.polygon(multipolygon_coord);
-
-                                                        multipolygon.feature = multipolygon.toGeoJSON();
-                                                        multipolygon.feature.special_tools = {};
-
-                                                        tools_id = self.make_id(20);
-
-                                                        multipolygon.feature.special_tools.tools_id = tools_id;
-                                                        multipolygon.feature.special_tools.is_pleiades = true;
-                                                        multipolygon.feature.special_tools.geoman_edition = false;
-                                                        multipolygon.feature.special_tools.multi_id = multi_id;
-                                                        multipolygon.feature.properties = {};
-
-                                                        if (data.hasOwnProperty('id')) {
-                                                            multipolygon.feature.properties.id = "https://pleiades.stoa.org/places/"+data.id;
-                                                        }
-                                                        if (data.hasOwnProperty('title')) {
-                                                            multipolygon.feature.properties.title = data.title;
-                                                        }
-                                                        if (data.hasOwnProperty('description')) {
-                                                            multipolygon.feature.properties.description = data.description;
-                                                        }
-                                                        if (data.hasOwnProperty('names')) {
-                                                            multipolygon.feature.properties.names = data.names.toString();
-                                                        }
-                                                        if (feature.properties.hasOwnProperty('description')) {
-                                                            multipolygon.feature.properties.info = feature.properties.description;
-                                                        }
-
-                                                        map.fire('pm:create', {layer: multipolygon});
-
+                                                        
+                                                        map.fitBounds(multipolygon.getBounds());
+                                                        
                                                     }
-
                                                 }
                                             }
                                         }
@@ -556,14 +706,15 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                         }                 
                         
                     });
-                    
-                    
+   
                 });
                 /* PLEIADES */
                
                 /* PELAGIOS */ 
                 L.DomEvent.on(modal._container.querySelector('#check_uncheck_all'), 'click', function() {
+                    
                     if (this.checked) {
+                        
                         modal._container.querySelector('input[name="10m_lakes"]').checked = true;
                         modal._container.querySelector('input[name="10m_lakes_label"]').checked = true;
                         modal._container.querySelector('input[name="10m_rivers_lake_centerlines"]').checked = true;
@@ -576,7 +727,9 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                         modal._container.querySelector('input[name="provinces_label"]').checked = true;
                         modal._container.querySelector('input[name="roads_high"]').checked = true;
                         modal._container.querySelector('input[name="roads_low"]').checked = true;
+                    
                     } else {
+                        
                         modal._container.querySelector('input[name="10m_lakes"]').checked = false;
                         modal._container.querySelector('input[name="10m_lakes_label"]').checked = false;
                         modal._container.querySelector('input[name="10m_rivers_lake_centerlines"]').checked = false;
@@ -589,11 +742,15 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                         modal._container.querySelector('input[name="provinces_label"]').checked = false;
                         modal._container.querySelector('input[name="roads_high"]').checked = false;
                         modal._container.querySelector('input[name="roads_low"]').checked = false;
+                    
                     }
+                
                 });
                 
                 L.DomEvent.on(modal._container.querySelector('#search_pelagios'), 'keyup', function() {
+                    
                     modal._container.querySelector('#btn_pelagios').click();
+                
                 });
 
                 L.DomEvent.on(modal._container.querySelector('#btn_pelagios'), 'click', function() {
@@ -601,40 +758,75 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                     filter = new Array();
                     
                     if (modal._container.querySelector('input[name="10m_lakes"]:checked')) {
+                        
                         filter.push("10m_lakes");
+                    
                     }
+                    
                     if (modal._container.querySelector('input[name="10m_lakes_label"]:checked')) {
+                        
                         filter.push("10m_lakes_label");
+                    
                     }
+                    
                     if (modal._container.querySelector('input[name="10m_rivers_lake_centerlines"]:checked')) {
+                        
                         filter.push("10m_rivers_lake_centerlines");
+                    
                     }
+                    
                     if (modal._container.querySelector('input[name="fortifications"]:checked')) {
+                        
                         filter.push("fortifications");
+                    
                     }
+                    
                     if (modal._container.querySelector('input[name="places_high"]:checked')) {
+                        
                         filter.push("places_high");
+                    
                     }
+                    
                     if (modal._container.querySelector('input[name="places_low"]:checked')) {
+                        
                         filter.push("places_low");
+                    
                     }
+                    
                     if (modal._container.querySelector('input[name="places_medium"]:checked')) {
+                        
                         filter.push("places_medium");
+                    
                     }
+                    
                     if (modal._container.querySelector('input[name="places_subsites"]:checked')) {
+                        
                         filter.push("places_subsites");
+                    
                     }
+                    
                     if (modal._container.querySelector('input[name="provinces"]:checked')) {
+                        
                         filter.push("provinces");
+                    
                     }
+                    
                     if (modal._container.querySelector('input[name="provinces_label"]:checked')) {
+                        
                         filter.push("provinces_label");
+                    
                     }
+                    
                     if (modal._container.querySelector('input[name="roads_high"]:checked')) {
+                        
                         filter.push("roads_high");
+                    
                     }
+                    
                     if (modal._container.querySelector('input[name="roads_low"]:checked')) {
+                        
                         filter.push("roads_low");
+                    
                     }
                     
                     query = modal._container.querySelector('#search_pelagios').value;
@@ -644,11 +836,15 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                     let url = route + '/leaflet.control.SpecialToolsRomanEmpire/ajax/pelagios/pelagios.php?';
              
                     fetch(url + new URLSearchParams({
+                        
                         query: query,
                         filter: filter
+                        
                     }))
                     .then(function(response) {
+                        
                         return response.json();
+                
                     })
                     .then(function(data){
                         
@@ -659,11 +855,15 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                         }
  
                         pelagios_array = modal._container.querySelectorAll('.get-pelagios');
+                        
                         p_pelagios_array = modal._container.querySelectorAll('.p-get-pelagios');
+                        
                         for (let index = 0; index < pelagios_array.length; index++) {
+                            
                             pelagios_array[index].setAttribute('pelagios-geojson', '');
                             pelagios_array[index].innerHTML = '';
                             p_pelagios_array[index].style.display = 'none';
+                            
                         }
                         
                         get_pelagios = '';
@@ -688,7 +888,8 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                     coordinates = geojson.geometry.coordinates;
                                     
                                     lng = coordinates[0];
-                                    lat = coordinates[1];    
+                                    lat = coordinates[1];
+                                    
                                     marker = L.marker([lat, lng]);
 
                                     marker.feature = marker.toGeoJSON();
@@ -701,6 +902,7 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                     map.fire('pm:create', {layer: marker});
                                     
                                     map.setView([lat, lng], 11);
+                                    
                                 }
                                 
                                 else if (geojson.geometry.type === 'Polygon') {
@@ -722,34 +924,38 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                     
                                     map.fire('pm:create', {layer: polygon});
                                     
-                                    map.setView(polygon.getBounds().getCenter(), 7);
+                                    map.fitBounds(polygon.getBounds());
+                                    
                                 }
                                 
                                 else if (geojson.geometry.type === 'MultiPolygon') {
 
                                     coordinates = geojson.geometry.coordinates;
+                                    
                                     multi_id = self.make_id(20);
                                     
-                                    for (let coords in coordinates) {
-                                        for(let coord in coordinates[coords]) {
-                                            multipolygon_coord = L.GeoJSON.coordsToLatLngs(coordinates[coords][coord]);
+                                    for (let index_1 in coordinates) {
+                                        
+                                        for(let index_2 in coordinates[index_1]) {
+                                            
+                                            multipolygon_coord = L.GeoJSON.coordsToLatLngs(coordinates[index_1][index_2]);
+                                            
+                                            multipolygon = L.polygon(multipolygon_coord);
+
+                                            multipolygon.feature = multipolygon.toGeoJSON();
+                                            multipolygon.feature.special_tools = {};
+                                            tools_id = self.make_id(20);
+                                            multipolygon.feature.special_tools.tools_id = tools_id;
+                                            multipolygon.feature.special_tools.is_pelagios = true;
+                                            multipolygon.feature.special_tools.geoman_edition = false;
+                                            multipolygon.feature.special_tools.multi_id = multi_id;
+                                            multipolygon.feature.properties = geojson.properties;
+
+                                            map.fire('pm:create', {layer: multipolygon});
+                                        
                                         }
-                                        
-                                        
-                                    multipolygon = L.polygon(multipolygon_coord);
-                                    
-                                    multipolygon.feature = multipolygon.toGeoJSON();
-                                    multipolygon.feature.special_tools = {};
-                                    tools_id = self.make_id(20);
-                                    multipolygon.feature.special_tools.tools_id = tools_id;
-                                    multipolygon.feature.special_tools.is_pelagios = true;
-                                    multipolygon.feature.special_tools.geoman_edition = false;
-                                    multipolygon.feature.special_tools.multi_id = multi_id;
-                                    multipolygon.feature.properties = geojson.properties;
-                                    
-                                    map.fire('pm:create', {layer: multipolygon});
-                                    
-                                    map.setView(multipolygon.getBounds().getCenter(), 7);
+
+                                        map.fitBounds(multipolygon.getBounds());
                                     
                                     }
 
@@ -758,6 +964,7 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                 else if (geojson.geometry.type === 'LineString') {
                                     
                                     tools_id = self.make_id(20);
+                                    
                                     coordinates = geojson.geometry.coordinates;
                                     
                                     linestring_coord = L.GeoJSON.coordsToLatLngs(coordinates);
@@ -773,7 +980,7 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                     
                                     map.fire('pm:create', {layer: linestring});
                                     
-                                    map.setView(linestring.getBounds().getCenter(), 8);
+                                    map.fitBounds(linestring.getBounds());
 
                                 }
                                 
@@ -782,28 +989,29 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                     coordinates = geojson.geometry.coordinates;
                                     multi_id = self.make_id(20);
                                     
-                                    for (let coords in coordinates) {
+                                    for (let index in coordinates) {
 
-                                    multilinestring_coord = L.GeoJSON.coordsToLatLngs(coordinates[coords]);
-  
-                                    multilinestring = L.polygon(multilinestring_coord);
-                                    
-                                    multilinestring.feature = multilinestring.toGeoJSON();
-                                    multilinestring.feature.special_tools = {};
-                                    
-                                    tools_id = self.make_id(20);
-                                    
-                                    multilinestring.feature.special_tools.tools_id = tools_id;
-                                    multilinestring.feature.special_tools.is_pelagios = true;
-                                    multilinestring.feature.special_tools.geoman_edition = false;
-                                    multilinestring.feature.special_tools.multi_id = multi_id;
-                                    multilinestring.feature.properties = geojson.properties;
-                                    
-                                    map.fire('pm:create', {layer: multilinestring});
-                                    
-                                    map.setView(multilinestring.getBounds().getCenter(), 7);
-                                    
+                                        multilinestring_coord = L.GeoJSON.coordsToLatLngs(coordinates[index]);
+
+                                        multilinestring = L.polyline(multilinestring_coord);
+
+                                        multilinestring.feature = multilinestring.toGeoJSON();
+                                        multilinestring.feature.special_tools = {};
+
+                                        tools_id = self.make_id(20);
+
+                                        multilinestring.feature.special_tools.tools_id = tools_id;
+                                        multilinestring.feature.special_tools.is_pelagios = true;
+                                        multilinestring.feature.special_tools.geoman_edition = false;
+                                        multilinestring.feature.special_tools.multi_id = multi_id;
+                                        multilinestring.feature.properties = geojson.properties;
+
+                                        map.fire('pm:create', {layer: multilinestring});
+
                                     }
+                                    
+                                    map.fitBounds(multilinestring.getBounds());
+                                    
                                 }
                                
                             });
@@ -814,16 +1022,15 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                 });
                 /* PELAGIOS */
                 
-                
-                
                 /* https://imperium.ahlfeldt.se/ */ 
 
                 L.DomEvent.on(modal._container.querySelector('#search_imperium'), 'keyup', function() {
+                    
                     modal._container.querySelector('#btn_imperium').click();
+                
                 });
 
                 L.DomEvent.on(modal._container.querySelector('#btn_imperium'), 'click', function() {
-                    
 
                     select_imperium_type = modal._container.querySelector('#select_imperium_type');
                     type_site = select_imperium_type.options[select_imperium_type.selectedIndex].value;
@@ -840,35 +1047,45 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                     let url = route + '/leaflet.control.SpecialToolsRomanEmpire/ajax/imperium.ahlfeldt/imperium.ahlfeldt.php?';
              
                     fetch(url + new URLSearchParams({
+                        
                         query: query,
                         type_site: type_site,
                         type_name: type_name,
                         type_country: type_country
+                        
                     }))
                     .then(function(response) {
+                        
                         return response.json();
+                
                     })
                     .then(function(data){
 
-                        
                         imperium_array = modal._container.querySelectorAll('.get-imperium');
                         p_imperium_array = modal._container.querySelectorAll('.p-get-imperium');
+                        
                         for (let index = 0; index < imperium_array.length; index++) {
+                            
                             imperium_array[index].setAttribute('imperium-geojson', '');
                             imperium_array[index].innerHTML = '';
                             p_imperium_array[index].style.display = 'none';
+                            
                         }
                         
                         get_imperium = '';
                         
                         for (let index in data) {
+                            
                             get_imperium = modal._container.querySelectorAll('.get-imperium')[index];
                             p_imperium = modal._container.querySelectorAll('.p-get-imperium')[index];
+                            
                             L.DomEvent.off(get_imperium);
+                            
                             get_imperium.setAttribute('imperium-geojson', data[index].geojson);
                             get_imperium.innerHTML = data[index].value + ' - Tipo: ' + data[index].geometry_type;
-                            p_imperium.style.display = 'block';
                             
+                            p_imperium.style.display = 'block';
+
                             L.DomEvent.addListener(get_imperium, 'click', function(e){
                      
                                 geojson = JSON.parse(this.getAttribute('imperium-geojson'));
@@ -880,7 +1097,8 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                     coordinates = geojson.geometry.coordinates;
                                     
                                     lng = coordinates[0];
-                                    lat = coordinates[1];    
+                                    lat = coordinates[1];
+                                    
                                     marker = L.marker([lat, lng]);
 
                                     marker.feature = marker.toGeoJSON();
@@ -915,7 +1133,8 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                     
                                     map.fire('pm:create', {layer: polygon});
                                     
-                                    map.setView(polygon.getBounds().getCenter(), 7);
+                                    map.fitBounds(polygon.getBounds());
+                                    
                                 }
                                 
                                 else if (geojson.geometry.type === 'MultiPolygon') {
@@ -923,26 +1142,28 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                     coordinates = geojson.geometry.coordinates;
                                     multi_id = self.make_id(20);
                                     
-                                    for (let coords in coordinates) {
-                                        for(let coord in coordinates[coords]) {
-                                            multipolygon_coord = L.GeoJSON.coordsToLatLngs(coordinates[coords][coord]);
+                                    for (let index_1 in coordinates) {
+                                        
+                                        for(let index_2 in coordinates[index_1]) {
+                                            
+                                            multipolygon_coord = L.GeoJSON.coordsToLatLngs(coordinates[index_1][index_2]);
+                                        
+                                            multipolygon = L.polygon(multipolygon_coord);
+
+                                            multipolygon.feature = multipolygon.toGeoJSON();
+                                            multipolygon.feature.special_tools = {};
+                                            tools_id = self.make_id(20);
+                                            multipolygon.feature.special_tools.tools_id = tools_id;
+                                            multipolygon.feature.special_tools.is_imperium = true;
+                                            multipolygon.feature.special_tools.geoman_edition = false;
+                                            multipolygon.feature.special_tools.multi_id = multi_id;
+                                            multipolygon.feature.properties = geojson.properties;
+
+                                            map.fire('pm:create', {layer: multipolygon});
+                                        
                                         }
-                                        
-                                        
-                                    multipolygon = L.polygon(multipolygon_coord);
-                                    
-                                    multipolygon.feature = multipolygon.toGeoJSON();
-                                    multipolygon.feature.special_tools = {};
-                                    tools_id = self.make_id(20);
-                                    multipolygon.feature.special_tools.tools_id = tools_id;
-                                    multipolygon.feature.special_tools.is_imperium = true;
-                                    multipolygon.feature.special_tools.geoman_edition = false;
-                                    multipolygon.feature.special_tools.multi_id = multi_id;
-                                    multipolygon.feature.properties = geojson.properties;
-                                    
-                                    map.fire('pm:create', {layer: multipolygon});
-                                    
-                                    map.setView(multipolygon.getBounds().getCenter(), 7);
+
+                                        map.fitBounds(multipolygon.getBounds());
                                     
                                     }
 
@@ -965,49 +1186,51 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                     linestring.feature.properties = geojson.properties;
                                     
                                     map.fire('pm:create', {layer: linestring});
-                                    map.setView(linestring.getBounds().getCenter(), 8);
+                                    
+                                    map.fitBounds(linestring.getBounds());
 
                                 }
                                 
                                 else if (geojson.geometry.type === 'MultiLineString') {
                                     
                                     coordinates = geojson.geometry.coordinates;
+                                    
                                     multi_id = self.make_id(20);
                                     
-                                    for (let coords in coordinates) {
+                                    for (let index in coordinates) {
 
-                                    multilinestring_coord = L.GeoJSON.coordsToLatLngs(coordinates[coords]);
-  
-                                    multilinestring = L.polygon(multilinestring_coord);
-                                    
-                                    multilinestring.feature = multilinestring.toGeoJSON();
-                                    multilinestring.feature.special_tools = {};
-                                    tools_id = self.make_id(20);
-                                    multilinestring.feature.special_tools.tools_id = tools_id;
-                                    multilinestring.feature.special_tools.is_imperium = true;
-                                    multilinestring.feature.special_tools.geoman_edition = false;
-                                    multilinestring.feature.special_tools.multi_id = multi_id;
-                                    multilinestring.feature.properties = geojson.properties;
-                                    
-                                    map.fire('pm:create', {layer: multilinestring});
-                                    
-                                    map.setView(multilinestring.getBounds().getCenter(), 7);
+                                        multilinestring_coord = L.GeoJSON.coordsToLatLngs(coordinates[index]);
+
+                                        multilinestring = L.polyline(multilinestring_coord);
+
+                                        multilinestring.feature = multilinestring.toGeoJSON();
+                                        multilinestring.feature.special_tools = {};
+                                        tools_id = self.make_id(20);
+                                        multilinestring.feature.special_tools.tools_id = tools_id;
+                                        multilinestring.feature.special_tools.is_imperium = true;
+                                        multilinestring.feature.special_tools.geoman_edition = false;
+                                        multilinestring.feature.special_tools.multi_id = multi_id;
+                                        multilinestring.feature.properties = geojson.properties;
+
+                                        map.fire('pm:create', {layer: multilinestring});
                                     
                                     }
+                                    
+                                    map.fitBounds(multilinestring.getBounds());
+                                    
                                 }
-                               
                             });
                         }
-                       
                     });
-                    
                 });
                 /* https://imperium.ahlfeldt.se/ */  
                 },
               
                 onHide: function(){
+                    
                     L.DomUtil.addClass(controlDiv, 'special-tools-disable');
                     L.DomUtil.removeClass(controlDiv, 'special-tools-enable');
+                    
                 }
                 
             });
@@ -1019,7 +1242,9 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
 });
 
 L.control.specialToolsRomanEmpire = function (options) {
+    
     return new L.Control.SpecialToolsRomanEmpire(options);
+    
 };
 
 

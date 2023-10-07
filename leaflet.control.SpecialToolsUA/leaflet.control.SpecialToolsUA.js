@@ -256,37 +256,37 @@ L.Control.SpecialToolsUA = L.Control.extend({
                                                   
                                                     if (GEOJSON.geometry.type === "Polygon") {
 
-                                                        polygon = project_polygon(GEOJSON);
+                                                        polygon = projections.polygon(GEOJSON);
 
                                                         OBJECTS_GEOJSON.push(polygon);
 
                                                     } else if (GEOJSON.geometry.type === "MultiPolygon") {
                                                         
-                                                        multipolygon = project_multipolygon(GEOJSON);
+                                                        multipolygon = projections.multipolygon(GEOJSON);
 
                                                         OBJECTS_GEOJSON.push(multipolygon);
 
                                                     } else if (GEOJSON.geometry.type === "LineString") {
 
-                                                        linestring = project_linestring(GEOJSON);
+                                                        linestring = projections.linestring(GEOJSON);
 
                                                         OBJECTS_GEOJSON.push(linestring);
 
                                                     } else if (GEOJSON.geometry.type === "MultiLineString") {
 
-                                                        multilinestring = project_multilinestring(GEOJSON);
+                                                        multilinestring = projections.multilinestring(GEOJSON);
 
                                                         OBJECTS_GEOJSON.push(multilinestring);
 
                                                     } else if (GEOJSON.geometry.type === "Point") {
 
-                                                        point = project_point(GEOJSON);
+                                                        point = projections.point(GEOJSON);
 
                                                         OBJECTS_GEOJSON.push(point);
 
                                                     } else if (GEOJSON.geometry.type === "MultiPoint") {
 
-                                                        multipoint = project_multipoint(GEOJSON);
+                                                        multipoint = projections.multipoint(GEOJSON);
 
                                                         OBJECTS_GEOJSON.push(multipoint);
 
@@ -376,7 +376,7 @@ L.Control.SpecialToolsUA = L.Control.extend({
                     }, 1000);   
                 }
                 
-                e.preventDefault();
+                L.DomEvent.preventDefault(e);
                 
             });
              

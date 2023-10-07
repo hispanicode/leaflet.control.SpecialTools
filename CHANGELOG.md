@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
  
 ## [Unreleased]
 
+## [1.0.2-dev] - 2023-10-07
+
+### Added
+
+### Changed
+
+- Responsive design.
+- changed external-js/projections/projections.js to object.
+- Adapt georeferencing to the new projections object
+
+### Removed
+
 ## [1.0.1-dev] - 2023-10-03
 
 ### Added
@@ -17,7 +29,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Changes in README.md
 - leaflet.controlSpecialToolsLegend is available
-- leaflet.control.SpecialToolsGeolocation
+- leaflet.control.SpecialToolsGeolocation. Geolocation improvements.
+- leaflet.control.SpecialToolsCatastro and leaflet.control.SpecialToolsUA. When you exit, you return to the base map that was previously selected.
+- leaflet.control.SpecialToolsCatastro and leaflet.control.SpecialToolsUA. Response improvements.
 
 ### Removed
 

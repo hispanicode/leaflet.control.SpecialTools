@@ -85,12 +85,14 @@
 .special-tools-msg-error {
     
     color: #f30c36;
+    font-size: 1.4em;
     
 }
 
 .special-tools-msg-ok {
     
     color: #003992;
+    font-size: 1.4em;
     
 }
 
@@ -109,6 +111,12 @@
 .special-tools-btn-default {
     
     background-color: #33c4ff; border-radius: 2px; color: #fff;
+    
+}
+
+.special-tools-btn-primary {
+    
+    background-color: #702aa7; border-radius: 2px; color: #fff;
     
 }
 
@@ -146,6 +154,115 @@
     
 }
 
+.special-tools-div-20 {
+    
+    width: 20%;
+    float: left;
+    
+}
+
+.special-tools-div-25 {
+    
+    width: 25%;
+    float: left;
+    
+}
+
+.special-tools-div-33 {
+    
+    width: 33%;
+    float: left;
+    
+}
+
+.special-tools-div-40 {
+    
+    width: 40%;
+    float: left;
+    
+}
+
+.special-tools-div-50 {
+    
+    width: 50%;
+    float: left;
+    
+}
+
+.special-tools-div-60 {
+    
+    width: 60%;
+    float: left;
+    
+}
+
+.special-tools-div-66 {
+    
+    width: 66%;
+    float: left;
+    
+}
+
+.special-tools-div-75 {
+    
+    width: 75%;
+    float: left;
+    
+}
+
+@media only screen and (max-width: 768px) {
+    
+  /* For mobile phones: */
+  [class*="special-tools-div-"] {
+      
+    width: 100%;
+    
+  }
+  
+}
+
+.special-tools-input-25 {
+    
+    width: 25px !important;
+    
+}
+
+.special-tools-input-50 {
+    
+    width: 50px !important;
+    
+}
+
+.special-tools-input-100 {
+    
+    width: 100px !important;
+    
+}
+
+.special-tools-input-150 {
+    
+    width: 150px !important;
+    
+}
+
+.special-tools-input-200 {
+    
+    width: 200px !important;
+    
+}
+
+.special-tools-input-250 {
+    
+    width: 250px !important;
+    
+}
+
+.special-tools-input-300 {
+    
+    width: 300px !important;
+    
+}
+
 /* For desktop: */
 .w-col-1 {width: 8.33%; float: left;}
 .w-col-2 {width: 16.66%; float: left;}
@@ -164,7 +281,9 @@
     
   /* For mobile phones: */
   [class*="w-col-"] {
+      
     width: 100%;
+    
   }
   
 }

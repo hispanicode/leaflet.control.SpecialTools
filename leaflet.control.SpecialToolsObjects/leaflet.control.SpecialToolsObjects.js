@@ -539,5 +539,7 @@ L.Control.SpecialToolsObjects = L.Control.extend({
 });
 
 L.control.specialToolsObjects = function (options) {
+    
     return new L.Control.SpecialToolsObjects(options);
+    
 };

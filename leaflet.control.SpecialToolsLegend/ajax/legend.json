@@ -1,1 +1,1 @@
-{"legend":"Legend","enable":true,"columns":[{"name":"Column","elements":[{"name":"Element","color":"#000000"}]}]}
+{"legend":"Legend","enable":true,"columns":[{"name":"Column 1","elements":[{"name":"Element 1","color":"#26a269"},{"name":"Element 2","color":"#613583"}]},{"name":"Column 2","elements":[{"name":"Element 1","color":"#e5a50a"},{"name":"Element 2","color":"#12b0ee"}]}]}
