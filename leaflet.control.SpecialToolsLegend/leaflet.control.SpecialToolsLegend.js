@@ -166,7 +166,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
             content = content + special_tools._T("Leyenda: ", json_lang, lang) + "<input type='text' id='legend_name' class='special-tools-input-150' value='"+ legend_json.legend +"'>";
             content = content + "</div>";
             
-            content = content + "<div class='special-tools-container special-tools-div-33'>";
+            content = content + "<div class='special-tools-container special-tools-div-40'>";
             content = content + "<button type='button' id='btn_add_column' class='special-tools-btn-default'>" + special_tools._T("Nueva columna", json_lang, lang) + "</button>";
             content = content + " <button type='button' id='btn_save_legend' class='special-tools-btn-primary'>" + special_tools._T("Guardar", json_lang, lang) + "</button>";
             content = content + "</div>";
@@ -365,7 +365,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                         
                         
                         const div_container_2 = L.DomUtil.create('div');
-                        div_container_2.setAttribute('class', 'special-tools-container special-tools-div-33');
+                        div_container_2.setAttribute('class', 'special-tools-container special-tools-div-50');
                         
                         const btn_column = L.DomUtil.create('button');
                         btn_column.type = 'button';
@@ -702,7 +702,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                         
                         
                         const div_container_2 = L.DomUtil.create('div');
-                        div_container_2.setAttribute('class', 'special-tools-container special-tools-div-33');
+                        div_container_2.setAttribute('class', 'special-tools-container special-tools-div-50');
                         
                         const btn_column = L.DomUtil.create('button');
                         btn_column.type = 'button';
