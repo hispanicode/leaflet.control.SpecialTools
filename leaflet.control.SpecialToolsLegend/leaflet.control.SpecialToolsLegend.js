@@ -202,7 +202,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                     
                     modal._container.querySelector('.modal-content').style.backgroundColor = "rgba(255, 255, 255, 0.8)";
 
-                    legend_url = route + '/leaflet.control.SpecialToolsLegend/ajax/legend.json?' + self.make_id(100);
+                    legend_url = route + '/leaflet.control.SpecialToolsLegend/ajax/legend.json?' + special_tools.make_id(100);
                     
                     fetch(legend_url)
                     .then(function(response){
