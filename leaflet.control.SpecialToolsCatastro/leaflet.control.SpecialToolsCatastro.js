@@ -224,20 +224,6 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
 
                                 })
                                 .then(function(polygon_coord) {
-                                    
-                                    if (polygon_coord === '') {
-                                    
-                                        self.special_tools_msg.innerHTML = special_tools._T("No ha sido posible obtener la parcela. Inténtelo de nuevo.", json_lang, lang);
-
-                                        window.setTimeout(function(){
-
-                                            modal._container.querySelector('.close').click();
-
-                                        }, 3500);
-
-                                        return;
-                                        
-                                    }
 
                                     if (polygon_coord !== '') {
 
@@ -312,6 +298,7 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
                                         })
                                         .then(function(polygon_coord) {
                                             
+                                            
                                             if (polygon_coord === '') {
                                                 
                                                 self.special_tools_msg.innerHTML = special_tools._T("No ha sido posible obtener la parcela. Inténtelo de nuevo.", json_lang, lang);
@@ -325,6 +312,7 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
                                                 return;
                                                 
                                             }
+
 
                                             if (polygon_coord !== '') {
 
@@ -527,20 +515,6 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
 
                                     })
                                     .then(function(polygon_coord) {
-                                        
-                                        if (polygon_coord === '') {
-
-                                            self.special_tools_msg.innerHTML = special_tools._T("No ha sido posible obtener la parcela. Inténtelo de nuevo.", json_lang, lang);
-
-                                            window.setTimeout(function(){
-
-                                                modal._container.querySelector('.close').click();
-
-                                            }, 3500);
-
-                                            return;
-
-                                        }
                                         
                                         if (polygon_coord !== '') {
 
