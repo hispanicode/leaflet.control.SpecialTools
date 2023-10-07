@@ -214,9 +214,13 @@ L.Control.SpecialToolsObjects = L.Control.extend({
                                                             _layer.feature.special_tools.icon_display = 'block';
                                                             
                                                             if (_layer.hasOwnProperty('_shadow')) {
+                                                                
+                                                                if (_layer._shadow !== null) {
 
-                                                                _layer._shadow.style.display = 'block';
-                                                                _layer.feature.special_tools.shadow_display = 'block';
+                                                                    _layer._shadow.style.display = 'block';
+                                                                    _layer.feature.special_tools.shadow_display = 'block';
+                                                                
+                                                                }
 
                                                             }
                                                         }
@@ -273,8 +277,12 @@ L.Control.SpecialToolsObjects = L.Control.extend({
                                                                 _layer._icon.style.display = 'block';
 
                                                                 if (_layer.hasOwnProperty('_shadow')) {
+                                                                    
+                                                                    if (_layer._shadow !== null) {
 
-                                                                    _layer._shadow.style.display = 'block';
+                                                                        _layer._shadow.style.display = 'block';
+                                                                    
+                                                                    }
 
                                                                 }
                                                                 
@@ -296,9 +304,13 @@ L.Control.SpecialToolsObjects = L.Control.extend({
                                                     layer.feature.special_tools.icon_display = 'block';
                                                     
                                                     if (layer.hasOwnProperty('_shadow')) {
+                                                        
+                                                        if (layer._shadow !== null) {
                                                     
-                                                        layer._shadow.style.display = 'block';
-                                                        layer.feature.special_tools.shadow_display = 'block';
+                                                            layer._shadow.style.display = 'block';
+                                                            layer.feature.special_tools.shadow_display = 'block';
+                                                        
+                                                        }
                                                         
                                                     }
 
@@ -341,9 +353,13 @@ L.Control.SpecialToolsObjects = L.Control.extend({
                                                             _layer.feature.special_tools.icon_display = 'none';
 
                                                             if (_layer.hasOwnProperty('_shadow')) {
+                                                                
+                                                                if (_layer._shadow !== null) {
 
-                                                                _layer._shadow.style.display = 'none';
-                                                                _layer.feature.special_tools.shadow_display = 'none';
+                                                                    _layer._shadow.style.display = 'none';
+                                                                    _layer.feature.special_tools.shadow_display = 'none';
+                                                                
+                                                                }
 
                                                             }
                                                         
@@ -403,8 +419,12 @@ L.Control.SpecialToolsObjects = L.Control.extend({
                                                                 _layer._icon.style.display = 'none';
 
                                                                 if (_layer.hasOwnProperty('_shadow')) {
+                                                                    
+                                                                    if (_layer._shadow !== null) {
 
-                                                                    _layer._shadow.style.display = 'none';
+                                                                        _layer._shadow.style.display = 'none';
+                                                                    
+                                                                    }
 
                                                                 }
                                                                 
@@ -427,8 +447,12 @@ L.Control.SpecialToolsObjects = L.Control.extend({
                                                     
                                                     if (layer.hasOwnProperty('_shadow')) {
                                                         
-                                                        layer._shadow.style.display = 'none';
-                                                        layer.feature.special_tools.shadow_display = 'none';
+                                                        if (layer._shadow !== null) {
+                                                        
+                                                            layer._shadow.style.display = 'none';
+                                                            layer.feature.special_tools.shadow_display = 'none';
+                                                        
+                                                        }
                                                     
                                                     }
                                                     
