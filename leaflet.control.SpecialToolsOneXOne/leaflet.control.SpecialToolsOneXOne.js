@@ -87,6 +87,7 @@ L.Control.SpecialToolsOneXOne = L.Control.extend({
                                 rectangle.feature.special_tools = this.feature.special_tools;
                                 rectangle.feature.special_tools.oneXone_type = 'Rectangle';
                                 rectangle.feature.special_tools.tools_id = special_tools.make_id(20);
+                                rectangle.feature.special_tools.multi_id = multi_id;
 
                                 map.fire('pm:create', {layer: rectangle});
 

@@ -76,7 +76,7 @@ L.Control.SpecialToolsObjects = L.Control.extend({
 
                         } 
                         
-                        else if (layer.feature.special_tools.hasOwnProperty('multi_id')) {
+                        else if (layer.feature.special_tools.hasOwnProperty('multi_id') && !layer.hasOwnProperty('_icon')) {
                             
                             if (layer.feature.special_tools.hasOwnProperty('display')) {
 
