@@ -79,7 +79,15 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
 
                     wms = L.tileLayer.wms('http://ovc.catastro.meh.es/Cartografia/WMS/ServidorWMS.aspx?', {opacity: 1});
 
-                    component_geolocation.layer_control.addBaseLayer(wms, "Catastro");
+                    if (server) {
+                        
+                        component_geolocation.layer_control.addBaseLayer(wms, "Catastro");
+                    
+                    } else {
+                        /* client */
+                        wms.addTo(map);
+                        
+                    }
 
                     leaflet_control_layers_base = document.querySelector('.leaflet-control-layers-base');
                     
@@ -121,11 +129,19 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
                     
                     L.DomUtil.removeClass(controlDiv, 'special-tools-enable');
 
-                    component_geolocation.layer_control.removeLayer(wms);
+                    if (server) {
+                        
+                        component_geolocation.layer_control.removeLayer(wms);
                     
-                    wms.removeFrom(map);
+                        wms.removeFrom(map);
 
-                    document.querySelectorAll('.leaflet-control-layers-selector')[basemap_history].click();
+                        document.querySelectorAll('.leaflet-control-layers-selector')[basemap_history].click();
+                    
+                    } else {
+                        
+                        wms.removeFrom(map);
+                        
+                    }
                     
                     enable_catastro = false;
                     
@@ -149,7 +165,7 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
 
                     title: special_tools._T("Catastro", json_lang, lang),
                     content: content,
-                    template: ['<div class="modal-header"><h2>{title}</h2></div>',
+                    template: ['<div class="special-tools-h1">{title}</div>',
                       '<hr>',
                       '<div class="modal-body">{content}</div>',
                       '<div class="modal-footer">',
@@ -261,7 +277,16 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
 
                                             self.special_tools_msg.innerHTML = special_tools._T("Creando la parcela ...", json_lang, lang);
 
-                                            map.fire('pm:create', {layer: polygon});
+                                            if (server) {
+                                                
+                                                map.fire('pm:create', {layer: polygon});
+                                            
+                                            } else {
+                                                
+                                                polygon.addTo(map);
+                                                special_tools.set_info_console(polygon);
+                                                
+                                            }
                                             
                                             map.fitBounds(polygon.getBounds());
 
@@ -350,7 +375,16 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
 
                                                     self.special_tools_msg.innerHTML = special_tools._T("Creando la parcela ...", json_lang, lang);
 
-                                                    map.fire('pm:create', {layer: polygon});
+                                                    if (server) {
+
+                                                        map.fire('pm:create', {layer: polygon});
+
+                                                    } else {
+
+                                                        polygon.addTo(map);
+                                                        special_tools.set_info_console(polygon);
+
+                                                    }
                                                     
                                                     map.fitBounds(polygon.getBounds());
 
@@ -440,7 +474,7 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
 
                         title: special_tools._T("Catastro", json_lang, lang),
                         content: content,
-                        template: ['<div class="modal-header"><h2>{title}</h2></div>',
+                        template: ['<div class="modal-header"><div class="special-tools-h1">{title}</div></div>',
                           '<hr>',
                           '<div class="modal-body">{content}</div>',
                           '<div class="modal-footer">',
@@ -561,7 +595,16 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
 
                                                  self.special_tools_msg.innerHTML = special_tools._T("Creando la parcela ...", json_lang, lang);
 
-                                                 map.fire('pm:create', {layer: polygon});
+                                                if (server) {
+
+                                                    map.fire('pm:create', {layer: polygon});
+
+                                                } else {
+
+                                                    polygon.addTo(map);
+                                                    special_tools.set_info_console(polygon);
+
+                                                }
                                                  
                                                  map.fitBounds(polygon.getBounds());
 
@@ -646,7 +689,16 @@ L.Control.SpecialToolsCatastro = L.Control.extend({
 
                                                         self.special_tools_msg.innerHTML = special_tools._T("Creando la parcela ...", json_lang, lang);
 
-                                                        map.fire('pm:create', {layer: polygon});
+                                                        if (server) {
+
+                                                            map.fire('pm:create', {layer: polygon});
+
+                                                        } else {
+
+                                                            polygon.addTo(map);
+                                                            special_tools.set_info_console(polygon);
+
+                                                        }
                                                         
                                                         map.fitBounds(polygon.getBounds());
 

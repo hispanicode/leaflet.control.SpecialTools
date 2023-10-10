@@ -144,7 +144,7 @@ L.Control.SpecialTools = L.Control.extend({
                 }
                 
             }
-            
+   
             self.set_info_console(e.layer);
 
         });
@@ -527,7 +527,9 @@ L.Control.SpecialTools = L.Control.extend({
                     
                     geometry_type = this.feature.geometry.type;
 
-                    let content = "<p>" + geometry_type + "</p>";
+                    content = "<div class='special-tools-container'>";
+                    content = content + geometry_type;
+                    content = content + "</div>";
 
                     if (!self.is_geoman_edition_mode(this)) {
 
@@ -541,13 +543,20 @@ L.Control.SpecialTools = L.Control.extend({
 
                     if (self.is_oneXone(this)) {
 
-                        content = content + "<p>" + self._T("Punto de referencia de polígono de 1 m²", self.json_lang, self.lang) + "</p>";
-
+                        content = content + "<div class='special-tools-container'>";
+                        content = content + self._T("Punto de referencia de polígono de 1 m²", self.json_lang, self.lang);
+                        content = content + "</div>";
+                        
                     }
 
-                    content = content + "<p>" + self._T("Coordenadas:", self.json_lang, self.lang) + "</p>";
-                    content = content + "<p>" + this._latlng.lat + " " + this._latlng.lng + "</p>";
-
+                    content = content + "<div class='special-tools-container'>";
+                    content = content + self._T("Coordenadas:", self.json_lang, self.lang);
+                    content = content + "</div>";
+                    
+                    content = content + "<div class='special-tools-container'>";
+                    content = content + this._latlng.lat + " " + this._latlng.lng;
+                    content = content + "</div>";
+                    
                     let properties = this.feature.properties;
 
                     for (let prop in properties) {
@@ -560,11 +569,15 @@ L.Control.SpecialTools = L.Control.extend({
                         ){
                             if (self.is_url(properties[prop])) {
 
-                                content = content + "<p><a href='" + properties[prop] + "' target='_blank'>" + self._T("Más información", self.json_lang, self.lang) + "</a></p>";
-
+                                content = content + "<div class='special-tools-container'>";
+                                content = content + "<a href='" + properties[prop] + "' target='_blank'>" + self._T("Más información", self.json_lang, self.lang) + "</a>";
+                                content = content + "</div>";
+                                
                             } else {
 
-                                content = content + "<p>" + prop + ": " + properties[prop] + "</p>";
+                                content = content + "<div class='special-tools-container'>";
+                                content = content + prop + ": " + properties[prop];
+                                content = content + "</div>";
 
                             }
                         }
@@ -580,11 +593,14 @@ L.Control.SpecialTools = L.Control.extend({
 
                     }
 
+                    content = content + "<div class='special-tools-container'>";
                     content = content + '<div class="leaflet-control-geoman-edition"><input type="checkbox" id="leaflet_control_geoman_edition" tools_id="'+tools_id+'" '+checked_geoman+'><span>' + self._T("  Edición Geoman activa", self.json_lang, self.lang) + '</span></div>';
+                    content = content + "</div>";
                     
-                    content = content + "<p><button id='btn_marker_style' class='special-tools-btn-default' style='font-size: 9px;'>" + self._T("Editar estilos", self.json_lang, self.lang) + "</button>";
-                    
-                    content = content + "<button id='btn_show_modal_vector_download' class='special-tools-btn-default' style='font-size: 9px;'>" + self._T("Descargar", self.json_lang, self.lang) + "</button></p>";
+                    content = content + "<div class='special-tools-container'>";
+                    content = content + "<button id='btn_marker_style' class='special-tools-btn-default' style='font-size: 9px;'>" + self._T("Editar estilos", self.json_lang, self.lang) + "</button>";
+                    content = content + " <button id='btn_show_modal_vector_download' class='special-tools-btn-default' style='font-size: 9px;'>" + self._T("Descargar", self.json_lang, self.lang) + "</button>";
+                    content = content + "</div>";
 
                     self.special_tools_info_console.innerHTML = content;
                     
@@ -707,8 +723,10 @@ L.Control.SpecialTools = L.Control.extend({
                 layer.on('click pm:edit', function() {
 
                     geometry_type = this.feature.geometry.type;
-
-                    let content = "<p>" + geometry_type + "</p>";
+                    
+                    content = "<div class='special-tools-container'>";
+                    content = content + geometry_type;
+                    content = content + "</div>";
 
                     if (!self.is_geoman_edition_mode(this)) {
                         
@@ -738,14 +756,23 @@ L.Control.SpecialTools = L.Control.extend({
                         }
                     }
 
-                    content = content + "<p>" + self._T("Coordenadas del centro:", self.json_lang, self.lang) + "</p>";
-                    content = content + "<p>" + this._latlng.lat + " " + this._latlng.lng + "</p>";
+                    content = content + "<div class='special-tools-container'>";
+                    content = content + self._T("Coordenadas del centro:", self.json_lang, self.lang);
+                    content = content + "</div>";
+                    
+                    content = content + "<div class='special-tools-container'>";
+                    content = content + this._latlng.lat + " " + this._latlng.lng;
+                    content = content + "</div>";
 
                     let radius = this.getRadius().toFixed(2);
-                    content = content + "<p>" + self._T("Radio: ", self.json_lang, self.lang) + radius + " m.</p>";
+                    content = content + "<div class='special-tools-container'>";
+                    content = content + self._T("Radio: ", self.json_lang, self.lang) + radius + " m.";
+                    content = content + "</div>";
 
                     let area = (2 * Math.PI * radius).toFixed(2);
-                    content = content + "<p>" + self._T("Área: ", self.json_lang, self.lang) + area + " m.</p>";
+                    content = content + "<div class='special-tools-container'>";
+                    content = content + self._T("Área: ", self.json_lang, self.lang) + area + " m.";
+                    content = content + "</div>";
 
                     let properties = this.feature.properties;
 
@@ -759,11 +786,15 @@ L.Control.SpecialTools = L.Control.extend({
                         ){
                             if (self.is_url(properties[prop])) {
 
-                                content = content + "<p><a href='" + properties[prop] + "' target='_blank'>" + self._T("Más información", self.json_lang, self.lang) + "</a></p>";
-
+                                content = content + "<div class='special-tools-container'>";
+                                content = content + "<a href='" + properties[prop] + "' target='_blank'>" + self._T("Más información", self.json_lang, self.lang) + "</a>";
+                                content = content + "</div>";
+                                
                             } else {
-
-                                content = content + "<p>" + prop + ": " + properties[prop] + "</p>";
+                                
+                                content = content + "<div class='special-tools-container'>";
+                                content = content + prop + ": " + properties[prop];
+                                content = content + "</div>";
 
                             }
                         }
@@ -786,15 +817,30 @@ L.Control.SpecialTools = L.Control.extend({
 
                     }
                     
+                    content = content + "<div class='special-tools-container'>";
                     content = content + '<div class="leaflet-control-centroide"><input type="checkbox" id="leaflet_control_centroide" tools_id="'+tools_id+'" '+checked_centroid+'><span>' + self._T(" Centroide", self.json_lang, self.lang) + '</span></div>';
+                    content = content + "</div>";
+                    
+                    content = content + "<div class='special-tools-container'>";
                     content = content + '<div class="leaflet-control-geoman-edition"><input type="checkbox" id="leaflet_control_geoman_edition" tools_id="'+tools_id+'" '+checked_geoman+'><span>' + self._T("  Edición Geoman activa", self.json_lang, self.lang) + '</span></div>';
-                     
-                    //bringToFront - bringToBack
-                    content = content + "<h4>" + self._T("Jerarquía del objeto:", self.json_lang, self.lang) + "</h4>";
-                    content = content + "<div><input type='checkbox' id='leaflet_control_bringtofront' tools-id='" + tools_id + "' " + checked_bringtofront + "><span>" + self._T(" Delante", self.json_lang, self.lang) + "</span></div>";
-                    content = content + "<div><input type='checkbox' id='leaflet_control_bringtoback' tools-id='" + tools_id + "' " + checked_bringtoback + "><span>" + self._T(" Detrás", self.json_lang, self.lang) + "</span></div>"; 
-                    content = content + "<p><button id='btn_circle_style' class='special-tools-btn-default' style='font-size: 9px;'>" + self._T("Editar estilos", self.json_lang, self.lang) + "</button>";
-                    content = content + "<button id='btn_show_modal_vector_download' class='special-tools-btn-default' style='font-size: 9px;'>" + self._T("Descargar", self.json_lang, self.lang) + "</button></p>";
+                    content = content + "</div>";
+
+                    content = content + "<div class='special-tools-container'>";
+                    content = content + self._T("Jerarquía del objeto:", self.json_lang, self.lang);
+                    content = content + "</div>";
+                    
+                    content = content + "<div class='special-tools-container'>";
+                    content = content + "<input type='checkbox' id='leaflet_control_bringtofront' tools-id='" + tools_id + "' " + checked_bringtofront + "><span>" + self._T(" Delante", self.json_lang, self.lang) + "</span>";
+                    content = content + "</div>";
+                    
+                    content = content + "<div class='special-tools-container'>";
+                    content = content + "<input type='checkbox' id='leaflet_control_bringtoback' tools-id='" + tools_id + "' " + checked_bringtoback + "><span>" + self._T(" Detrás", self.json_lang, self.lang) + "</span>"; 
+                    content = content + "</div>";
+                    
+                    content = content + "<div class='special-tools-container'>";
+                    content = content + "<button id='btn_circle_style' class='special-tools-btn-default' style='font-size: 9px;'>" + self._T("Editar estilos", self.json_lang, self.lang) + "</button>";
+                    content = content + " <button id='btn_show_modal_vector_download' class='special-tools-btn-default' style='font-size: 9px;'>" + self._T("Descargar", self.json_lang, self.lang) + "</button>";
+                    content = content + "</div>";
                      
                     self.special_tools_info_console.innerHTML = content;
                     
@@ -808,20 +854,31 @@ L.Control.SpecialTools = L.Control.extend({
 
                             centroid = layer.getBounds().getCenter();
                             
-                            const circle = L.marker(centroid);
+                            const marker = L.marker(centroid);
 
-                            circle.feature = circle.toGeoJSON();
-                            circle.feature.special_tools = {};
-                            circle.feature.special_tools.is_centroid = true;
+                            marker.feature = marker.toGeoJSON();
+                            marker.feature.special_tools = {};
+                            marker.feature.special_tools.is_centroid = true;
 
                             const new_tools_id = self.make_id(20);
 
-                            circle.feature.special_tools.tools_id = new_tools_id;
+                            marker.feature.special_tools.tools_id = new_tools_id;
 
                             _this.feature.special_tools.has_centroid = true;
                             _this.feature.special_tools.centroid_tools_id = new_tools_id;
 
-                            self.map.fire('pm:create', {layer: circle});
+                            if (self.server) {
+                                
+                                self.map.fire('pm:create', {layer: marker});
+                                
+                            } else {
+                                
+                                marker.addTo(self.map);
+                                
+                                self.set_info_console(marker);
+                                
+                            }
+                            
 
                         } else {
 
@@ -992,7 +1049,9 @@ L.Control.SpecialTools = L.Control.extend({
 
                     geometry_type = this.feature.geometry.type;
 
-                    let content = "<p>" + geometry_type + "</p>";
+                    content = "<div class='special-tools-container'>";
+                    content = content + geometry_type;
+                    content = content + "</div>";
 
                     if (!self.is_geoman_edition_mode(this)) {
                         
@@ -1025,7 +1084,9 @@ L.Control.SpecialTools = L.Control.extend({
 
                     let length = turf.length(layer.toGeoJSON());
 
-                    content = content + "<p>" + self._T("Distancia: ", self.json_lang, self.lang) + length.toFixed(2) + " km</p>";
+                    content = content + "<div class='special-tools-container'>";
+                    content = content + self._T("Distancia: ", self.json_lang, self.lang) + length.toFixed(2) + " km";
+                    content = content + "</div>";
 
                     let properties = this.feature.properties;
 
@@ -1038,12 +1099,16 @@ L.Control.SpecialTools = L.Control.extend({
                             && typeof properties[prop] !== 'object'
                         ){
                             if (self.is_url(properties[prop])) {
-
-                                content = content + "<p><a href='" + properties[prop] + "' target='_blank'>" + self._T("Más información", self.json_lang, self.lang) + "</a></p>";
+                                
+                                content = content + "<div class='special-tools-container'>";
+                                content = content + "<a href='" + properties[prop] + "' target='_blank'>" + self._T("Más información", self.json_lang, self.lang) + "</a>";
+                                content = content + "</div>";
 
                             } else {
-
-                                content = content + "<p>" + prop + ": " + properties[prop] + "</p>";
+                                
+                                content = content + "<div class='special-tools-container'>";
+                                content = content + prop + ": " + properties[prop];
+                                content = content + "</div>";
 
                             }
                         }
@@ -1060,14 +1125,26 @@ L.Control.SpecialTools = L.Control.extend({
 
                     }
                     
+                    content = content + "<div class='special-tools-container'>";
                     content = content + '<div class="leaflet-control-geoman-edition"><input type="checkbox" id="leaflet_control_geoman_edition" tools_id="'+tools_id+'" '+checked_geoman+'><span>' + self._T("  Edición Geoman activa", self.json_lang, self.lang) + '</span></div>';
+                    content = content + "</div>";
 
-                    //bringToFront - bringToBack
-                    content = content + "<h4>" + self._T("Jerarquía del objeto:", self.json_lang, self.lang) + "</h4>";
-                    content = content + "<div><input type='checkbox' id='leaflet_control_bringtofront' tools-id='" + tools_id + "' " + checked_bringtofront + "><span>" + self._T(" Delante", self.json_lang, self.lang) + "</span></div>";
-                    content = content + "<div><input type='checkbox' id='leaflet_control_bringtoback' tools-id='" + tools_id + "' " + checked_bringtoback + "><span>" + self._T(" Detrás", self.json_lang, self.lang) + "</span></div>";
-                    content = content + "<p><button id='btn_linestring_style' class='special-tools-btn-default' style='font-size: 9px;'>" + self._T("Editar estilos", self.json_lang, self.lang) + "</button>";
-                    content = content + "<button id='btn_show_modal_vector_download' class='special-tools-btn-default' style='font-size: 9px;'>" + self._T("Descargar", self.json_lang, self.lang) + "</button></p>";
+                    content = content + "<div class='special-tools-container'>";
+                    content = content + self._T("Jerarquía del objeto:", self.json_lang, self.lang);
+                    content = content + "</div>";
+                    
+                    content = content + "<div class='special-tools-container'>";
+                    content = content + "<input type='checkbox' id='leaflet_control_bringtofront' tools-id='" + tools_id + "' " + checked_bringtofront + "><span>" + self._T(" Delante", self.json_lang, self.lang) + "</span>";
+                    content = content + "</div>";
+                    
+                    content = content + "<div class='special-tools-container'>";
+                    content = content + "<input type='checkbox' id='leaflet_control_bringtoback' tools-id='" + tools_id + "' " + checked_bringtoback + "><span>" + self._T(" Detrás", self.json_lang, self.lang) + "</span>";
+                    content = content + "</div>";
+                    
+                    content = content + "<div class='special-tools-container'>";
+                    content = content + "<button id='btn_linestring_style' class='special-tools-btn-default' style='font-size: 9px;'>" + self._T("Editar estilos", self.json_lang, self.lang) + "</button>";
+                    content = content + " <button id='btn_show_modal_vector_download' class='special-tools-btn-default' style='font-size: 9px;'>" + self._T("Descargar", self.json_lang, self.lang) + "</button>";
+                    content = content + "</div>";
 
                     self.special_tools_info_console.innerHTML = content;
                     
@@ -1366,12 +1443,29 @@ L.Control.SpecialTools = L.Control.extend({
                             
                         }
 
-                        content = "<p>" + self._T("Imagen", self.json_lang, self.lang) + "</p>";
-                        content = content + "<p>url: <a href='?t="+stored_image_data_item.section_tipo+"&section_id=" +stored_image_data_item.section_id  + "&component_tipo="+stored_image_data_item.component_tipo+"' target='_blank'>" + self._T("Ver imagen", self.json_lang, self.lang) + "</a></p>";
-                        content = content + "<p><input type='checkbox' id='special_tools_image_edition' image-id='"+image_id+"' "+is_interactive+">" + self._T(" Activar edición", self.json_lang, self.lang) + "</p>";
-                        content = content + "<p>" + self._T("Opacidad: ", self.json_lang, self.lang) + "<input id='special_tools_image_opacity' class='special-tools-input-range' image-id='"+image_id+"' type='range' min='0' max='1' step='0.1' value='"+layer.feature.special_tools.imageOpacity+"'></p>";
-                        content = content + "<p>zIndex: <input id='special_tools_image_zIndex' image-id='"+image_id+"' class='special-tools-input-range' type='range' min='0' max='1000' step='1' value='"+layer.feature.special_tools.image_zIndex+"'></p>";
-                        content = content + "<br><p><button id='btn_show_modal_raster_download' class='special-tools-btn-default' style='font-size: 9px;'>" + self._T("Descargar", self.json_lang, self.lang) + "</button></p>";
+                        content = "<div class='special-tools-container'>";
+                        content = content + self._T("Imagen", self.json_lang, self.lang);
+                        content = content + "</div>";
+                        
+                        content = content + "<div class='special-tools-container'>";
+                        content = content + "url: <a href='?t="+stored_image_data_item.section_tipo+"&section_id=" +stored_image_data_item.section_id  + "&component_tipo="+stored_image_data_item.component_tipo+"' target='_blank'>" + self._T("Ver imagen", self.json_lang, self.lang) + "</a>";
+                        content = content + "</div>";
+                        
+                        content = content + "<div class='special-tools-container'>";
+                        content = content + "<input type='checkbox' id='special_tools_image_edition' image-id='"+image_id+"' "+is_interactive+">" + self._T(" Activar edición", self.json_lang, self.lang);
+                        content = content + "</div>";
+                        
+                        content = content + "<div class='special-tools-container'>";
+                        content = content + self._T("Opacidad: ", self.json_lang, self.lang) + "<input id='special_tools_image_opacity' class='special-tools-input-range' image-id='"+image_id+"' type='range' min='0' max='1' step='0.1' value='"+layer.feature.special_tools.imageOpacity+"'>";
+                        content = content + "</div>";
+                        
+                        content = content + "<div class='special-tools-container'>";
+                        content = content + "zIndex: <input id='special_tools_image_zIndex' image-id='"+image_id+"' class='special-tools-input-range' type='range' min='0' max='1000' step='1' value='"+layer.feature.special_tools.image_zIndex+"'>";
+                        content = content + "</div>";
+                        
+                        content = content + "<div class='special-tools-container'>";
+                        content = content + "<button id='btn_show_modal_raster_download' class='special-tools-btn-default' style='font-size: 9px;'>" + self._T("Descargar", self.json_lang, self.lang) + "</button>";
+                        content = content + "</div>";
 
                         self.special_tools_info_console.innerHTML = content;
 
@@ -1512,7 +1606,9 @@ L.Control.SpecialTools = L.Control.extend({
 
                         geometry_type = this.feature.geometry.type;
 
-                        let content = "<p>" + geometry_type + "</p>";
+                        content = "<div class='special-tools-container'>";
+                        content = content + geometry_type;
+                        content = content + "</div>";
 
                         if (!self.is_geoman_edition_mode(this)) {
                             
@@ -1544,15 +1640,18 @@ L.Control.SpecialTools = L.Control.extend({
                         }
 
                         if (self.is_oneXone(this)) {
-
-                            content = content + "<p>" + self._T("Área: 1 m²", self.json_lang, self.lang) + "</p>";
-
+                            
+                            content = content + "<div class='special-tools-container'>";
+                            content = content + self._T("Área: 1 m²", self.json_lang, self.lang);
+                            content = content + "</div>";
+                            
                         } else {
 
                             let area_meters = turf.area(this.toGeoJSON());
                             area = self.get_area_square_meters(area_meters);
-                            content = content + "<p>" + self._T("Área: ", self.json_lang, self.lang) + area + "</p>";
-
+                            content = "<div class='special-tools-container'>";
+                            content = content + self._T("Área: ", self.json_lang, self.lang) + area;
+                            content = content + "</div>";
                         }
 
                         let properties = this.feature.properties;
@@ -1567,12 +1666,16 @@ L.Control.SpecialTools = L.Control.extend({
                             ){
                                 if (self.is_url(properties[prop])) {
 
-                                    content = content + "<p><a href='" + properties[prop] + "' target='_blank'>" + self._T("Más información", self.json_lang, self.lang) + "</a></p>";
-
+                                    content = content + "<div class='special-tools-container'>";
+                                    content = content + "<a href='" + properties[prop] + "' target='_blank'>" + self._T("Más información", self.json_lang, self.lang) + "</a>";
+                                    content = content + "</div>";
+                                    
                                 } else {
 
-                                    content = content + "<p>" + prop + ": " + properties[prop] + "</p>";
-
+                                    content = content + "<div class='special-tools-container'>";
+                                    content = content + prop + ": " + properties[prop];
+                                    content = content + "</div>";
+                                    
                                 }
                             }
 
@@ -1581,6 +1684,7 @@ L.Control.SpecialTools = L.Control.extend({
                         let tools_id = self.get_tools_id_by_layer(this);
                         
                         let checked_centroid = '';
+                        
                         if (self.has_centroid(this)) {
 
                             checked_centroid = 'checked';
@@ -1604,16 +1708,38 @@ L.Control.SpecialTools = L.Control.extend({
 
                         }
                         
-                        if (!self.is_oneXone(this)) content = content + '<div class="leaflet-control-centroide"><input type="checkbox" id="leaflet_control_centroide" tools_id="'+tools_id+'" '+checked_centroid+'><span>' + self._T(" Centroide", self.json_lang, self.lang) + '</span></div>';
-                        if (!self.is_oneXone(this)) content = content + '<div class="leaflet-control-incertidumbre"><input type="checkbox" id="leaflet_control_incertidumbre" tools_id="'+tools_id+'" '+checked_incertidumbre+'><span>' + self._T(" Incertidumbre", self.json_lang, self.lang) + '</span><div id="leaflet_msg_incertidumbre" style="color: yellow;">'+incertidumbre+'</div></div>';
-                        if (!self.is_oneXone(this)) content = content + '<div class="leaflet-control-geoman-edition"><input type="checkbox" id="leaflet_control_geoman_edition" tools_id="'+tools_id+'" '+checked_geoman+'><span>' + self._T("  Edición Geoman activa", self.json_lang, self.lang) + '</span></div>';
+                        if (!self.is_oneXone(this)) { 
+                            
+                            content = content + "<div class='special-tools-container'>";
+                            content = content + '<div class="leaflet-control-centroide"><input type="checkbox" id="leaflet_control_centroide" tools_id="'+tools_id+'" '+checked_centroid+'><span>' + self._T(" Centroide", self.json_lang, self.lang) + '</span></div>';
+                            content = content + "</div>";
 
-                        //bringToFront - bringToBack
-                        content = content + "<h4>" + self._T("Jerarquía del objeto:", self.json_lang, self.lang) + "</h4>";
-                        content = content + "<div><input type='checkbox' id='leaflet_control_bringtofront' tools-id='" + tools_id + "' " + checked_bringtofront + "><span>" + self._T(" Delante", self.json_lang, self.lang) + "</span></div>";
-                        content = content + "<div><input type='checkbox' id='leaflet_control_bringtoback' tools-id='" + tools_id + "' " + checked_bringtoback + "><span>" + self._T(" Detrás", self.json_lang, self.lang) + "</span></div>"; 
-                        content = content + "<p><button id='btn_polygon_style' class='special-tools-btn-default' style='font-size: 9px;'>" + self._T("Editar estilos", self.json_lang, self.lang) + "</button>";
-                        content = content + " <button id='btn_show_modal_vector_download' class='special-tools-btn-default' style='font-size: 9px;'>" + self._T("Descargar", self.json_lang, self.lang) + "</button></p>";
+                            content = content + "<div class='special-tools-container'>";
+                            content = content + '<div class="leaflet-control-incertidumbre"><input type="checkbox" id="leaflet_control_incertidumbre" tools_id="'+tools_id+'" '+checked_incertidumbre+'><span>' + self._T(" Incertidumbre", self.json_lang, self.lang) + '</span><div id="leaflet_msg_incertidumbre" style="color: yellow;">'+incertidumbre+'</div></div>';
+                            content = content + "</div>";
+
+                            content = content + "<div class='special-tools-container'>";
+                            content = content + '<div class="leaflet-control-geoman-edition"><input type="checkbox" id="leaflet_control_geoman_edition" tools_id="'+tools_id+'" '+checked_geoman+'><span>' + self._T("  Edición Geoman activa", self.json_lang, self.lang) + '</span></div>';
+                            content = content + "</div>";
+                            
+                        } 
+
+                        content = content + "<div class='special-tools-container'>";
+                        content = content + self._T("Jerarquía del objeto:", self.json_lang, self.lang);
+                        content = content + "</div>";
+                        
+                        content = content + "<div class='special-tools-container'>";
+                        content = content + "<input type='checkbox' id='leaflet_control_bringtofront' tools-id='" + tools_id + "' " + checked_bringtofront + "><span>" + self._T(" Delante", self.json_lang, self.lang) + "</span>";
+                        content = content + "</div>";
+                        
+                        content = content + "<div class='special-tools-container'>";
+                        content = content + "<input type='checkbox' id='leaflet_control_bringtoback' tools-id='" + tools_id + "' " + checked_bringtoback + "><span>" + self._T(" Detrás", self.json_lang, self.lang) + "</span>"; 
+                        content = content + "</div>";
+                        
+                        content = content + "<div class='special-tools-container'>";
+                        content = content + "<button id='btn_polygon_style' class='special-tools-btn-default' style='font-size: 9px;'>" + self._T("Editar estilos", self.json_lang, self.lang) + "</button>";
+                        content = content + " <button id='btn_show_modal_vector_download' class='special-tools-btn-default' style='font-size: 9px;'>" + self._T("Descargar", self.json_lang, self.lang) + "</button>";
+                        content = content + "</div>";
                         
                         self.special_tools_info_console.innerHTML = content;
                         
@@ -1635,24 +1761,39 @@ L.Control.SpecialTools = L.Control.extend({
                                     const coordinates = {'lng': centroid_latlng.geometry.coordinates[1], 'lat': centroid_latlng.geometry.coordinates[0]};
 
                                     if (!self.point_in_polygon(coordinates, _this)) {
+                                        
                                         //Centro de la masa para polígonos donde su centro queda fuera de la misma
                                         centroid_latlng = turf.pointOnFeature(polygon);
+                                        
                                     }
 
-                                    const circle = L.marker([centroid_latlng.geometry.coordinates[1], centroid_latlng.geometry.coordinates[0]]);
-
-                                    circle.feature = circle.toGeoJSON();
-                                    circle.feature.special_tools = {};
-                                    circle.feature.special_tools.is_centroid = true;
+                                    const marker = L.marker([centroid_latlng.geometry.coordinates[1], centroid_latlng.geometry.coordinates[0]]);
+                                    
+                                    marker.feature = marker.toGeoJSON();
+                                    marker.feature.special_tools = {};
+                                    marker.feature.special_tools.is_centroid = true;
 
                                     const new_tools_id = self.make_id(20);
 
-                                    circle.feature.special_tools.tools_id = new_tools_id;
+                                    marker.feature.special_tools.tools_id = new_tools_id;
 
                                     _this.feature.special_tools.has_centroid = true;
                                     _this.feature.special_tools.centroid_tools_id = new_tools_id;
-
-                                    self.map.fire('pm:create', {layer: circle});
+                                    
+                                    if (self.server) {
+                                        
+                                    self.map.fire('pm:create', {layer: marker});
+                                    
+                                    } else {
+                                        
+                                        marker.addTo(self.map);
+                                        
+                                        self.set_info_console(marker);
+                                        
+                                    }
+                                    
+                                    console.log(centroid_latlng);
+                                    
 
                                 } else {
 
@@ -1666,6 +1807,7 @@ L.Control.SpecialTools = L.Control.extend({
                                         _this.feature.special_tools.centroid_tools_id = null;
 
                                         centroid.pm.remove();
+                                        
                                     }
                                 }
 
@@ -2182,22 +2324,32 @@ L.Control.SpecialTools = L.Control.extend({
         
         L.DomEvent.on(btn_show_modal_vector_download, 'click', function() {
 
-            content = "<p>" + self._T("Exportar como: ", self.json_lang, self.lang);
-            content = content + "<select id='vector_export'>";
+            content = "<div class='special-tools-container special-tools-div-33'>";
+            content = content + self._T("Exportar como: ", self.json_lang, self.lang);
+            content = content + "<select class='special-tools-select' id='vector_export'>";
             content = content + "<option value='geojson'>GeoJSON</option>";
             content = content + "<option value='shp'>ESRI Shapefile</option>";
             content = content + "<option value='kml'>KML</option>";
             content = content + "</select>";
-            content = content + self._T(" Nombre: ", self.json_lang, self.lang) + "<input type='text' id='vector_name' value='" + self._T("archivo", self.json_lang, self.lang) + "' style='width: 110px;'>";
-            content = content + " <img id='vector_export_button' src='"+self.route+"/img/download.png' style='cursor: pointer; width: 24px; height; 24px; position: relative; top: 8px;' title='Download'>";
-            content = content + "<br><div id='while_download' style='line-height: 36px; background-color: #fff; font-weight: bold; padding-left: 3px; padding-right: 3px; margin-top: 5px;'></div>";
+            content = content + "</div>";
+            
+            content = content + "<div class='special-tools-container special-tools-div-66'>";
+            content = content + self._T(" Nombre: ", self.json_lang, self.lang) + "<input type='text' id='vector_name' class='special-tools-input-150' value='" + self._T("archivo", self.json_lang, self.lang) + "'>";
+            content = content + "<img id='vector_export_button' src='"+self.route+"/img/download.png' style='cursor: pointer; width: 24px; height; 24px;' title='Download'>";
+            content = content + "</div>";
+            
+            content = content + "<div style='clear: left;'></div>";
+            
+            content = content + "<div class='special-tools-container'>";
+            content = content + "<div id='while_download' class='special-tools-while-download'></div>";
+            content = content + "</div>";
 
 
             self.map.fire('modal', {
 
                 title: self._T("Descargar objeto vectorial", self.json_lang, self.lang),
                 content: content,
-                template: ['<div class="modal-header"><h2>{title}</h2></div>',
+                template: ['<div class="special-tools-h1">{title}</div>',
                   '<hr>',
                   '<div class="modal-body">{content}</div>',
                   '<div class="modal-footer">',
@@ -2352,23 +2504,33 @@ L.Control.SpecialTools = L.Control.extend({
         
         L.DomEvent.on(btn_show_modal_raster_download, 'click', function() {
         
-            content = "<p>" + self._T("Exportar como: ", self.json_lang, self.lang);
-            content = content + "<select id='raster_export'>";
+            content = "<div class='special-tools-container special-tools-div-33'>";
+            content = content + self._T("Exportar como: ", self.json_lang, self.lang);
+            content = content + "<select id='raster_export' class='special-tools-select'>";
             content = content + "<option value='geotiff'>Raster GeoTiff</option>";
             content = content + "<option value='png'>png</option>";
             content = content + "<option value='jpg'>jpg</option>";
             content = content + "<option value='gif'>gif</option>";
             content = content + "<option value='webp'>webp</option>";
-            content = content + "</select>"; 
-            content = content + self._T(" Nombre: ", self.json_lang, self.lang) + "<input type='text' id='raster_name' value='" + self._T("archivo", self.json_lang, self.lang) + "' style='width: 110px;'>";
-            content = content + "<img id='raster_export_button' src='"+self.route+"/img/download.png' style='cursor: pointer; width: 24px; height; 24px; position: relative; top: 8px;' title='Download'></p>";
-            content = content + "<br><div id='while_download' style='line-height: 36px; background-color: #fff; font-weight: bold; padding-left: 3px; padding-right: 3px; margin-top: 5px;'></div>";
+            content = content + "</select>";
+            content = content + "</div>";
+            
+            content = content + "<div class='special-tools-container special-tools-div-66'>";
+            content = content + self._T(" Nombre: ", self.json_lang, self.lang) + "<input type='text' id='raster_name' class='special-tools-input-150' value='" + self._T("archivo", self.json_lang, self.lang) + "'>";
+            content = content + "<img id='raster_export_button' src='"+self.route+"/img/download.png' style='cursor: pointer; width: 24px; height; 24px;' title='Download'>";
+            content = content + "</div>";
+            
+            content = content + "<div style='clear: left;'></div>";
+            
+            content = content + "<div class='special-tools-container'>";
+            content = content + "<div id='while_download' class='special-tools-while-download'></div>";
+            content = content + "</div>";
         
             self.map.fire('modal', {
                 
                 title: self._T("Descargar imagen", self.json_lang, self.lang),
                 content: content,
-                template: ['<div class="modal-header"><h2>{title}</h2></div>',
+                template: ['<div class="special-tools-h1">{title}</div>',
                   '<hr>',
                   '<div class="modal-body">{content}</div>',
                   '<div class="modal-footer">',
@@ -2645,15 +2807,16 @@ L.Control.SpecialTools = L.Control.extend({
                 
             }
             
-            content = self._T("Color: ", self.json_lang, self.lang) + "<input type='color' id='marker_color' value='"+color+"'><input type='text' id='readonly_color' readonly='true' value='"+color+"' style='width: 130px; margin-left: 10px; position: relative; top: -5px;'>";
-
+            content = "<div class='special-tools-container'>";
+            content = content + self._T("Color: ", self.json_lang, self.lang) + "<input type='color' id='marker_color' value='"+color+"'><input type='text' id='readonly_color' class='special-tools-input-100' readonly='true' value='"+color+"'>";
             content = content + " <img id='marker_preview' style='width: 36px; height: 36px;' src='"+ self.route + "/img/pin.svg'>";
+            content = content + "</div>";
             
             map.fire('modal', {
 
               title: self._T("Editar estilos", self.json_lang, self.lang),
               content: content,
-              template: ['<div class="modal-header"><h2>{title}</h2></div>',
+              template: ['<div class="special-tools-h1">{title}</div>',
                 '<hr>',
                 '<div class="modal-body">{content}</div>',
                 '<div class="modal-footer">',
@@ -2774,22 +2937,31 @@ L.Control.SpecialTools = L.Control.extend({
                 
             }
             
-
-            content = "<p>" + self._T("Color: ", self.json_lang, self.lang) + "<input type='color' id='stroke_color' value='"+stroke_color+"'><input type='text' id='readonly_color' readonly='true' value='"+stroke_color+"' style='width: 130px; margin-left: 10px; position: relative; top: -5px;'></p>";
+            content = "<div class='special-tools-container'>";
+            content = content +  self._T("Color: ", self.json_lang, self.lang) + "<input type='color' id='stroke_color' value='"+stroke_color+"'><input type='text' id='readonly_color' class='special-tools-input-100' readonly='true' value='"+stroke_color+"'>";
+            content = content + "</div>";
             
-            content = content + "<p>" + self._T("Ancho del borde: ", self.json_lang, self.lang) + "<input type='range' id='stroke_width' class='special-tools-input-range' min='1' max='100' step='1' value='"+stroke_width+"'></p>";
+            content = content + "<div class='special-tools-container'>";
+            content = content + self._T("Ancho del borde: ", self.json_lang, self.lang) + "<input type='range' id='stroke_width' class='special-tools-input-range' min='1' max='100' step='1' value='"+stroke_width+"'>";
+            content = content + "</div>";
 
-            content = content + "<p>" + self._T("Opacidad: ", self.json_lang, self.lang) + "<input type='range' id='stroke_opacity' class='special-tools-input-range' min='0' max='1' step='0.1' value='"+stroke_opacity+"'></p>"; 
+            content = content + "<div class='special-tools-container'>";
+            content = content + self._T("Opacidad: ", self.json_lang, self.lang) + "<input type='range' id='stroke_opacity' class='special-tools-input-range' min='0' max='1' step='0.1' value='"+stroke_opacity+"'>"; 
+            content = content + "</div>";
 
-            content = content + "<p>" + self._T("Borde discontinuo: ", self.json_lang, self.lang) + "<input type='range' id='stroke_dasharray' class='special-tools-input-range' min='0' max='100' step='2' value='"+stroke_dasharray+"'></p>"; 
+            content = content + "<div class='special-tools-container'>";
+            content = content + self._T("Borde discontinuo: ", self.json_lang, self.lang) + "<input type='range' id='stroke_dasharray' class='special-tools-input-range' min='0' max='100' step='2' value='"+stroke_dasharray+"'>"; 
+            content = content + "</div>";
 
+            content = content + "<div class='special-tools-container'>";
             content = content + "<svg viewBox='0 0 300 100' xmlns='http://www.w3.org/2000/svg'><path id='linestring_preview' stroke-linecap='round' stroke-linejoin='round' fill='none' d='M 75 50 l 150 0' stroke='"+stroke_color+"' stroke-width='"+stroke_width+"' stroke-opacity='"+stroke_opacity+"' stroke-dasharray='"+stroke_dasharray+"' stroke-dashoffset='0'></path></svg>";
+            content = content + "</div>";
             
             map.fire('modal', {
 
               title: self._T("Editar estilos", self.json_lang, self.lang),
               content: content,
-              template: ['<div class="modal-header"><h2>{title}</h2></div>',
+              template: ['<div class="special-tools-h1">{title}</div>',
                 '<hr>',
                 '<div class="modal-body">{content}</div>',
                 '<div class="modal-footer">',
@@ -3141,23 +3313,35 @@ L.Control.SpecialTools = L.Control.extend({
                 
             }
             
-            content = "<p>" + self._T("Color: ", self.json_lang, self.lang) + "<input type='color' id='stroke_color' value='"+stroke_color+"'><input type='text' id='readonly_color' readonly='true' value='"+stroke_color+"' style='width: 130px; margin-left: 10px; position: relative; top: -5px;'></p>";
+            content = "<div class='special-tools-container'>";
+            content = content + self._T("Color: ", self.json_lang, self.lang) + "<input type='color' id='stroke_color' value='"+stroke_color+"'><input type='text' id='readonly_color' class='special-tools-input-100' readonly='true' value='"+stroke_color+"'>";
+            content = content + "</div>";
             
-            content = content + "<p>" + self._T("Ancho del borde: ", self.json_lang, self.lang) + "<input type='range' id='stroke_width' class='special-tools-input-range' min='1' max='100' step='1' value='"+stroke_width+"'></p>";
+            content = content + "<div class='special-tools-container'>";
+            content = content + self._T("Ancho del borde: ", self.json_lang, self.lang) + "<input type='range' id='stroke_width' class='special-tools-input-range' min='1' max='100' step='1' value='"+stroke_width+"'>";
+            content = content + "</div>";
 
-            content = content + "<p>" + self._T("Opacidad del borde: ", self.json_lang, self.lang) + "<input type='range' id='stroke_opacity' class='special-tools-input-range' min='0' max='1' step='0.1' value='"+stroke_opacity+"'></p>"; 
+            content = content + "<div class='special-tools-container'>";
+            content = content + self._T("Opacidad del borde: ", self.json_lang, self.lang) + "<input type='range' id='stroke_opacity' class='special-tools-input-range' min='0' max='1' step='0.1' value='"+stroke_opacity+"'>"; 
+            content = content + "</div>";
 
-            content = content + "<p>" + self._T("Borde discontinuo: ", self.json_lang, self.lang) + "<input type='range' id='stroke_dasharray' class='special-tools-input-range' min='0' max='100' step='2' value='"+stroke_dasharray+"'></p>"; 
+            content = content + "<div class='special-tools-container'>";
+            content = content + self._T("Borde discontinuo: ", self.json_lang, self.lang) + "<input type='range' id='stroke_dasharray' class='special-tools-input-range' min='0' max='100' step='2' value='"+stroke_dasharray+"'>"; 
+            content = content + "</div>";
+            
+            content = content + "<div class='special-tools-container'>";
+            content = content + self._T("Opacidad de relleno: ", self.json_lang, self.lang) + "<input type='range' id='fill_opacity' class='special-tools-input-range' min='0' max='1' step='0.1' value='"+fill_opacity+"'>";
+            content = content + "</div>";
 
-            content = content + "<p>" + self._T("Opacidad de relleno: ", self.json_lang, self.lang) + "<input type='range' id='fill_opacity' class='special-tools-input-range' min='0' max='1' step='0.1' value='"+fill_opacity+"'></p>";
-
-            content = content + "<br><br><svg viewBox='0 0 300 100' xmlns='http://www.w3.org/2000/svg'><rect id='obj_preview' rect width='300' height='100' stroke-linecap='round' stroke-linejoin='round' stroke='"+stroke_color+"' stroke-width='"+stroke_width+"' stroke-opacity='"+stroke_opacity+"' fill-opacity='"+fill_opacity+"' stroke-dasharray='"+stroke_dasharray+"' stroke-dashoffset='0' fill='"+stroke_color+"'></rect></svg>";
+            content = content + "<div class='special-tools-container'>";
+            content = content + "<svg viewBox='0 0 300 100' xmlns='http://www.w3.org/2000/svg'><rect id='obj_preview' rect width='300' height='100' stroke-linecap='round' stroke-linejoin='round' stroke='"+stroke_color+"' stroke-width='"+stroke_width+"' stroke-opacity='"+stroke_opacity+"' fill-opacity='"+fill_opacity+"' stroke-dasharray='"+stroke_dasharray+"' stroke-dashoffset='0' fill='"+stroke_color+"'></rect></svg>";
+            content = content + "</div>";
             
             map.fire('modal', {
 
               title: self._T("Editar estilos", self.json_lang, self.lang),
               content: content,
-              template: ['<div class="modal-header"><h2>{title}</h2></div>',
+              template: ['<div class="special-tools-h1">{title}</div>',
                 '<hr>',
                 '<div class="modal-body">{content}</div>',
                 '<div class="modal-footer">',

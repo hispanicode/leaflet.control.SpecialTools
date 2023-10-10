@@ -104,29 +104,38 @@ L.Control.SpecialToolsUA = L.Control.extend({
 
                     wms = L.tileLayer.wms('http://www.ign.es/wms-inspire/unidades-administrativas?', {layers: 'AU.AdministrativeUnit'});
 
-                    component_geolocation.layer_control.addBaseLayer(wms, "Unidades Administrativas (ES)");
 
-                    leaflet_control_layers_base = document.querySelector('.leaflet-control-layers-base');
+                    if (server) {
                     
-                    leaflet_control_layers_selector = leaflet_control_layers_base.querySelectorAll('.leaflet-control-layers-selector');
-                    
-                    for (let index in leaflet_control_layers_selector) {
-                        
-                        if (leaflet_control_layers_selector[index].checked) {
-                            
-                            basemap_history = index;
-                            
-                            break;
-                            
+                        component_geolocation.layer_control.addBaseLayer(wms, "Unidades Administrativas (ES)");
+
+                        leaflet_control_layers_base = document.querySelector('.leaflet-control-layers-base');
+
+                        leaflet_control_layers_selector = leaflet_control_layers_base.querySelectorAll('.leaflet-control-layers-selector');
+
+                        for (let index in leaflet_control_layers_selector) {
+
+                            if (leaflet_control_layers_selector[index].checked) {
+
+                                basemap_history = index;
+
+                                break;
+
+                            }
+
                         }
+
+                        last_basemap_index = leaflet_control_layers_selector.length-1;
+
+                        UA_input_radio = leaflet_control_layers_selector[last_basemap_index];
+
+                        UA_input_radio.click();
+                    
+                    } else {
+                        
+                        wms.addTo(map);
                         
                     }
-
-                    last_basemap_index = leaflet_control_layers_selector.length-1;
-
-                    UA_input_radio = leaflet_control_layers_selector[last_basemap_index];
-
-                    UA_input_radio.click();
 
                 }  else {
 
@@ -136,12 +145,20 @@ L.Control.SpecialToolsUA = L.Control.extend({
                     
                     leaflet_control_select_UA.style.display = 'none';
 
-                    component_geolocation.layer_control.removeLayer(wms);
-                    
-                    wms.removeFrom(map);
-                    
-                    document.querySelectorAll('.leaflet-control-layers-selector')[basemap_history].click();
-                    
+                    if (server) {
+
+                        component_geolocation.layer_control.removeLayer(wms);
+                        
+                        wms.removeFrom(map);
+
+                        document.querySelectorAll('.leaflet-control-layers-selector')[basemap_history].click();
+                        
+                    } else {
+                        
+                        wms.removeFrom(map);
+                        
+                    }
+
                     enable_UA = false;
                     
                 }
@@ -165,7 +182,7 @@ L.Control.SpecialToolsUA = L.Control.extend({
 
                                     title: special_tools._T("Unidades Administrativas", json_lang, lang),
                                     content: content,
-                                    template: ['<div class="modal-header"><h2>{title}</h2></div>',
+                                    template: ['<div class="special-tools-h1">{title}</div>',
                                       '<hr>',
                                       '<div class="modal-body">{content}</div>',
                                       '<div class="modal-footer">',
@@ -302,7 +319,16 @@ L.Control.SpecialToolsUA = L.Control.extend({
 
                                                                 self.special_tools_msg.innerHTML = special_tools._T("Puede tomar unos segundos, por favor espere ...", json_lang, lang);
                                                                 
-                                                                map.fire("pm:create", {layer: OBJECTS_GEOJSON[index][obj]});
+                                                                if (server) {
+                                                                
+                                                                    map.fire("pm:create", {layer: OBJECTS_GEOJSON[index][obj]});
+                                                                
+                                                                } else {
+                                                                    
+                                                                    OBJECTS_GEOJSON[index][obj].addTo(map);
+                                                                    special_tools.set_info_console(OBJECTS_GEOJSON[index][obj]);
+                                                                    
+                                                                }
                                                                 
                                                             }, 100);
                                                             

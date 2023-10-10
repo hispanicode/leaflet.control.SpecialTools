@@ -46,9 +46,9 @@ L.Control.SpecialToolsMapImageDownload = L.Control.extend({
                 special_tools.only_one_control_active(elements_controls, controlDiv);
             } catch (e) {};
             
-            content = "<div class='special-tools-container special-tools-div-33' style='padding-top: 11px;'>";
+            content = "<div class='special-tools-container special-tools-div-33'>";
             content = content +  special_tools._T("Exportar como: ", json_lang, lang);
-            content = content + "<select id='raster_export'>";
+            content = content + "<select class='special-tools-select' id='raster_export'>";
             content = content + "<option value='tif'>Raster GeoTiff</option>";
             content = content + "<option value='png'>png</option>";
             content = content + "<option value='jpg'>jpg</option>";
@@ -57,22 +57,22 @@ L.Control.SpecialToolsMapImageDownload = L.Control.extend({
             content = content + "</select>"; 
             content = content + "</div>";
             
-            content = content + "<div class='special-tools-container special-tools-div-33'>";
-            content = content + special_tools._T(" Nombre: ", json_lang, lang) + "<input type='text' id='raster_name' class='special-tools-input-100' value='" + special_tools._T("archivo", json_lang, lang) + "'>";
-            content = content + "<img id='btn_map_download' src='"+route+"/img/download.png' style='cursor: pointer; width: 24px; height; 24px; position: relative; top: 8px;' title='" + special_tools._T("Descargar Mapa", json_lang, lang) + "'>";
+            content = content + "<div class='special-tools-container special-tools-div-66'>";
+            content = content + special_tools._T(" Nombre: ", json_lang, lang) + "<input type='text' id='raster_name' class='special-tools-input-150' value='" + special_tools._T("archivo", json_lang, lang) + "'>";
+            content = content + "<img id='btn_map_download' src='"+route+"/img/download.png' style='cursor: pointer; width: 24px; height; 24px;' title='" + special_tools._T("Descargar Mapa", json_lang, lang) + "'>";
             content = content + "</div>";
             
             content = content + "<div style='clear: left;'></div>";
             
             content = content + "<div class='special-tools-container'>";
-            content = content + "<div id='while_download' style='line-height: 36px; background-color: #fff; font-weight: bold; padding: 3px; margin-top: 5px;'></div>";
+            content = content + "<div id='while_download' class='special-tools-while-download'></div>";
             content = content + "</div>";
             
             map.fire('modal', {
                 
               title: special_tools._T("Descargar Mapa", json_lang, lang),
               content: content,
-              template: ['<div class="modal-header"><h2>{title}</h2></div>',
+              template: ['<div style="padding: 0px"><div class="special-tools-h1">{title}</div></div>',
                 '<hr>',
                 '<div class="modal-body">{content}</div>',
                 '<div class="modal-footer">',

@@ -53,11 +53,12 @@ L.Control.SpecialToolsUpload = L.Control.extend({
             } catch (e) {};
             
             content = "<div class='special-tools-container'>";
-            content = "<h3>" + special_tools._T("Capas Vectoriales", json_lang, lang) + "</h3>";
+            content = content + "<div class='special-tools-h2'>" + special_tools._T("Capas Vectoriales", json_lang, lang) + "</div>";
             content = content + "</div>";
             
             content = content + "<div class='special-tools-container special-tools-div-40'>";
-            content = content + special_tools._T("Seleccione el tipo de archivo: ", json_lang, lang) + "<select id='file_type'>";
+            content = content + special_tools._T("Seleccione el tipo de archivo: ", json_lang, lang);
+            content = content + "<select class='special-tools-select' id='file_type'>";
             content = content + "<option value='shape' selected>Shape (*.zip)</option>";
             content = content + "<option value='geojson'>(*.geojson)</option>";
             content = content + "<option value='kml'>(*.kml)</option>";
@@ -65,7 +66,7 @@ L.Control.SpecialToolsUpload = L.Control.extend({
             content = content + "</div>";
             
             content = content + "<div class='special-tools-container special-tools-div-60'>";
-            content = content + special_tools._T(" Seleccione el archivo: ", json_lang, lang) + "<input type='file' name='vector_upload' id='vector_upload'>";
+            content = content + special_tools._T(" Seleccione el archivo: ", json_lang, lang) + "<input type='file' name='vector_upload' id='vector_upload' class='special-tools-input-file'>";
             content = content + "</div>";
             
             content = content + "<div style='clear: left;'></div>";
@@ -97,7 +98,7 @@ L.Control.SpecialToolsUpload = L.Control.extend({
             content = content + "<hr>";
             
             content = content + "<div class='special-tools-container'>";
-            content = content + "<h3>" + special_tools._T("Imágenes", json_lang, lang) + "</h3>";
+            content = content + "<div class='special-tools-h2'>" + special_tools._T("Imágenes", json_lang, lang) + "</div>";
             content = content + "</div>";
             
             content = content + "<div class='special-tools-container special-tools-div-20'>";
@@ -112,12 +113,12 @@ L.Control.SpecialToolsUpload = L.Control.extend({
             content = content + "<button type='button' id='btn_add_image_to_map' class='special-tools-btn-primary special-tools-visibility-hide'>" + special_tools._T("Añadir la imagen al mapa", json_lang, lang) + "</button>";
             content = content + "</div>";
             
+            content = content + "<div style='clear: left;'></div>";
+            
             content = content + "<div class='special-tools-container'>";
             content = content + "<div id='image_upload_msg'></div>";
             content = content + "</div>";
-            
-            content = content + "<div style='clear: left;'></div>";
-            
+
             content = content + "<div class='special-tools-container'>";
             content = content + "<div id='box_image_config' class='special-tools-visibility-hide special-tools-text-info'>";
             content = content + "<div id='box_image_msg'></div>";
@@ -129,7 +130,7 @@ L.Control.SpecialToolsUpload = L.Control.extend({
 
                 title: special_tools._T("Subir archivos", json_lang, lang),
                 content: content,
-                template: ['<div class="modal-header"><h2>{title}</h2></div>',
+                template: ['<div class="special-tools-h1">{title}</div>',
                   '<hr>',
                   '<div class="modal-body">{content}</div>',
                   '<div class="modal-footer">',
@@ -435,7 +436,16 @@ L.Control.SpecialToolsUpload = L.Control.extend({
 
                                             window.setTimeout(function(){
                                                 
-                                                map.fire("pm:create", {layer: OBJECTS_GEOJSON[index][obj]});
+                                                if (server) {
+                                                
+                                                    map.fire("pm:create", {layer: OBJECTS_GEOJSON[index][obj]});
+                                                    
+                                                } else {
+                                                    
+                                                    OBJECTS_GEOJSON[index][obj].addTo(map);
+                                                    special_tools.set_info_console(OBJECTS_GEOJSON[index][obj]);
+                                                    
+                                                }
                                                 
                                             }, 100);
 
@@ -584,9 +594,17 @@ L.Control.SpecialToolsUpload = L.Control.extend({
                                     for (let obj in OBJECTS_GEOJSON[index]) {
 
                                         window.setTimeout(function(){
-
-                                            map.fire("pm:create", {layer: OBJECTS_GEOJSON[index][obj]});
-
+                                            
+                                            if (server) {
+                                            
+                                                map.fire("pm:create", {layer: OBJECTS_GEOJSON[index][obj]});
+                                                
+                                            } else {
+                                                
+                                                OBJECTS_GEOJSON[index][obj].addTo(map);
+                                                special_tools.set_info_console(OBJECTS_GEOJSON[index][obj]);
+                                                
+                                            }
                                         }, 100);
 
                                         if (max_fit === 1) {
@@ -729,7 +747,16 @@ L.Control.SpecialToolsUpload = L.Control.extend({
 
                                             window.setTimeout(function(){
                                                 
-                                                map.fire("pm:create", {layer: OBJECTS_GEOJSON[index][obj]});
+                                                if (server) {
+                                                
+                                                    map.fire("pm:create", {layer: OBJECTS_GEOJSON[index][obj]});
+                                                    
+                                                } else {
+                                                    
+                                                    OBJECTS_GEOJSON[index][obj].addTo(map);
+                                                    special_tools.set_info_console(OBJECTS_GEOJSON[index][obj]);
+                                                    
+                                                }
                                                 
                                             }, 100);
 
@@ -1001,7 +1028,15 @@ L.Control.SpecialToolsUpload = L.Control.extend({
                         clip_polygon.feature.special_tools.point3 = point3;
                         clip_polygon.feature.special_tools.geoman_edition = false;
 
-                        map.fire('pm:create', {layer: clip_polygon});
+                        if (server) {
+
+                            map.fire('pm:create', {layer: clip_polygon});
+                            
+                        } else {
+                            
+                            clip_polygon.addTo(map);
+                            
+                        }
 
                         map.fitBounds(bounds_of_image);
                         

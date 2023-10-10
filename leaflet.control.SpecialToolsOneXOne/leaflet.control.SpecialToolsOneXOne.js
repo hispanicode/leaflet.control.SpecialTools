@@ -88,7 +88,16 @@ L.Control.SpecialToolsOneXOne = L.Control.extend({
                                 rectangle.feature.special_tools.oneXone_type = 'Rectangle';
                                 rectangle.feature.special_tools.tools_id = special_tools.make_id(20);
 
-                                map.fire('pm:create', {layer: rectangle});
+                                if (server) {
+                                    
+                                    map.fire('pm:create', {layer: rectangle});
+                                    
+                                } else {
+                                    
+                                    rectangle.addTo(map);
+                                    special_tools.set_info_console(rectangle);
+                                    
+                                }
 
                                 rectangle.fireEvent('click');
 

@@ -43,15 +43,27 @@ L.Control.SpecialToolsObjects = L.Control.extend({
             let elements_controls = special_tools.controlDiv.querySelectorAll('.special-tools-controls');
 
             try {
+                
                 special_tools.only_one_control_active(elements_controls, controlDiv);
+                
             } catch (e) {};
+
+            content = "<div class='special-tools-h2'>" + special_tools._T("Objetos Vectoriales", json_lang, lang) + "</div>";
             
-            content = "<div>";
+            var collection;
             
-            content = content + "<h3>" + special_tools._T("Objetos Vectoriales", json_lang, lang) + "</h3>";
+            if (server) {
+                
+            collection = component_geolocation.FeatureGroup[component_geolocation.active_layer_id];
             
-            var collection = component_geolocation.FeatureGroup[component_geolocation.active_layer_id];
+            } else {
+               
+                collection = map.pm.getGeomanDrawLayers(true);
+                
+            }
+            
             let layer;
+            
             let leaflet_id;
             
             if (typeof collection === 'object') {
@@ -121,7 +133,7 @@ L.Control.SpecialToolsObjects = L.Control.extend({
                     }
             }
             
-            content = content + "<h3>" + special_tools._T("Objetos Rasterizados", json_lang, lang) + "</h3>";
+            content = content + "<div class='special-tools-h2'>" + special_tools._T("Objetos Rasterizados", json_lang, lang) + "</div>";
             
             for (let obj in collection._layers) {
                 
@@ -147,17 +159,13 @@ L.Control.SpecialToolsObjects = L.Control.extend({
                 }
             }
             
-            content = content + "</div>";
-            
             map.fire('modal', {
 
                 title: special_tools._T("Objetos", json_lang, lang),
                 content: content,
-                template: ['<div class="modal-header"><h2>{title}</h2></div>',
+                template: ['<div class="special-tools-h1">{title}</div>',
                   '<hr>',
-                  '<div class="modal-body">{content}</div>',
-                  '<div class="modal-footer">',
-                  '</div>'
+                  '<div class="modal-body">{content}</div>'
                 ].join(''),
 
                 width: 'auto',

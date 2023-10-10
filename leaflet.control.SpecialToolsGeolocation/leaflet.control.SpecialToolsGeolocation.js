@@ -67,8 +67,17 @@ L.Control.SpecialToolsGeolocation = L.Control.extend({
                 marker.feature = marker.toGeoJSON();
                 marker.feature.special_tools = {};
                 marker.feature.special_tools.tools_id = special_tools.make_id(20);
-                
-                map.fire('pm:create', {layer: marker});
+
+                if (server) {
+
+                    map.fire('pm:create', {layer: marker});
+
+                } else {
+
+                    marker.addTo(map);
+                    special_tools.set_info_console(marker);
+
+                }
                 
                 map.setView(e.latlng, 16);
                 

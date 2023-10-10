@@ -47,7 +47,7 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
             } catch (e) {};
             
             /* PLEIADES */
-            pleiades = "<h3>Pleiades (pleiades.stoa.org)</h3>";
+            pleiades = "<div class='special-tools-h2'>Pleiades (pleiades.stoa.org)</div>";
             
             pleiades = pleiades + "<div class='pleiades-div'>";
             
@@ -78,7 +78,7 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
             /* PLEIADES */
             
             /* PELAGIOS DARE */
-            pelagios = "<h3>Pelagios D.A.R.E</h3>";
+            pelagios = "<div class='special-tools-h2'>Pelagios D.A.R.E</div>";
             
             pelagios = pelagios + "<div class='pelagios-div'>";
             
@@ -128,7 +128,7 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
             /*
              * imperium.ahlfeldt.se
              */
-            imperium = "<h3>imperium.ahlfeldt.se (Lund University)</h3>";
+            imperium = "<div class='special-tools-h2'>imperium.ahlfeldt.se (Lund University)</div>";
             
             imperium = imperium + "<div class='imperium-div'>";
             
@@ -137,8 +137,8 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
             imperium = imperium + "<button type='button' id='btn_imperium' class='special-tools-btn-default'>" + special_tools._T("Buscar", json_lang, lang) + "</button>";
             imperium = imperium + "</div>";
             
-            imperium = imperium + "<div class='special-tools-container special-tools-div-25'>";
-            imperium = imperium + "<select id='select_imperium_type'>";
+            imperium = imperium + "<div class='special-tools-container special-tools-div-33'>";
+            imperium = imperium + "<select class='special-tools-select' id='select_imperium_type'>";
             imperium = imperium + "<option value=''>All types</option>";
             imperium = imperium + "<option value='11'>City</option>";
             imperium = imperium + "<option value='13'>Civitas</option>";
@@ -167,15 +167,15 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
             imperium = imperium + "</select>";
             imperium = imperium + "</div>";
             
-            imperium = imperium + "<div class='special-tools-container special-tools-div-25'>";
-            imperium = imperium + "<select id='select_imperium_name'>";
+            imperium = imperium + "<div class='special-tools-container special-tools-div-33'>";
+            imperium = imperium + "<select class='special-tools-select' id='select_imperium_name'>";
             imperium = imperium + "<option value='mss'>Modern placename</option>";
             imperium = imperium + "<option value='ass'>Ancient placename</option>";
             imperium = imperium + "</select>";
             imperium = imperium + "</div>";
             
-            imperium = imperium + "<div class='special-tools-container special-tools-div-25'>";
-            imperium = imperium + '<select id="select_imperium_country">';
+            imperium = imperium + "<div class='special-tools-container special-tools-div-33'>";
+            imperium = imperium + '<select class="special-tools-select" id="select_imperium_country">';
             imperium = imperium + '<option value="">All countries</option>';
             imperium = imperium + '<option value="AL">Albania</option>';
             imperium = imperium + '<option value="DZ">Algeria</option>';
@@ -260,7 +260,7 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                 
               title: special_tools._T("Consulta a servicios relacionados con el Imperio Romano", json_lang, lang),
               content: content,
-              template: ['<div class="modal-header"><h2>{title}</h2></div>',
+              template: ['<div class="special-tools-h1">{title}</div>',
                 '<hr>',
                 '<div class="modal-body">{content}</div>',
                 '<div class="modal-footer">',
@@ -400,7 +400,16 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                                     }
                                                 }
                                                 
-                                                map.fire("pm:create", {layer: marker});
+                                                if (server) {
+                                                
+                                                    map.fire("pm:create", {layer: marker});
+                                                
+                                                } else {
+                                                    
+                                                    marker.addTo(map);
+                                                    special_tools.set_info_console(marker);
+                                                    
+                                                }
                                                 
                                                 map.setView([lat, lng], 11);
                                                 
@@ -461,7 +470,16 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                                     
                                                     }
                                                     
-                                                    map.fire("pm:create", {layer: linestring});
+                                                    if (server) {
+   
+                                                        map.fire("pm:create", {layer: linestring});
+                                                    
+                                                    } else {
+                                                        
+                                                        linestring.addTo(map);
+                                                        special_tools.set_info_console(linestring);
+                                                        
+                                                    }
 
                                                 } else if (feature_type === 'MultiLineString') {
                                                     
@@ -517,7 +535,16 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                                         
                                                         }
 
-                                                        map.fire('pm:create', {layer: multilinestring});
+                                                        if (server) {
+                                                            
+                                                            map.fire('pm:create', {layer: multilinestring});
+                                                            
+                                                        } else {
+                                                            
+                                                            multilinestring.addTo(map);
+                                                            special_tools.set_info_console(multilinestring);
+                                                            
+                                                        }
 
                                                     }
                                                     
@@ -577,7 +604,16 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                                         
                                                         }
 
-                                                        map.fire('pm:create', {layer: multipoint});
+                                                        if (server) {
+                                                            
+                                                            map.fire('pm:create', {layer: multipoint});
+                                                            
+                                                        } else {
+                                                            
+                                                            multipoint.addTo(map);
+                                                            special_tools.set_info_console(multipoint);
+                                                            
+                                                        }
 
                                                     }
 
@@ -627,7 +663,16 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                                     
                                                     }
                                                     
-                                                    map.fire("pm:create", {layer: polygon});
+                                                    if (server) {
+                                                    
+                                                        map.fire("pm:create", {layer: polygon});
+                                                    
+                                                    } else {
+                                                        
+                                                        polygon.addTo(map);
+                                                        special_tools.set_info_console(polygon);
+                                                        
+                                                    }
                                                     
                                                     map.fitBounds(polygon.getBounds());
 
@@ -689,8 +734,17 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                                                 multipolygon.feature.properties.info = feature.properties.description;
 
                                                             }
+                                                            
+                                                            if (server) {
 
-                                                            map.fire('pm:create', {layer: multipolygon});
+                                                                map.fire('pm:create', {layer: multipolygon});
+                                                            
+                                                            } else {
+                                                                
+                                                                multipolygon.addTo(map);
+                                                                special_tools.set_info_console(multipolygon);
+                                                                
+                                                            }
                                                         }
                                                         
                                                         map.fitBounds(multipolygon.getBounds());
@@ -899,7 +953,16 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                     marker.feature.special_tools.geoman_edition = false;
                                     marker.feature.properties = geojson.properties;
                                     
+                                    if (server) {
+                                    
                                     map.fire('pm:create', {layer: marker});
+                                    
+                                    } else {
+                                        
+                                        marker.addTo(map);
+                                        special_tools.set_info_console(marker);
+                                        
+                                    }
                                     
                                     map.setView([lat, lng], 11);
                                     
@@ -922,7 +985,16 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                     polygon.feature.special_tools.geoman_edition = false;
                                     polygon.feature.properties = geojson.properties;
                                     
+                                    if (server) {
+                                    
                                     map.fire('pm:create', {layer: polygon});
+                                    
+                                    } else {
+                                        
+                                        polygon.addTo(map);
+                                        special_tools.set_info_console(polygon);
+                                        
+                                    }
                                     
                                     map.fitBounds(polygon.getBounds());
                                     
@@ -951,7 +1023,16 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                             multipolygon.feature.special_tools.multi_id = multi_id;
                                             multipolygon.feature.properties = geojson.properties;
 
-                                            map.fire('pm:create', {layer: multipolygon});
+                                            if (server) {
+                                            
+                                                map.fire('pm:create', {layer: multipolygon});
+                                        
+                                            } else {
+                                                
+                                                multipolygon.addTo(map);
+                                                special_tools.set_info_console(multipolygon);
+                                                
+                                            }
                                         
                                         }
 
@@ -978,7 +1059,16 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                     linestring.feature.special_tools.geoman_edition = false;
                                     linestring.feature.properties = geojson.properties;
                                     
-                                    map.fire('pm:create', {layer: linestring});
+                                    if (server) {
+                                        
+                                        map.fire('pm:create', {layer: linestring});
+                                    
+                                    } else {
+                                        
+                                        linestring.addTo(map);
+                                        special_tools.set_info_console(linestring);
+                                        
+                                    }
                                     
                                     map.fitBounds(linestring.getBounds());
 
@@ -1006,7 +1096,16 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                         multilinestring.feature.special_tools.multi_id = multi_id;
                                         multilinestring.feature.properties = geojson.properties;
 
-                                        map.fire('pm:create', {layer: multilinestring});
+                                        if (server) {
+                                        
+                                            map.fire('pm:create', {layer: multilinestring});
+ 
+                                        } else {
+                                            
+                                            multilinestring.addTo(map);
+                                            special_tools.set_info_console(multilinestring);
+                                            
+                                        }
 
                                     }
                                     
@@ -1108,7 +1207,16 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                     marker.feature.special_tools.geoman_edition = false;
                                     marker.feature.properties = geojson.properties;
                                     
-                                    map.fire('pm:create', {layer: marker});
+                                    if (server) {
+
+                                        map.fire('pm:create', {layer: marker});
+                                        
+                                    } else {
+                                        
+                                        marker.addTo(map);
+                                        special_tools.set_info_console(marker);
+                                        
+                                    }
                                     
                                     map.setView([lat, lng], 11);
                                     
@@ -1131,7 +1239,16 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                     polygon.feature.special_tools.geoman_edition = false;
                                     polygon.feature.properties = geojson.properties;
                                     
-                                    map.fire('pm:create', {layer: polygon});
+                                    if (server) {
+                                        
+                                        map.fire('pm:create', {layer: polygon});
+                                    
+                                    } else {
+                                        
+                                        polygon.addTo(map);
+                                        special_tools.set_info_console(polygon);
+                                        
+                                    }
                                     
                                     map.fitBounds(polygon.getBounds());
                                     
@@ -1159,7 +1276,16 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                             multipolygon.feature.special_tools.multi_id = multi_id;
                                             multipolygon.feature.properties = geojson.properties;
 
-                                            map.fire('pm:create', {layer: multipolygon});
+                                            if (server) {
+                                                
+                                                map.fire('pm:create', {layer: multipolygon});
+                                            
+                                            } else {
+                                                
+                                                multipolygon.addTo(map);
+                                                special_tools.set_info_console(multipolygon);
+                                                
+                                            }
                                         
                                         }
 
@@ -1185,8 +1311,17 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                     linestring.feature.special_tools.geoman_edition = false;
                                     linestring.feature.properties = geojson.properties;
                                     
-                                    map.fire('pm:create', {layer: linestring});
+                                    if (server) {
                                     
+                                        map.fire('pm:create', {layer: linestring});
+                                    
+                                    } else {
+                                        
+                                        linestring.addTo(map);
+                                        special_tools.set_info_console(linestring);
+                                        
+                                    }
+
                                     map.fitBounds(linestring.getBounds());
 
                                 }
@@ -1212,7 +1347,16 @@ L.Control.SpecialToolsRomanEmpire = L.Control.extend({
                                         multilinestring.feature.special_tools.multi_id = multi_id;
                                         multilinestring.feature.properties = geojson.properties;
 
-                                        map.fire('pm:create', {layer: multilinestring});
+                                        if (server) {
+                                        
+                                            map.fire('pm:create', {layer: multilinestring});
+                                        
+                                        } else {
+                                            
+                                            multilinestring.addTo(map);
+                                            special_tools.set_info_console(multilinestring);
+                                            
+                                        }
                                     
                                     }
                                     

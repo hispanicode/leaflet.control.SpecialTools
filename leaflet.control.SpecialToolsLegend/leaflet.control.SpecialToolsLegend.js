@@ -187,7 +187,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                 
               title: special_tools._T("Generar leyenda", json_lang, lang),
               content: content,
-              template: ['<div class="modal-header"><h2>{title}</h2></div>',
+              template: ['<div style="padding: 0px;"><div class="special-tools-h1">{title}</div></div>',
                 '<hr>',
                 '<div class="modal-body">{content}</div>',
                 '<div class="modal-footer">',
@@ -356,7 +356,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                         
                         const input_column = L.DomUtil.create('input');
                         input_column.type = 'text';
-                        input_column.style.width = '150px';
+                        input_column.setAttribute('class', 'special-tools-input-150');
                         input_column.setAttribute('index-column', index);
                         input_column.value = legend_json.columns[index].name;
                         
@@ -476,13 +476,13 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                             
                             const element_name = L.DomUtil.create('input');
                             element_name.type = 'text';
-                            element_name.style.width = '130px';
+                            element_name.setAttribute('class', 'special-tools-input-150');
                             element_name.setAttribute('index-column', __index_column__);
                             element_name.setAttribute('index-element', __index_element__);
                             
                             const element_color = L.DomUtil.create('input');
                             element_color.type = 'color';
-                            element_color.style.marginRight = '5px';
+                            element_color.style.margin = '5px';
                             element_color.setAttribute('index-column', __index_column__);
                             element_color.setAttribute('index-element', __index_element__);
                             
@@ -561,14 +561,14 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                             
                             const element_name = L.DomUtil.create('input');
                             element_name.type = 'text';
-                            element_name.style.width = '130px';
+                            element_name.setAttribute('class', 'special-tools-input-150');
                             element_name.setAttribute('index-column', index);
                             element_name.setAttribute('index-element', index_elem);
                             element_name.value = columns[index].elements[index_elem].name;
                             
                             const element_color = L.DomUtil.create('input');
                             element_color.type = 'color';
-                            element_color.style.marginRight = '5px';
+                            element_color.style.margin = '5px';
                             element_color.setAttribute('index-column', index);
                             element_color.setAttribute('index-element',index_elem);
                             element_color.value = columns[index].elements[index_elem].color;
@@ -694,7 +694,7 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                         
                         const input_column = L.DomUtil.create('input');
                         input_column.type = 'text';
-                        input_column.style.width = '150px';
+                        input_column.setAttribute('class', 'special-tools-input-150');
                         input_column.setAttribute('index-column', _index_column_);
                         
                         div_container_1.appendChild(input_column_span);
@@ -814,13 +814,13 @@ L.Control.SpecialToolsLegend = L.Control.extend({
                             
                             const element_name = L.DomUtil.create('input');
                             element_name.type = 'text';
-                            element_name.style.width = '130px';
+                            element_name.setAttribute('class', 'special-tools-input-150');
                             element_name.setAttribute('index-column', __index_column__);
                             element_name.setAttribute('index-element', __index_element__);
                             
                             const element_color = L.DomUtil.create('input');
                             element_color.type = 'color';
-                            element_color.style.marginRight = '5px';
+                            element_color.style.margin = '5px';
                             element_color.setAttribute('index-column', __index_column__);
                             element_color.setAttribute('index-element', __index_element__);
                             
